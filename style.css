@@ -7,21 +7,66 @@ header {
     font-size: 1.1em;
     font-weight: bold;
     position: fixed;
-    padding: 1.250em;
-    background-color: white;
+    padding: 0.5em;
+    background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
     width: 100%;
 }
 
+footer {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 a{
-    color: black;
+    color: white;
+}
+.non_souligne{
     text-decoration: none ;
+}
+
+.souligne{
+    text-decoration: underline;
 }
 
 ul{
     list-style-type: none;
 }
 
-nav a{
-    padding: 1.250em
+.Logo{
+    padding-right: 1.250em;
 }
+
+.Logo:hover{
+    opacity: 0.8;
+}
+
+.lien_nav_gauche{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+}
+
+.lien_nav_droite{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-right: 2em;
+}
+
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+header div a {
+    padding: 0.313em;
+    margin: 0.313em;
+}
+
