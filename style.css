@@ -1,0 +1,27 @@
+*{
+    margin: 0;
+}
+
+header {
+    font-family: 'Manrope', sans-serif;
+    font-size: 1.1em;
+    font-weight: bold;
+    position: fixed;
+    padding: 1.250em;
+    background-color: white;
+    display: flex;
+    width: 100%;
+}
+
+a{
+    color: black;
+    text-decoration: none ;
+}
+
+ul{
+    list-style-type: none;
+}
+
+nav a{
+    padding: 1.250em
+}
