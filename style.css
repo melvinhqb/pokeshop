@@ -6,11 +6,12 @@ header {
     font-family: 'Manrope', sans-serif;
     font-size: 1.1em;
     font-weight: bold;
-    position: fixed;
+    /*position: fixed;*/
     padding: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
     width: 100%;
+    align-items: center;
 }
 
 footer {
@@ -39,6 +40,10 @@ ul{
 
 .Logo{
     padding-right: 1.250em;
+}
+
+.Logo img {
+    height: 36px;
 }
 
 .Logo:hover{
@@ -70,3 +75,11 @@ header div a {
     margin: 0.313em;
 }
 
+.container {
+    width: 1200px;
+    margin: 0auto;
+}
+
+.logo-series {
+    width: 8em;
+}
