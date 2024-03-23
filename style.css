@@ -1,12 +1,20 @@
 *{
     margin: 0;
+    font-family: 'Manrope', sans-serif;
+}
+
+body {
+    background-color: #f0f0f0;
+}
+
+main {
+    padding-top: 63.59px;
 }
 
 header {
-    font-family: 'Manrope', sans-serif;
     font-size: 1.1em;
     font-weight: bold;
-    /*position: fixed;*/
+    position: fixed;
     padding: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
@@ -15,7 +23,6 @@ header {
 }
 
 footer {
-    font-family: 'Manrope', sans-serif;
     font-size: 1.1em;
     font-weight: bold;
     display: flex;
@@ -23,7 +30,7 @@ footer {
     justify-content: center;
 }
 
-a{
+header a{
     color: white;
 }
 .non_souligne{
@@ -77,9 +84,91 @@ header div a {
 
 .container {
     width: 1200px;
-    margin: 0auto;
+    margin: 0 auto;
 }
 
 .logo-series {
     width: 8em;
+}
+
+/* Table style */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid transparent;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-top: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+table img {
+    max-width: 50px;
+    height: auto;
+}
+
+table img:hover {
+    cursor: zoom-in;
+}
+
+a.card-link {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a.card-link:hover {
+    text-decoration: underline;
+}
+
+/* Modal Card */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-dialog {
+    max-width: 80%;
+    max-height: 80%;
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: zoom-out;
 }

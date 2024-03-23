@@ -5,8 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liste des cartes Pokémon</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
+    <header>
+            <a class ="Logo" href="index.html"><img src="logo.png"></a>
+            <nav>            
+                <div class="lien_nav_gauche">
+                    <a class="non_souligne" href="index.html">Accueil</a>
+                    <a class="souligne" href="produits.html">Produits</a>
+                    <a class="non_souligne" href="contact.html">Contact</a>
+                </div>
+                <div class="lien_nav_droite">
+                    <a class="non_souligne" href="login.html">Login</a>
+                </div>
+            </nav>
+    </header>
+    <main>
     <?php
     // Connexion à la base de données
     $servername = "localhost";
@@ -68,23 +86,26 @@
     }
 
     // Requête pour sélectionner les cartes Pokémon en fonction de la recherche
-    $sql = "SELECT c.id, c.num_collection, c.name, c.image, c.price, c.stock, e.nb_cards, e.nb_secret_cards 
-    FROM cards c
-    LEFT JOIN extensions e ON c.extension_id = e.id " . $where_clause;
+    $sql = "SELECT c.id, c.num_collection, c.name, c.image, c.price, c.stock, c.slug, e.nb_cards, e.nb_secret_cards, ex.name AS extension_name
+        FROM cards c
+        LEFT JOIN extensions e ON c.extension_id = e.id 
+        LEFT JOIN extensions ex ON c.extension_id = ex.id " . $where_clause;
     $result = $conn->query($sql);
+
 
     // Affichage du titre personnalisé
     echo "<h1>Liste des cartes Pokémon - $title</h1>";
 
     if ($result->num_rows > 0) {
         // Afficher les cartes Pokémon dans un tableau
-        echo "<div class='center'>";
+        echo "<div class='container'>";
         echo "<table border='1'>";
-        echo "<tr><th>Image</th><th>Nom</th><th>Numéro</th><th>Prix</th><th>Stock</th></tr>";
+        echo "<tr><th>Image</th><th>Nom</th><th>Extension</th><th>Numéro</th><th>Prix</th><th>Stock</th></tr>";
         while($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td><img src='Photos/" . $row["image"] . "' alt='" . $row["name"] . "' style='width: 50px; height: auto;'></td>";
-            echo "<td>" . $row["name"] . "</td>";
+            echo "<td><a class='card-link' href='card.php?slug=" . $row["slug"] . "'>" . $row["name"] . "</a></td>";
+            echo "<td>" . $row["extension_name"] . "</td>";
             echo "<td>" . sprintf("%03d", $row["num_collection"]) . "/" . (sprintf("%03d", $row["nb_cards"] - $row["nb_secret_cards"])) . "</td>";
             echo "<td>" . $row["price"] . " €</td>";
             echo "<td>" . $row["stock"] . "</td>";
@@ -99,5 +120,22 @@
     // Fermer la connexion à la base de données
     $conn->close();
     ?>
+    </main>
+    <script>
+        $(document).ready(function(){
+            // Lorsque vous cliquez sur une image, affichez la version agrandie dans une fenêtre modale
+            $('img').click(function(){
+                var imgSrc = $(this).attr('src');
+                var zoomedImage = $('<img>').attr('src', imgSrc).css('max-width', '100%').css('max-height', '100%');
+                var modalContent = $('<div>').addClass('modal-content').append(zoomedImage);
+                var modalDialog = $('<div>').addClass('modal-dialog').append(modalContent);
+                var modal = $('<div>').addClass('modal').append(modalDialog);
+                $('body').append(modal);
+                $('.modal').click(function(){
+                    $(this).remove();
+                });
+            });
+        });
+    </script>
 </body>
 </html>
