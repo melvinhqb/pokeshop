@@ -14,8 +14,8 @@ main {
 header {
     font-size: 1.1em;
     font-weight: bold;
-    position: fixed;
-    padding: 0.5em;
+    /* position: fixed; */
+    padding: 0.5em 0;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
     width: 100%;
@@ -33,58 +33,86 @@ footer {
 header a{
     color: white;
 }
-.non_souligne{
-    text-decoration: none ;
+
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 1120px;
 }
 
-.souligne{
-    text-decoration: underline;
+a {
+    text-decoration: none;
 }
 
-ul{
-    list-style-type: none;
+li {
+    list-style: none;
 }
 
-.Logo{
-    padding-right: 1.250em;
-}
+/* Navbar style */
 
-.Logo img {
-    height: 36px;
-}
-
-.Logo:hover{
-    opacity: 0.8;
-}
-
-.lien_nav_gauche{
+.navbar {
     display: flex;
-    flex-direction: row;
-    justify-content:flex-start;
-}
-
-.lien_nav_droite{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-right: 2em;
-}
-
-nav{
-    display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
 }
 
-header div a {
-    padding: 0.313em;
-    margin: 0.313em;
+.navbar_content {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    justify-content: space-between;
 }
 
-.container {
-    width: 1200px;
-    margin: 0 auto;
+.navbar_menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar_item {
+    margin: 0 32px;
+    position: relative;
+}
+
+.nav_link {
+    text-decoration: none ;
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav_link::before {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.2s ease-in-out;
+}
+
+.nav_link:hover::before {
+    width: 100%;
+}
+
+.active::before {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #fff;
+}
+
+.navbar_logo{
+    padding-right: 1.250em;
+}
+
+.navbar_logo {
+    height: 64px;
 }
 
 .logo-series {

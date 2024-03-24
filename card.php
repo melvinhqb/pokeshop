@@ -10,20 +10,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-            <a class ="Logo" href="index.html"><img src="logo.png"></a>
-            <nav>            
-                <div class="lien_nav_gauche">
-                    <a class="non_souligne" href="index.html">Accueil</a>
-                    <a class="souligne" href="produits.html">Produits</a>
-                    <a class="non_souligne" href="contact.html">Contact</a>
-                </div>
-                <div class="lien_nav_droite">
-                    <a class="non_souligne" href="login.html">Login</a>
+    <header class="header">
+            <nav class="navbar content-wrapper">
+                <a href="index.html"><img class="navbar_logo" src="logo.png"></a>
+                <div class="navbar_content">
+                    <ul class="navbar_menu">
+                        <li class="navbar_item"><a class="nav_link" href="index.html">Accueil</a></li>
+                        <li class="navbar_item"><a class="nav_link active" href="produits.html">Produits</a></li>
+                        <li class="navbar_item"><a class="nav_link" href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="navbar_end">
+                        <a class="nav_button" href="login.html">Login</a>
+                    </div>
                 </div>
             </nav>
     </header>
-    <main>
+    <main class="content-wrapper">
     <?php
     // Connexion à la base de données
     $servername = "localhost";
@@ -63,5 +65,8 @@
     $conn->close();
     ?>
     </main>
+    <footer class="footer">
+        <p>© 2024 Pokéshop - Tous droits réservés</p>
+    </footer>
 </body>
 </html>

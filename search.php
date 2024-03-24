@@ -11,20 +11,24 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header>
-            <a class ="Logo" href="index.html"><img src="logo.png"></a>
-            <nav>            
-                <div class="lien_nav_gauche">
-                    <a class="non_souligne" href="index.html">Accueil</a>
-                    <a class="souligne" href="produits.html">Produits</a>
-                    <a class="non_souligne" href="contact.html">Contact</a>
-                </div>
-                <div class="lien_nav_droite">
-                    <a class="non_souligne" href="login.html">Login</a>
+
+    <header class="header">
+            <nav class="navbar content-wrapper">
+                <a href="index.html"><img class="navbar_logo" src="logo.png"></a>
+                <div class="navbar_content">
+                    <ul class="navbar_menu">
+                        <li class="navbar_item"><a class="nav_link" href="index.html">Accueil</a></li>
+                        <li class="navbar_item"><a class="nav_link active" href="produits.html">Produits</a></li>
+                        <li class="navbar_item"><a class="nav_link" href="contact.html">Contact</a></li>
+                    </ul>
+                    <div class="navbar_end">
+                        <a class="nav_link" href="login.html">Login</a>
+                    </div>
                 </div>
             </nav>
     </header>
-    <main>
+
+    <main class="content-wrapper">
     <?php
     // Connexion à la base de données
     $servername = "localhost";
@@ -98,7 +102,7 @@
 
     if ($result->num_rows > 0) {
         // Afficher les cartes Pokémon dans un tableau
-        echo "<div class='container'>";
+        echo "<div>";
         echo "<table border='1'>";
         echo "<tr><th>Image</th><th>Nom</th><th>Extension</th><th>Numéro</th><th>Prix</th><th>Stock</th></tr>";
         while($row = $result->fetch_assoc()) {
@@ -121,6 +125,9 @@
     $conn->close();
     ?>
     </main>
+    <footer class="footer">
+        <p>© 2024 Pokéshop - Tous droits réservés</p>
+    </footer>
     <script>
         $(document).ready(function(){
             // Lorsque vous cliquez sur une image, affichez la version agrandie dans une fenêtre modale
