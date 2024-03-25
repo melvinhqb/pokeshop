@@ -33,6 +33,9 @@ header a{
 .content-wrapper {
     margin: 0 auto;
     max-width: 90%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 20px;
 }
 
 a {
@@ -145,9 +148,8 @@ li {
 }  
 /* sidebar style */
 
-ul{
-    padding:0;
-    margin:0;
+ul {
+    padding: 0;
 }
 
 .liste_series {
@@ -160,8 +162,8 @@ ul{
     justify-content: center;
     align-items: center;
     border: 0.1em #ddd solid;
-    border-radius: 1em;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 0.75em;
+    box-shadow: 0 0 10px rgba(26, 12, 27, 0.1);
 }
 
 .liste_series:hover{
@@ -184,6 +186,10 @@ ul{
 }
 
 /* Table style */
+.cards-table {
+    flex: 1;
+    margin-left:20px;
+}
 
 table {
     width: 100%;
@@ -264,6 +270,69 @@ a.card-link:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     cursor: zoom-out;
 }
+
+
+/*Produits*/
+.series-container{
+    flex: 1; /* La série et ses extensions prennent tout l'espace disponible */
+    display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-left:5px;
+}
+.row-series {
+    flex: 1; /* La série et ses extensions prennent tout l'espace disponible */
+    display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
+    flex-direction: column; /* Les éléments enfants sont disposés en colonne */
+    background-color: #f9f9f9; /* Couleur de fond */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+.series {
+    margin-bottom: 20px;
+    
+}
+.series h2 {
+    text-align: left;
+    margin-bottom: 10px;
+    color: #3e1565/*#430a40*/;
+    position: relative; /* Position relative pour les éléments enfants */
+}
+.series h2::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; /* Ajustez cette valeur pour le positionnement vertical de la barre */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%; /* Largeur de la barre */
+    height: 2px; /* Hauteur de la barre */
+    background-color: #c6bad1;
+    
+}
+
+.extensions {
+    margin-top: 15px;
+    display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
+    justify-content: space-between; /* Espace uniforme entre les éléments */
+    flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque l'espace est insuffisant */
+}
+.extension {
+    text-align: center;
+    flex-basis: calc(50% - 10px); /* Largeur de chaque extension, moins la marge */
+    margin-bottom: 50px; /* Marge entre les extensions */
+}
+.extension img {
+    width: 100%; /* Largeur à 100% pour occuper tout l'espace disponible */
+    max-height: 90px; /* Hauteur maximale de l'image */
+    object-fit: contain; /* Ajustement de la taille de l'image sans déformation */
+    margin-bottom: 5px;
+}
+.extension img:hover{
+    opacity: 80%;
+} 
 
 /* footer style */
 
