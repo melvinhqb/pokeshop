@@ -35,7 +35,6 @@ header a{
     max-width: 90%;
     display: flex;
     flex-direction: row;
-    margin-top: 20px;
 }
 
 a {
@@ -120,7 +119,6 @@ li {
     position: relative;
     width: 100%;
     height: auto;
-    margin-bottom: 5em;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
 }
 
@@ -145,7 +143,12 @@ li {
     border-radius: 1em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}  
+}
+
+main {
+    margin: 2em auto;
+}
+
 /* sidebar style */
 
 ul {
@@ -185,8 +188,7 @@ ul {
     height: 1em;
 }
 
-/* Table style */
-.cards-table {
+.content {
     flex: 1;
     margin-left:20px;
 }
@@ -281,44 +283,42 @@ a.card-link:hover {
     margin-left:5px;
 }
 .row-series {
-    flex: 1; /* La série et ses extensions prennent tout l'espace disponible */
     display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
     flex-direction: column; /* Les éléments enfants sont disposés en colonne */
     background-color: #f9f9f9; /* Couleur de fond */
-    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Ombre */
     margin-bottom: 20px;
     margin-left: 20px;
+    cursor: pointer;
 }
 .series {
-    margin-bottom: 20px;
-    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
 }
+
 .series h2 {
     text-align: left;
-    margin-bottom: 10px;
     color: #3e1565/*#430a40*/;
     position: relative; /* Position relative pour les éléments enfants */
 }
-.series h2::after {
-    content: '';
-    position: absolute;
-    bottom: -20px; /* Ajustez cette valeur pour le positionnement vertical de la barre */
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%; /* Largeur de la barre */
-    height: 2px; /* Hauteur de la barre */
-    background-color: #c6bad1;
-    
-}
+
+
 
 .extensions {
-    margin-top: 15px;
+    padding: 20px;
     display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
     justify-content: space-between; /* Espace uniforme entre les éléments */
     flex-wrap: wrap; /* Permet aux éléments de passer à la ligne lorsque l'espace est insuffisant */
+    border-top: 1px solid #ddd;
 }
+
+.extensions.hidden {
+    display: none;
+}
+
 .extension {
     text-align: center;
     flex-basis: calc(50% - 10px); /* Largeur de chaque extension, moins la marge */
@@ -332,7 +332,18 @@ a.card-link:hover {
 }
 .extension img:hover{
     opacity: 80%;
-} 
+}
+
+.arrow {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+    transition: transform 0.3s ease-in-out;
+}
+
+.open {
+    transform: rotate(180deg);
+}
 
 /* footer style */
 

@@ -28,13 +28,14 @@
     </header>
     <main >
         <div class="content-wrapper">
-            <ul>
-                <li class="liste_series"><a href="search.php?series=EV"><img class="image_series" src="Photos/EV/LogoEV.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=EB"><img class="image_series" src="Photos/EB/logoEB.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=SL"><img class="image_series" src="Photos/SL/LogoSL.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=XY"><img class="image_xy" src="Photos/XY/logoXY.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=NB"><img class="image_nb" src="Photos/NB/logoNB.png"></a></li>
+            <ul class="sidebar">
+                <li class="liste_series"><a href="produits.html#EV"><img class="image_series" src="Photos/EV/LogoEV.png"></a></li>
+                <li class="liste_series"><a href="produits.html#EB"><img class="image_series" src="Photos/EB/logoEB.png"></a></li>
+                <li class="liste_series"><a href="produits.html#SL"><img class="image_series" src="Photos/SL/LogoSL.png"></a></li>
+                <li class="liste_series"><a href="produits.html#XY"><img class="image_xy" src="Photos/XY/logoXY.png"></a></li>
+                <li class="liste_series"><a href="produits.html#NB"><img class="image_nb" src="Photos/NB/logoNB.png"></a></li>
             </ul>
+            <div class="content">
         <?php
         // Connexion à la base de données
         $servername = "localhost";
@@ -73,6 +74,8 @@
         // Fermer la connexion à la base de données
         $conn->close();
         ?>
+        </div>
+    </div>
     </main>
     <footer class="footer">
         <p>© 2024 Pokéshop - Tous droits réservés</p>

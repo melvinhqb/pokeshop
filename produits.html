@@ -28,20 +28,21 @@
     </header>
     <main >
         <div class="content-wrapper">
-            <ul>
-                <li class="liste_series"><a href="search.php?series=EV"><img class="image_series" src="Photos/EV/LogoEV.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=EB"><img class="image_series" src="Photos/EB/logoEB.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=SL"><img class="image_series" src="Photos/SL/LogoSL.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=XY"><img class="image_xy" src="Photos/XY/logoXY.png"></a></li>
-                <li class="liste_series"><a href="search.php?series=NB"><img class="image_nb" src="Photos/NB/logoNB.png"></a></li>
+            <ul class="sidebar">
+                <li class="liste_series"><a href="produits.html#EV"><img class="image_series" src="Photos/EV/LogoEV.png"></a></li>
+                <li class="liste_series"><a href="produits.html#EB"><img class="image_series" src="Photos/EB/logoEB.png"></a></li>
+                <li class="liste_series"><a href="produits.html#SL"><img class="image_series" src="Photos/SL/LogoSL.png"></a></li>
+                <li class="liste_series"><a href="produits.html#XY"><img class="image_xy" src="Photos/XY/logoXY.png"></a></li>
+                <li class="liste_series"><a href="produits.html#NB"><img class="image_nb" src="Photos/NB/logoNB.png"></a></li>
             </ul>
 
             <div class="series-container">
-                <div class="row-series">
+                <div class="row-series"  id="EV" onclick="toggleExtensions('EV')">
                     <div class="series">
                         <h2>Série Écarlate et Violet</h2>
+                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                     </div>
-                    <div class="extensions">
+                    <div class="extensions hidden"  id="EV-extensions">
                         <div class="extension">
                             <a href="search.php?extension=svi"><img src="Photos/EV/LogoEV.png" alt="Écarlate et violet"></a>
                             <p>Écarlate et Violet</p>
@@ -70,11 +71,12 @@
                 </div>
                 
                     <!-- Ajoutez autant de divs .extension que nécessaire -->
-                <div class="row-series">
+                <div class="row-series" id="EB" onclick="toggleExtensions('EB')">
                     <div class="series">
                         <h2>Série Epée Bouclier</h2>
+                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                     </div>
-                        <div class="extensions">
+                        <div class="extensions hidden"  id="EB-extensions">
                             <div class="extension">
                                 <a href="search.php?extension=crz"><img src="Photos/EB/CRZ/LogoEB_CRZ.png" alt="Zenith Supreme"></a>
                                 <p>Zenith Suprème</p>
@@ -104,13 +106,36 @@
                                 <p>Épée et Bouclier</p>
                             </div>
                             
-                        </div>
-    
-                        
+                        </div>                        
+                </div>
+                <div class="row-series" id="SL" onclick="toggleExtensions('SL')">
+                    <div class="series">
+                        <h2>Série Soleil et Lune</h2>
+                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+                    </div>
+                    <div class="extensions hidden" id="SL-extensions">
+                        <p>Snif, cette série est vide pour le moment</p>
+                    </div>
+                </div>
+                <div class="row-series" id="XY" onclick="toggleExtensions('XY')">
+                    <div class="series">
+                        <h2>Série XY</h2>
+                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+                    </div>
+                    <div class="extensions hidden" id="XY-extensions">
+                        <p>Snif, cette série est vide pour le moment</p>
+                    </div>
+                </div>
+                <div class="row-series" id="NB" onclick="toggleExtensions('NB')">
+                    <div class="series">
+                        <h2>Série Noir et Blanc</h2>
+                        <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+                    </div>
+                    <div class="extensions hidden" id="NB-extensions">
+                        <p>Snif, cette série est vide pour le moment</p>
+                    </div>
                 </div>
             </div>
-        
-        
                 <!-- Ajoutez autant de divs .extension que nécessaire -->
             
             <!-- Ajoutez autant de divs .series que nécessaire -->
@@ -121,5 +146,49 @@
     <footer class="footer">
         <p>© 2024 Pokéshop - Tous droits réservés</p>
     </footer>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            // Vérifier l'ancre actuelle lors du chargement de la page
+            checkHash();
+
+            // Écouter les changements d'ancre dans l'URL
+            window.addEventListener('hashchange', function() {
+                checkHash();
+            });
+        });
+
+        function checkHash() {
+            var anchor = window.location.hash.substring(1); // Récupère l'ancre de l'URL sans le '#'
+            if (anchor) {
+                var series = document.getElementById(anchor); // Trouve l'élément de la série correspondant à l'ancre
+                if (series) {
+                    closeAllExtensions(); // Ferme toutes les extensions ouvertes
+                    toggleExtensions(anchor); // Ouvre la série correspondante
+                }
+            }
+        }
+
+        function toggleExtensions(seriesId) {
+            var extensions = document.getElementById(seriesId + '-extensions');
+            var arrow = document.querySelector('#' + seriesId + ' .arrow');
+            if (extensions.style.display === 'none' || extensions.classList.contains('hidden')) {
+                extensions.style.display = 'flex';
+                extensions.classList.remove('hidden');
+                arrow.classList.add('open');
+            } else {
+                extensions.style.display = 'none';
+                extensions.classList.add('hidden');
+                arrow.classList.remove('open');
+            }
+        }
+
+        function closeAllExtensions() {
+            var allExtensions = document.querySelectorAll('.extensions');
+            allExtensions.forEach(function(extension) {
+                extension.style.display = 'none';
+                extension.classList.add('hidden');
+            });
+        }
+    </script>
 </body>
 </html>
