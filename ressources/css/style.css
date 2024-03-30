@@ -244,6 +244,11 @@ a.card-link:hover {
     text-decoration: underline;
 }
 
+.card_image {
+    width: 50px;
+    height: auto;
+}
+
 /* Modal Card */
 
 .modal {
@@ -273,10 +278,15 @@ a.card-link:hover {
     cursor: zoom-out;
 }
 
+.modal-content img {
+    height: 500px;
+    width: auto;
+}
+
 
 /*Produits*/
 .series-container{
-    flex: 1; /* La série et ses extensions prennent tout l'espace disponible */
+    flex: 1; /* La série et ses sets prennent tout l'espace disponible */
     display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
     flex-direction: column;
     margin-bottom: 20px;
@@ -307,7 +317,7 @@ a.card-link:hover {
 
 
 
-.extensions {
+.sets {
     padding: 20px;
     display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
     justify-content: space-between; /* Espace uniforme entre les éléments */
@@ -315,22 +325,22 @@ a.card-link:hover {
     border-top: 1px solid #ddd;
 }
 
-.extensions.hidden {
+.sets.hidden {
     display: none;
 }
 
-.extension {
+.set {
     text-align: center;
-    flex-basis: calc(50% - 10px); /* Largeur de chaque extension, moins la marge */
-    margin-bottom: 50px; /* Marge entre les extensions */
+    flex-basis: calc(50% - 10px); /* Largeur de chaque set, moins la marge */
+    margin-bottom: 50px; /* Marge entre les sets */
 }
-.extension img {
+.set img {
     width: 100%; /* Largeur à 100% pour occuper tout l'espace disponible */
     max-height: 90px; /* Hauteur maximale de l'image */
     object-fit: contain; /* Ajustement de la taille de l'image sans déformation */
     margin-bottom: 5px;
 }
-.extension img:hover{
+.set img:hover{
     opacity: 80%;
 }
 
