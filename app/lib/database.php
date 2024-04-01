@@ -2,7 +2,7 @@
 
 // app/lib/database.php
 
-namespace App\Lib\Database;
+namespace App\Lib;
 
 class DatabaseConnection
 {

@@ -2,11 +2,11 @@
 
 // app/models/Serie.php
 
-namespace App\Models\Serie;
+namespace App\Models;
 
 require_once('app/lib/database.php');
 
-use App\Lib\Database\DatabaseConnection;
+use App\Lib\DatabaseConnection;
 
 class Serie
 {
@@ -19,6 +19,7 @@ class SerieRepository
 {
     public DatabaseConnection $conn;
 
+    // Méthode pour récupérer toutes les séries
     public function getAll(): array
     {
 
@@ -40,6 +41,7 @@ class SerieRepository
         return $series;
     }
 
+    // Méthode pour récupérer une série par son ID
     public function getById(string $id): Serie
     {
         $sql = "SELECT id, name, logo FROM series WHERE id = $id";
@@ -50,7 +52,7 @@ class SerieRepository
         return $this->createSerieFromRow($row);
     }
 
-    // Méthode utilitaire pour créer un objet Card à partir d'une ligne de résultat SQL
+    // Méthode utilitaire pour créer un objet Serie à partir d'une ligne de résultat SQL
     private function createSerieFromRow(array $row): Serie
     {
         $serie = new Serie();
@@ -61,5 +63,3 @@ class SerieRepository
         return $serie;
     }
 }
-
-?>

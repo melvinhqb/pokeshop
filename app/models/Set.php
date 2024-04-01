@@ -2,11 +2,11 @@
 
 // app/models/Set.php
 
-namespace App\Models\Set;
+namespace App\Models;
 
 require_once('app/lib/database.php');
 
-use App\Lib\Database\DatabaseConnection;
+use App\Lib\DatabaseConnection;
 
 class Set
 {
@@ -23,6 +23,7 @@ class SetRepository
 {
     public DatabaseConnection $conn;
 
+    // Méthode pour récupérer toutes les extensions
     public function getAll(): array
     {
         $sql = "SELECT * FROM sets ORDER BY releaseDate DESC";
@@ -36,6 +37,7 @@ class SetRepository
         return $sets;
     }
 
+    // Méthode pour récupérer une extension par son ID
     public function getById(string $id): Set
     {
         $sql = "SELECT * FROM sets WHERE id = '$id'";
@@ -46,6 +48,7 @@ class SetRepository
         return $this->createSetFromRow($row);
     }
 
+    // Méthode pour récupérer toutes les extensions d'une serie
     public function getAllBySerieId(string $id): array
     {
         $sql = "SELECT * FROM sets WHERE serie_id = '$id' ORDER BY releaseDate DESC";
@@ -59,6 +62,7 @@ class SetRepository
         return $sets;
     }
 
+    // Méthode utilitaire pour créer un objet Set à partir d'une ligne de résultat SQL
     private function createSetFromRow(array $row): Set
     {
         $set = new Set();

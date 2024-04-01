@@ -2,21 +2,20 @@
 
 // app/controllers/SetController.php
 
-namespace App\Controllers\SetController;
+namespace App\Controllers;
 
-require_once('app/lib/database.php');
-require_once('app/models/Set.php');
-require_once('app/models/Card.php');
-require_once('app/models/Serie.php');
+use App\Controllers\Controller;
+use App\Lib\DatabaseConnection;
 
-use App\Lib\Database\DatabaseConnection;
-use App\Models\Set\SetRepository;
-use App\Models\Card\CardRepository;
-use App\Models\Serie\SerieRepository;
+use App\Models\SerieRepository;
+use App\Models\SetRepository;
+use App\Models\CardRepository;
 
-class SetController
+
+class SetController extends Controller
 {
-    public function index(string $id) {
+    // Méthode pour afficher les cartes d'une extension
+    public function show(string $id) {
         $serieRepository = new SerieRepository();
         $serieRepository->conn = new DatabaseConnection();
         $series = $serieRepository->getAll();
@@ -29,8 +28,10 @@ class SetController
         $cardRepository->conn = new DatabaseConnection();
         $cards = $cardRepository->getAllBySetId($set->id);
         
-        require('views/set.php');
+        $this->view('set', [
+            'set' => $set,
+            'cards' => $cards,
+            'series' => $series
+        ]);
     }
 }
-
-?>

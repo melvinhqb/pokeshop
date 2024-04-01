@@ -10,9 +10,8 @@
                     <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                 </div>
                 <div class="sets hidden" id="<?php echo $serie->id; ?>-sets">
-                    <?php $sets = $setRepository->getAllBySerieId($serie->id); ?>
-                    <?php if (!empty($sets)): ?>
-                        <?php foreach ($sets as $set): ?>
+                    <?php if (!empty($serie->sets)): ?>
+                        <?php foreach ($serie->sets as $set): ?>
                             <div class="set">
                                 <a href="index.php?route=products&set=<?php echo $set->id; ?>"><img src="<?php echo $set->logo; ?>.png" alt="<?php echo $set->name; ?>"></a>
                                 <p><?php echo $set->name; ?></p>

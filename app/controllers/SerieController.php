@@ -2,27 +2,17 @@
 
 // app/controllers/SerieController.php
 
-namespace App\Controllers\SerieController;
+namespace App\Controllers;
 
-require_once('app/lib/database.php');
-require_once('app/models/Serie.php');
-require_once('app/models/Set.php');
+use App\Controllers\Controller;
+use App\Lib\DatabaseConnection;
 
-use App\Lib\Database\DatabaseConnection;
-use App\Models\Serie\SerieRepository;
-use App\Models\Set\SetRepository;
+use App\Models\SerieRepository;
+use App\Models\SetRepository;
 
-class SerieController
+class SerieController extends Controller
 {
-    public function execute()
-    {
-        $serieRepository = new SerieRepository();
-        $serieRepository->conn = new DatabaseConnection();
-        $series = $serieRepository->getAll();
-    
-        require('views/home.php');
-    }
-
+    // Méthode pour afficher la liste des séries
     public function index()
     {
         $serieRepository = new SerieRepository();
@@ -35,7 +25,8 @@ class SerieController
             $serie->sets = $setRepository->getAllBySerieId($serie->id);
         }
 
-        require('views/serie.php');
+        $this->view('serie', [
+            'series' => $series
+        ]);
     }
 }
-?>

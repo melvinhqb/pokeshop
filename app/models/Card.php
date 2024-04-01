@@ -2,11 +2,11 @@
 
 // app/models/Card.php
 
-namespace App\Models\Card;
+namespace App\Models;
 
 require_once('app/lib/database.php');
 
-use App\Lib\Database\DatabaseConnection;
+use App\Lib\DatabaseConnection;
 
 class Card
 {
@@ -90,5 +90,3 @@ class CardRepository
         return $card;
     }
 }
-
-?>

@@ -2,19 +2,18 @@
 
 // app/controllers/CardController.php
 
-namespace App\Controllers\CardController;
+namespace App\Controllers;
 
-require_once('app/lib/database.php');
-require_once('app/models/Card.php');
-require_once('app/models/Serie.php');
+use App\Controllers\Controller;
+use App\Lib\DatabaseConnection;
 
-use App\Lib\Database\DatabaseConnection;
-use App\Models\Card\CardRepository;
-use App\Models\Serie\SerieRepository;
+use App\Models\SerieRepository;
+use App\Models\CardRepository;
 
-class CardController
+class CardController extends Controller
 {
-    public function index(string $id) {
+    // Méthode pour afficher les détails d'une carte
+    public function show(string $id) {
         $serieRepository = new SerieRepository();
         $serieRepository->conn = new DatabaseConnection();
         $series = $serieRepository->getAll();
@@ -23,6 +22,6 @@ class CardController
         $cardRepository->conn = new DatabaseConnection();
         $card = $cardRepository->getById($id);
     
-        require('views/card.php');
+        $this->view('card', ['card' => $card, 'series' => $series]);
     }
 }
