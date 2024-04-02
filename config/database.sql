@@ -1410,10 +1410,10 @@ CREATE TABLE `series` (
 --
 
 INSERT INTO `series` (`id`, `name`, `logo`) VALUES
-('bw', 'Noir & Blanc', 'https://assets.tcgdex.net/fr/bw/bw1/logo'),
-('sv', 'Écarlate et Violet', 'https://assets.tcgdex.net/fr/sv/sv01/logo'),
-('swsh', 'Épée et Bouclier', 'https://assets.tcgdex.net/fr/swsh/swshp/logo'),
-('xy', 'XY', 'https://assets.tcgdex.net/fr/xy/xy0/logo');
+('bw', 'Noir & Blanc', 'ressources/img/bw'),
+('sv', 'Écarlate et Violet', 'ressources/img/sv'),
+('swsh', 'Épée et Bouclier', 'ressources/img/swsh'),
+('xy', 'XY', 'ressources/img/xy');
 
 -- --------------------------------------------------------
 
@@ -1437,22 +1437,22 @@ CREATE TABLE `sets` (
 --
 
 INSERT INTO `sets` (`id`, `serie_id`, `name`, `logo`, `cardCount`, `legal`, `releaseDate`, `symbol`) VALUES
-('bw1', 'bw', 'Noir & Blanc', 'https://assets.tcgdex.net/fr/bw/bw1/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2011-04-25', 'https://assets.tcgdex.net/univ/bw/bw1/symbol'),
-('bw2', 'bw', 'Pouvoirs Émergents', 'https://assets.tcgdex.net/fr/bw/bw2/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2011-08-31', 'https://assets.tcgdex.net/univ/bw/bw2/symbol'),
-('bw3', 'bw', 'Nobles Victoires', 'https://assets.tcgdex.net/fr/bw/bw3/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2011-11-16', 'https://assets.tcgdex.net/univ/bw/bw3/symbol'),
-('bw4', 'bw', 'Destinées Futures', 'https://assets.tcgdex.net/fr/bw/bw4/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2012-02-08', 'https://assets.tcgdex.net/univ/bw/bw4/symbol'),
-('dc1', 'xy', 'Double Danger', 'https://assets.tcgdex.net/fr/xy/dc1/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2015-03-25', 'https://assets.tcgdex.net/univ/xy/dc1/symbol'),
-('sv01', 'sv', 'Écarlate et Violet', 'https://assets.tcgdex.net/fr/sv/sv01/logo', NULL, '{\"expanded\":false,\"standard\":false}', '2023-03-31', 'https://assets.tcgdex.net/univ/sv/sv01/symbol'),
-('sv02', 'sv', 'Évolutions à Paldea', 'https://assets.tcgdex.net/fr/sv/sv02/logo', NULL, '{\"expanded\":false,\"standard\":false}', '2023-06-09', 'https://assets.tcgdex.net/univ/sv/sv02/symbol'),
-('sv03.5', 'sv', '151', 'https://assets.tcgdex.net/fr/sv/sv03.5/logo', NULL, '{\"expanded\":false,\"standard\":false}', '2023-09-22', 'https://assets.tcgdex.net/univ/sv/sv03.5/symbol'),
-('sv04.5', 'sv', 'Destinées de Paldea', 'https://assets.tcgdex.net/fr/sv/sv04.5/logo', NULL, '{\"expanded\":false,\"standard\":false}', '2024-01-26', 'https://assets.tcgdex.net/univ/sv/sv04.5/symbol'),
-('swsh1', 'swsh', 'Épée et Bouclier', 'https://assets.tcgdex.net/fr/swsh/swsh1/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2020-02-07', 'https://assets.tcgdex.net/univ/swsh/swsh1/symbol'),
-('swsh2', 'swsh', 'Clash des Rebelles', 'https://assets.tcgdex.net/fr/swsh/swsh2/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2020-05-01', 'https://assets.tcgdex.net/univ/swsh/swsh2/symbol'),
-('swsh3', 'swsh', 'Ténèbres Embrasées', 'https://assets.tcgdex.net/fr/swsh/swsh3/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2020-08-14', 'https://assets.tcgdex.net/univ/swsh/swsh3/symbol'),
-('swsh3.5', 'swsh', 'La Voie du Maître', 'https://assets.tcgdex.net/fr/swsh/swsh3.5/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2020-09-25', 'https://assets.tcgdex.net/univ/swsh/swsh3.5/symbol'),
-('xy1', 'xy', 'XY', 'https://assets.tcgdex.net/fr/xy/xy1/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2014-02-05', 'https://assets.tcgdex.net/univ/xy/xy1/symbol'),
-('xy2', 'xy', 'Étincelles', 'https://assets.tcgdex.net/fr/xy/xy2/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2014-05-07', 'https://assets.tcgdex.net/univ/xy/xy2/symbol'),
-('xy5', 'xy', 'Primo-Choc', 'https://assets.tcgdex.net/fr/xy/xy5/logo', NULL, '{\"expanded\":true,\"standard\":false}', '2015-02-04', 'https://assets.tcgdex.net/univ/xy/xy5/symbol');
+('bw1', 'bw', 'Noir & Blanc', 'ressources/img/bw1', NULL, '{\"expanded\":true,\"standard\":false}', '2011-04-25', 'https://assets.tcgdex.net/univ/bw/bw1/symbol'),
+('bw2', 'bw', 'Pouvoirs Émergents', 'ressources/img/bw2', NULL, '{\"expanded\":true,\"standard\":false}', '2011-08-31', 'https://assets.tcgdex.net/univ/bw/bw2/symbol'),
+('bw3', 'bw', 'Nobles Victoires', 'ressources/img/bw3', NULL, '{\"expanded\":true,\"standard\":false}', '2011-11-16', 'https://assets.tcgdex.net/univ/bw/bw3/symbol'),
+('bw4', 'bw', 'Destinées Futures', 'ressources/img/bw4', NULL, '{\"expanded\":true,\"standard\":false}', '2012-02-08', 'https://assets.tcgdex.net/univ/bw/bw4/symbol'),
+('dc1', 'xy', 'Double Danger', 'ressources/img/dc1', NULL, '{\"expanded\":true,\"standard\":false}', '2015-03-25', 'https://assets.tcgdex.net/univ/xy/dc1/symbol'),
+('sv01', 'sv', 'Écarlate et Violet', 'ressources/img/sv01', NULL, '{\"expanded\":false,\"standard\":false}', '2023-03-31', 'https://assets.tcgdex.net/univ/sv/sv01/symbol'),
+('sv02', 'sv', 'Évolutions à Paldea', 'ressources/img/sv02', NULL, '{\"expanded\":false,\"standard\":false}', '2023-06-09', 'https://assets.tcgdex.net/univ/sv/sv02/symbol'),
+('sv03.5', 'sv', '151', 'ressources/img/sv03.5', NULL, '{\"expanded\":false,\"standard\":false}', '2023-09-22', 'https://assets.tcgdex.net/univ/sv/sv03.5/symbol'),
+('sv04.5', 'sv', 'Destinées de Paldea', 'ressources/img/sv04.5', NULL, '{\"expanded\":false,\"standard\":false}', '2024-01-26', 'https://assets.tcgdex.net/univ/sv/sv04.5/symbol'),
+('swsh1', 'swsh', 'Épée et Bouclier', 'ressources/img/swsh1', NULL, '{\"expanded\":true,\"standard\":false}', '2020-02-07', 'https://assets.tcgdex.net/univ/swsh/swsh1/symbol'),
+('swsh2', 'swsh', 'Clash des Rebelles', 'ressources/img/swsh2', NULL, '{\"expanded\":true,\"standard\":false}', '2020-05-01', 'https://assets.tcgdex.net/univ/swsh/swsh2/symbol'),
+('swsh3', 'swsh', 'Ténèbres Embrasées', 'ressources/img/swsh3', NULL, '{\"expanded\":true,\"standard\":false}', '2020-08-14', 'https://assets.tcgdex.net/univ/swsh/swsh3/symbol'),
+('swsh3.5', 'swsh', 'La Voie du Maître', 'ressources/img/swsh3.5', NULL, '{\"expanded\":true,\"standard\":false}', '2020-09-25', 'https://assets.tcgdex.net/univ/swsh/swsh3.5/symbol'),
+('xy1', 'xy', 'XY', 'ressources/img/xy1', NULL, '{\"expanded\":true,\"standard\":false}', '2014-02-05', 'https://assets.tcgdex.net/univ/xy/xy1/symbol'),
+('xy2', 'xy', 'Étincelles', 'ressources/img/xy2', NULL, '{\"expanded\":true,\"standard\":false}', '2014-05-07', 'https://assets.tcgdex.net/univ/xy/xy2/symbol'),
+('xy5', 'xy', 'Primo-Choc', 'ressources/img/xy5', NULL, '{\"expanded\":true,\"standard\":false}', '2015-02-04', 'https://assets.tcgdex.net/univ/xy/xy5/symbol');
 
 --
 -- Index pour les tables déchargées

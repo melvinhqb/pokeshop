@@ -178,12 +178,12 @@ ul {
     height: 2em;
 }
 
-.image_xy{
+#xy_sidebar{
     width: 6em;
     height: 3em;
 }
 
-.image_nb{
+#bw_sidebar{
     width: 8em;
     height: 1em;
 }
