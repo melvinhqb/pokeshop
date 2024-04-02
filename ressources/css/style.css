@@ -335,10 +335,15 @@ a.card-link:hover {
     margin-bottom: 50px; /* Marge entre les sets */
 }
 .set img {
-    width: 100%; /* Largeur à 100% pour occuper tout l'espace disponible */
-    max-height: 90px; /* Hauteur maximale de l'image */
+    width: 100%;
+    height:auto; /* Largeur à 100% pour occuper tout l'espace disponible */
+    max-height: 100px;
+    max-width: 300px; /* Hauteur maximale de l'image */
     object-fit: contain; /* Ajustement de la taille de l'image sans déformation */
-    margin-bottom: 5px;
+    padding: 20px;
+}
+.set p {
+    box-sizing: border-box;
 }
 .set img:hover{
     opacity: 80%;
