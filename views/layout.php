@@ -10,11 +10,9 @@
 </head>
 <body>
     <?php require('partials/header.php'); ?>
-    <main>
-        <div class="content-wrapper">
-            <?= $content ?>
-        </div>
-    </main>
+
+     <?= $content ?>
+
     <?php require('partials/footer.php'); ?>
 </body>
 </html>

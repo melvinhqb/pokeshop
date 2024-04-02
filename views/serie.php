@@ -1,5 +1,7 @@
 <!-- views/layout.php -->
 <?php ob_start(); ?>
+<main>
+        <div class="content-wrapper">
 <?php include('partials/sidebar.php'); ?>
 <div class="content">
     <div class="series-container">
@@ -25,6 +27,8 @@
         <?php endforeach; ?>
     </div>
 </div>
+                    </div>
+                    </main>
 <?php $content = ob_get_clean(); ?>
 
 <?php require('layout.php'); ?>
