@@ -1,5 +1,6 @@
 <!-- views/partials/sidebar.php -->
-<ul class="sidebar">
+<ul class="sidebar text_center">
+    <p class="text_les_series">Les Séries</p>
     <?php foreach ($series as $serie) { ?>
         <li class="liste_series">
             <a href="index.php?route=products&serie=<?php echo $serie->id ?>">

@@ -8,13 +8,18 @@
 <main>
     <div class="content-wrapper">
         <?php require('partials/sidebar.php'); ?>
-        <div class="content">
-            <img src="ressources/img/celebi.jpg">
-            <img src="ressources/img/pikachu.jpg">
-            <img src="ressources/img/lumineon.jpg">
-            <img src="ressources/img/Feunard.jpg">
-            <img src="ressources/img/dracaufeu.jpg">
-            <img src="ressources/img/zekrom.png">
+        <div class="content text_center">
+            <p class="text_bestseller">Nos Best-Sellers</p>
+            <div class="line1">
+                <img class="carte_accueil" src="ressources/img/lumineon.jpg">
+                <img class="carte_accueil" src="ressources/img/pikachu.jpg">
+                <img class="carte_accueil" src="ressources/img/celebi.jpg">
+            </div>
+            <div class="line2">
+                <img class="carte_accueil" src="ressources/img/dracaufeu.jpg">
+                <img class="carte_accueil" src="ressources/img/zekrom.jpg">
+                <img class="carte_accueil" src="ressources/img/Feunard.jpg">
+            </div>
         </div>
     </div>
 </main>

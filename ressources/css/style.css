@@ -3,8 +3,21 @@
     font-family: 'Manrope', sans-serif;
 }
 
+html {
+    height: 100%;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     background-color: rgb(255, 245, 245);
+}
+
+main {
+    flex-grow: 1;
+    margin: 2em 0;
 }
 
 header {
@@ -21,6 +34,9 @@ header {
 footer {
     font-size: 1.1em;
     font-weight: bold;
+    color: white;
+    padding: 2em;
+    background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -31,6 +47,7 @@ header a{
 }
 
 .content-wrapper {
+    flex: 1;
     margin: 0 auto;
     max-width: 90%;
     display: flex;
@@ -145,14 +162,23 @@ li {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-main {
-    margin: 2em auto;
-}
-
 /* sidebar style */
 
 ul {
     padding: 0;
+}
+
+.text_les_series{
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    margin-bottom: 1.5em;
+    border: 0.1em transparent;
+    border-radius: 1em;
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .liste_series {
@@ -188,9 +214,59 @@ ul {
     height: 1em;
 }
 
+/* Cartes Page d'Accueil style */
+
+.text_center {
+    text-align: center;
+}
+
+.text_bestseller{
+    display: inline-block;
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    padding: 1em;
+    border: 0.1em transparent;
+    border-radius: 1em;
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.carte_accueil{
+    width:  18em;
+    height: 25.2em;
+    border: 0.1em transparent;
+    border-radius: 0.75em;
+    margin: 0.2em;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
 .content {
     flex: 1;
     margin-left:20px;
+}
+
+.line1{
+    margin-left: 9em;
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%
+}
+
+.line2{
+    margin-left: 9em;
+    margin-top: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 80%
+}
+
+.carte_accueil:hover{
+    opacity: 0.5;
+    box-shadow:0 0 10px black;
 }
 
 table {
@@ -362,6 +438,14 @@ a.card-link:hover {
 
 /* footer style */
 
-footer{
-    padding-top: 5em;
+footer {
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    padding: 2em 0;
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
