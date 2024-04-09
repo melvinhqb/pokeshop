@@ -17,4 +17,9 @@ class Controller
         extract($data);
         require_once 'views/' . $view . '.php';
     }
+
+    public function pageNotFound($errorMessage = "Page Not Found")
+    {
+        $this->view('notfound', ["errorMessage" => $errorMessage]);
+    }
 }

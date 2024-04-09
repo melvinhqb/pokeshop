@@ -5,8 +5,10 @@
 namespace App\Models;
 
 require_once('app/lib/database.php');
+require_once('app/exceptions/NotFoundException.php');
 
 use App\Lib\DatabaseConnection;
+use App\Exceptions\NotFoundException;
 
 class Serie
 {
@@ -44,10 +46,14 @@ class SerieRepository
     // Méthode pour récupérer une série par son ID
     public function getById(string $id): Serie
     {
-        $sql = "SELECT id, name, logo FROM series WHERE id = $id";
+        $sql = "SELECT * FROM series WHERE id = $id";
         $result = $this->conn->connect()->query($sql);
 
         $row = $result->fetch_assoc();
+
+        if (!$row) {
+            throw new NotFoundException("Aucune série trouvée avec l'ID $id.");
+        }
 
         return $this->createSerieFromRow($row);
     }

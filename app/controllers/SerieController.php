@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Lib\DatabaseConnection;
+use App\Exceptions\NotFoundException;
 
 use App\Models\SerieRepository;
 use App\Models\SetRepository;

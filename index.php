@@ -10,6 +10,7 @@ require_once('app/controllers/UserController.php');
 require_once('app/controllers/NotfoundController.php');
 
 // Utilisation des espaces de noms pour simplifier les références
+use App\Controllers\Controller;
 use App\Controllers\HomeController;
 use App\Controllers\SerieController;
 use App\Controllers\SetController;
@@ -20,9 +21,6 @@ use App\Controllers\NotfoundController;
 // Fonction principale de routage
 function route($route) {
     switch ($route) {
-        case 'notfound':
-            handleNotfound();
-        break;
         case 'products':
             handleProducts();
             break;
@@ -38,7 +36,7 @@ function route($route) {
             echo "<h1>Page panier à implémenter</h1>";
             break;
         default:
-            show404();
+            handleNotFound();
             break;
     }
 }
@@ -55,8 +53,8 @@ function handleProducts() {
 }
 
 
-function handleNotfound() {
-    (new NotfoundController())->notfound();
+function handleNotFound() {
+    (new Controller())->pageNotFound();
 }
 
 // Gestion des actions utilisateur
@@ -77,13 +75,6 @@ function handleUserActions($action) {
             $userController->register();
         }
     }
-}
-
-// Afficher une page 404
-function show404() {
-    http_response_code(404);
-    echo "<h1>Page non trouvée</h1>";
-    exit;
 }
 
 // Extraction et routage de la requête
