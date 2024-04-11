@@ -58,7 +58,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // Si toutes les validations sont passées, le formulaire peut être soumis
         if (isFormValid) {
             alert("Formulaire prêt à être soumis.");
-            form.submit(); 
+            form.submit();
+            window.location.href="index.php";
         }
     });
 });
