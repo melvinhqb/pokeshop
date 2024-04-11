@@ -1,4 +1,4 @@
-ErrorDocument 404 http://localhost/Websites/pokeshop/index.php?route=notfound
+ErrorDocument 404 http://localhost/pokeshop/index.php?route=notfound
 
 RewriteEngine On
 
