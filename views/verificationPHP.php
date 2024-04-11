@@ -1,16 +1,4 @@
 <?php
-$servername = "localhost";
-$username = "nom_d_utilisateur";
-$password = "mot_de_passe";
-$dbname = "nom_de_donnees";
-
-// Connexion à la base de données MySQL
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérification de la connexion
-if ($conn->connect_error) {
-    die("Échec de la connexion : " . $conn->connect_error);
-}
 
 // Vérifier si le formulaire a été soumis
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -49,13 +37,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if (empty($content)) {
         $erreurs['content'] = "Le contenu du message ne peut pas être vide.";
+    }
     
     // Insertion des données dans la base de données si aucune erreur n'est trouvée
     if (count($erreurs) === 0) {
-       
-        $stmt = $conn->prepare("INSERT INTO contacts (dateContact, lastName, firstName, email, gender, birthdate, function, subject, content) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("sssssssss", $dateContact, $lastName, $firstName, $email, $gender, $birthdate, $function, $subject, $content); //chaque s correspond à une variable, et signifie que cette variable doit être traitée comme une chaîne de caractères (string).
-
+    
     
         if ($stmt->execute()) {
             // Envoi de l'email au webmaster

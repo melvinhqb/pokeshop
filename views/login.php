@@ -3,7 +3,6 @@
 <main>
     <div class="content-wrapper">
         <div class="content">
-            <h1>Connexion</h1>
             <?php if (!empty($error)): ?>
                 <div class="error-message">
                     <?php echo $error; ?>

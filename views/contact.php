@@ -8,7 +8,7 @@
           <div id="errorDiv"></div>
           <div class="form-group">
             <label for="dateContact">Date du contact</label>
-            <input type="text" id="dateContact" name="dateContact" placeholder="JJ/MM/AAAA" >
+            <input type="date" id="dateContact" name="dateContact" placeholder="JJ/MM/AAAA" >
           </div>
           
           <div class="form-group">
@@ -40,7 +40,7 @@
           
           <div class="form-group">
             <label for="birthdate">Date de Naissance</label>
-            <input type="text" id="birthdate" name="birthdate" placeholder="JJ/MM/AAAA" >
+            <input type="date" id="birthdate" name="birthdate" placeholder="JJ/MM/AAAA" >
           </div>
           
           <div class="form-group">
