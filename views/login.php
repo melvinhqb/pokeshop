@@ -9,20 +9,24 @@
                     <?php echo $error; ?>
                 </div>
             <?php endif; ?>
-            <form action="index.php?route=login" method="post">
-                <div class="form-group">
-                    <label for="email">E-mail :</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-                <button type="submit" class="btn">Se connecter</button>
-            </form>
-            <p>Vous n'avez pas de compte ? <a href="index.php?route=register">Inscrivez-vous ici</a>.</p>
+            <form class="contact-form" action="signup.php" method="POST">
+        <div class="container">
+            <h1 style="text-align:center;">Formulaire d'inscription</h1>
+            <div class="form-group">
+                <label>Username :</label>
+                <input type="text" placeholder="Enter Username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Password :</label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label>Email :</label>
+                <input type="email" placeholder="Enter Email" name="email" required>
+            </div>
+            <button type="submit">Log In</button>
         </div>
-    </div>
+    </form>
 </main>
 <?php $content = ob_get_clean(); ?>
 
