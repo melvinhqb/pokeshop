@@ -539,6 +539,91 @@ a.card-link:hover {
 }
 
 
+/* Formulaire */
+
+
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0px;
+  }
+  
+  .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 45px;
+    margin-bottom: 80px; 
+    padding-bottom: 45px;
+    
+  }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding-left: 10px; 
+    padding-right: 520px; 
+    border: 1px solid #ddd;
+    
+}
+
+  
+  .contact-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+ 
+  
+  
+  button[type="submit"] {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    
+  }
+  
+  button[type="submit"]:hover {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+  }
+ 
+
+  
+  .radio-inline {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  
+  .radio-inline input[type="radio"] {
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  
+  .radio-inline label {
+    display: inline;
+  }
+  
+  fieldset#genderFieldset {
+    border: 1px solid #cb0f0f;
+  }
+
+
 /* footer style */
 
 footer {
