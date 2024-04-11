@@ -3,6 +3,7 @@
 <main>
     <div class="content-wrapper">
         <div class="content">
+        <form class="contact-form" id="monFormulaire" action="verificationPHP.php"method="post">
             <h2>Demande de contact</h2>
           <div id="errorDiv"></div>
           <div class="form-group">
@@ -64,6 +65,8 @@
         </form>
         </div>
     </div>
+</form>
+
 </main>
 <?php $content = ob_get_clean(); ?>
 
