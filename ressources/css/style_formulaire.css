@@ -1,0 +1,176 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Manrope', sans-serif;
+}
+
+header {
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0.5em 0;
+  background: linear-gradient(90deg, #e4134d, #851b7b);
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+header a{
+  color: white;
+}
+
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 90%;
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navbar_content {
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+    justify-content: space-between;
+}
+
+.navbar_menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar_item {
+    margin: 0 32px;
+    position: relative;
+}
+
+.nav_link {
+    text-decoration: none;
+    position: relative;
+    padding: 8px 0;
+}
+
+.nav_link::before {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #fff;
+    transition: width 0.2s ease-in-out;
+}
+
+.nav_link:hover::before, .active::before {
+    width: 100%;
+}
+
+.navbar_logo {
+    padding-right: 1.250em;
+    height: 64px;
+}
+
+
+/*-------------------Début page Demande de Formulaire--------------------------------------------------------------    */
+
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0px;
+  }
+  
+  .contact-form {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 45px;
+    margin-bottom: 80px; 
+    padding-bottom: 45px;
+    
+  }
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding-left: 10px; 
+    padding-right: 520px; 
+    border: 1px solid #ddd;
+    
+}
+
+  
+  .contact-form h2 {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+ 
+  
+  
+  button[type="submit"] {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    
+  }
+  
+  button[type="submit"]:hover {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+  }
+ 
+
+  
+  .radio-inline {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  
+  .radio-inline input[type="radio"] {
+    vertical-align: middle;
+    margin-right: 3px;
+  }
+  
+  .radio-inline label {
+    display: inline;
+  }
+  
+  fieldset#genderFieldset {
+    border: 1px solid #cb0f0f;
+  }
+  
+  
+  footer {
+    width: 100%;
+    padding: 10px 0; 
+    background-color: #ffefef00; 
+    color: rgb(15, 13, 13);
+    text-align: center;
+    clear: both; 
+    position: absolute;
+  }
+ 
+  
