@@ -4,8 +4,7 @@
     <div class="content-wrapper">
         <div class="content">
             <br><br><br><br><br><br><br><br><br>
-            <p class="text_notfound" style>Page n'existe pas</p>
-            <p><?php echo $errorMessage; ?></p>
+            <p class="text_notfound"><?php echo $errorMessage; ?></p>
         </div>
     </div>
 </main>
