@@ -7,6 +7,67 @@
             <h1>Extension <?php echo $set->name; ?></h1>
             <?php if (!empty($cards)): ?>
                 <div>
+                    <div class="filter-bar">
+                        <span class="filter-caption">FILTER BY:</span>
+                        <div class=filter-options>
+                            <div class="filter-option" id="rarete" onclick="toggleFilter('rarete')">
+                                <span class="filter-name">Rareté</span>
+                                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+    
+                            </div>
+                        
+                        
+                            <div class="filter-option" id="type" onclick="toggleFilter('type')">
+                                <span class="filter-name">Type</span>
+                                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+                                
+                                
+                            </div>
+                        
+                        
+                            <div class="filter-option" id="prix" onclick="toggleFilter('prix')">
+                                <span class="filter-name">Price</span>
+                                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
+                                
+
+                            </div>
+                        </div>
+                    
+                        <div class="view-toggle">
+                            <button type="button" id="grid-view">Grid View</button>
+                            <button type="button" id="table-view">Table View</button>
+                        </div>
+
+                    </div>
+                    <div class=filter-contents>
+                        <div class="filter-content hidden" id="rarete-options">
+                        
+                            <div class="select-items select-hide">
+                                <div>Tous</div>
+                                <div>Commun</div>
+                                <div>Uncommun</div>
+                                <div>Spécial</div>
+                            </div>
+                        </div>
+                        <div class="filter-content hidden" id="type-options">
+                                
+                            <div class="select-items select-hide">
+                                <div>Tous</div>
+                                <div>Commun</div>
+                                <div>Uncommun</div>
+                                <div>Spécial</div>
+                            </div>
+                        </div>
+                        <div class="filter-content hidden" id="prix-options">
+                            
+                            <div class="select-items select-hide">
+                                <input type="range" id="price" name="price" min="0" max="500" oninput="priceOutput.value = this.value">
+                                <span id="priceOutput">250</span>
+                            </div>
+                        </div>
+                    </div>          
+                    
+
                     <!-- Ajouter bouton filtre qui exécute un JS qui filtre en fonnction de la colonne rareté, prix et type -->
                     <table border='1'>
                         <tr>
@@ -36,3 +97,4 @@
 <?php require('layout.php'); ?>
 
 <script src="ressources/js/imageZoomModal.js"></script>
+<script src="ressources/js/accordionSets.js"></script>

@@ -17,18 +17,21 @@ body {
 
 main {
     flex-grow: 1;
-    margin: 2em 0;
+    margin: 1em 0;
+    margin-top:120px;
 }
 
 header {
     font-size: 1.1em;
     font-weight: bold;
-    /* position: fixed; */
+    position: fixed;
     padding: 0.5em 0;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     display: flex;
     width: 100%;
     align-items: center;
+    z-index: 99;
+    
 }
 
 footer {
@@ -51,8 +54,9 @@ header a{
     margin: 0 auto;
     max-width: 90%;
     display: flex;
-    flex-direction: row;
+    flex-direction: row; 
 }
+
 
 a {
     text-decoration: none;
@@ -131,12 +135,17 @@ li {
 }
 
 /* banderole style */
+.banner{
+    margin-top:-35px;
+    margin-bottom:20px;
 
+}
 .banderole {
     position: relative;
     width: 100%;
     height: auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+
 }
 
 .logo_tef {
@@ -244,6 +253,7 @@ ul {
 .content {
     flex: 1;
     margin-left:20px;
+    color:#3e1565;
 }
 
 .line1{
@@ -435,6 +445,99 @@ a.card-link:hover {
 .open {
     transform: rotate(180deg);
 }
+
+/*filter style*/
+
+.filter-bar {
+    display: flex; /* aligne horizontalement les enfants */
+    justify-content:space-between; /* répartit l'espace uniformément entre les enfants */
+    padding: 10px; /* espacement autour du contenu */
+    align-items:center;
+    flex:1;
+    align-self:flex-start; /*prend tout l'espace disponible */
+    flex-direction: row;
+    border-bottom: 1px #ddd solid;
+    border-top: 1px #ddd solid;
+    width:auto;
+    padding: 25px;
+    
+    margin-top:20px;
+    background-color: #f9f9f9;
+    
+}
+
+.filter-caption{
+    display:flex;
+    border: 1px solid transparent;
+    margin-right: 20px;
+    color: #884d97;
+    
+    
+}
+.filter-options{
+    display: flex;
+    flex:1;
+    width:min-content;
+    justify-content: flex-start;
+    
+}
+.filter-option {
+     /* chaque option de filtre prendra une part égale de l'espace disponible */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center; /* aligne verticalement les enfants au milieu */
+    cursor: pointer;
+    width:fit-content;
+    margin-left:20px;
+    margin-right:20px;
+    color:#3e1565;
+}
+
+
+.filter-contents{
+    display: flex; /* aligne horizontalement les enfants */
+    justify-content: space-between; /* répartit l'espace uniformément entre les enfants */
+     /* aligne verticalement les enfants au milieu */
+    padding: 10px; /* espacement autour du contenu */
+    align-items:center;
+    flex:1;
+     /* La série et ses sets prennent tout l'espace disponible */
+    /* Utilisation de flexbox pour le placement en ligne des éléments */
+    flex-direction: row;
+}
+.filter-content.hidden {
+    display: none;
+}
+
+.filter-content{
+    padding: 10px;
+    display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
+    justify-content: space-between; /* Espace uniforme entre les éléments */
+    box-sizing: border-box;
+ /* Assurez-vous que le fond est uni */
+    width: 100%; /* Assurez-vous que la div prend toute la largeur */
+     /* Une ombre pour distinguer le menu déroulant */
+    z-index: 10; /* S'assure que le menu déroulant passe au-dessus des autres éléments */
+}
+
+.select-items{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    box-sizing: border-box;
+}
+.select-items div{
+    
+    background-color: #fff ;
+    border-radius: 1em;
+    
+}
+
+.view-toggle {
+    display: flex;
+    align-items: center;
+}
+
 
 /* footer style */
 

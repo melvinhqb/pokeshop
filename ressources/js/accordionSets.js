@@ -44,3 +44,54 @@ function closeAllSets() {
         set.classList.add('hidden');
     });
 }
+
+window.addEventListener('DOMContentLoaded', function() {
+    // Attacher l'événement de clic aux éléments de filtre
+    attachFilterEvents();
+});
+
+function attachFilterEvents() {
+    // Sélectionner tous les éléments de filtre et attacher un gestionnaire de clic pour chacun
+    var filterOptions = document.querySelectorAll('.filter-option');
+    filterOptions.forEach(function(option) {
+        var header = option.querySelector('.filter-name');
+        header.addEventListener('click', function() {
+            toggleFilter(option.id);
+        });
+    });
+}
+
+function toggleFilter(filterId) {
+    // Identifier le contenu de filtre et la flèche à basculer
+    var content = document.getElementById(filterId + "-options");
+    var arrow = document.querySelector('#' + filterId + ' .arrow');
+
+    // Basculer l'affichage du contenu de filtre et la rotation de la flèche
+    if (content.classList.contains('hidden')) {
+        // Ouvrir le filtre sélectionné et fermer tous les autres
+        closeAllFilters();
+        content.classList.remove('hidden');
+        content.style.display = 'block'; // ou 'flex', selon votre mise en page
+        arrow.classList.add('open');
+    } else {
+        content.classList.add('hidden');
+        content.style.display = 'none';
+        arrow.classList.remove('open');
+    }
+}
+
+function closeAllFilters() {
+    // Fermer tous les filtres
+    var allContents = document.querySelectorAll('.filter-content');
+    var allArrows = document.querySelectorAll('.filter-option .arrow');
+
+    allContents.forEach(function(content) {
+        content.style.display = 'none';
+        content.classList.add('hidden');
+    });
+
+    allArrows.forEach(function(arrow) {
+        arrow.classList.remove('open');
+    });
+}
+
