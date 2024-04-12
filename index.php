@@ -58,16 +58,12 @@ function handleContact() {
 
 
 function handleCart() {
-<<<<<<< HEAD
     $cartController = new CartController();
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $cartController->show();
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cartController->addToCart();
     }
-=======
-        (new CartController())->show($_GET['set']);
->>>>>>> 434f5e94751e888e34fdfb4c5d4aa34a5503ce4a
 }
 
 function handleNotFound() {
