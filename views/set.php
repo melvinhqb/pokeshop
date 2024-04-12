@@ -90,51 +90,11 @@
                                     <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
                                     <!-- Buy card form -->
                                     <td>
-<<<<<<< HEAD
                                         <form id="addToCartForm">
                                             <input type="hidden" name="card_id" value="<?php echo $card->id; ?>">
                                             <input type="number" name="quantity" value="1" min="0" step="1">
                                             <button type="button" onclick="addToCart()">Add to Cart</button>
-=======
-                                        <form id="addToCartForm_<?php echo str_replace('.', '_', $card->id); ?>">
-                                            <input type="hidden" name="buy_card" value="<?php echo str_replace('.', '_', $card->id); ?>">
-                                            <input type="number" name="slot_<?php  echo str_replace('.', '_', $card->id); ?>" value="1" min="0" step="1">
-                                            <button type="button" onclick="addToCart('<?php echo str_replace('.', '_', $card->id); ?>')">Add to Cart</button>
->>>>>>> 434f5e94751e888e34fdfb4c5d4aa34a5503ce4a
                                         </form>
-
-                                        <script>
-                                            function addToCart(cardId) {
-                                                // Get the slot value
-                                                var slotInput = document.getElementsByName("slot_" + cardId)[0];
-                                                var slotValue = slotInput.value;
-
-                                                // Construct form data with card ID and slot value
-                                                var formData = new FormData();
-                                                formData.append("buy_card", cardId.replace('.', '_'));
-                                                formData.append("slot_" + cardId.replace('.', '_'), slotValue);
-
-                                                // Send form data via AJAX
-                                                var xhr = new XMLHttpRequest();
-                                                xhr.open('POST', 'index.php?route=cart', true);
-                                                xhr.onload = function () {
-                                                    if (xhr.status === 200) {
-                                                        // Handle successful response
-                                                        alert(xhr.responseText);
-                                                    } else {
-                                                        // Handle error
-                                                        alert('Error: ' + xhr.statusText);
-                                                    }
-                                                };
-                                                xhr.onerror = function () {
-                                                    // Handle connection error
-                                                    alert('Network Error');
-                                                };
-                                                xhr.send(formData);
-                                            }
-
-                                        </script>
-
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -152,3 +112,27 @@
 
 <script src="ressources/js/imageZoomModal.js"></script>
 <script src="ressources/js/accordionSets.js"></script>
+<script>
+    function addToCart(cardId) {
+        // Récupération des données du formulaire
+        var formData = new FormData(document.getElementById('addToCartForm'));
+
+        // Send form data via AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'index.php?route=cart', true);
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle successful response
+                alert(xhr.responseText);
+            } else {
+                // Handle error
+                alert('Error: ' + xhr.statusText);
+            }
+        };
+        xhr.onerror = function () {
+            // Handle connection error
+            alert('Network Error');
+        };
+        xhr.send(formData);
+    }
+</script>
