@@ -11,10 +11,10 @@ class DatabaseConnection
     public function connect(): \mysqli
     {
         if ($this->connection === null) {
-            $servername = "localhost";
-            $username = "root";
-            $password = "";
-            $dbname = "pokeshop_v2";
+            $servername = $_ENV['DB_HOST'];
+            $username = $_ENV['DB_USER'];
+            $password = $_ENV['DB_PASSWORD'];
+            $dbname = $_ENV['DB_NAME'];
 
             // Création d'une nouvelle connexion MySQLi
             $this->connection = new \mysqli($servername, $username, $password, $dbname);

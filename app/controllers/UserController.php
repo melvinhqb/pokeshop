@@ -6,7 +6,7 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Lib\DatabaseConnection;
-use App\Models\UserRepository;
+use App\Models\User;
 
 class UserController extends Controller
 {
@@ -24,7 +24,7 @@ class UserController extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
     
-            $userRepository = new UserRepository();
+            $userRepository = new User();
             $userRepository->conn = new DatabaseConnection();
             $userId = $userRepository->addNewUser($name, $email, $password);
     
@@ -58,7 +58,7 @@ class UserController extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            $userRepository = new UserRepository();
+            $userRepository = new User();
             $userRepository->conn = new DatabaseConnection();
             $user = $userRepository->verifyUser($email, $password);
 

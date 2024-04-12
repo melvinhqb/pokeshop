@@ -4,9 +4,6 @@
 
 namespace App\Models;
 
-require_once('app/lib/database.php');
-require_once('app/exceptions/NotFoundException.php');
-
 use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
 
@@ -19,10 +16,7 @@ class Set
     public ?string $logo;
     public ?string $symbol;
     public ?string $cardCount;
-}
 
-class SetRepository
-{
     public DatabaseConnection $conn;
 
     // Méthode pour récupérer toutes les extensions

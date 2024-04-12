@@ -4,9 +4,6 @@
 
 namespace App\Models;
 
-require_once('app/lib/database.php');
-require_once('app/exceptions/NotFoundException.php');
-
 use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
 
@@ -15,10 +12,7 @@ class Serie
     public string $id;
     public string $name;
     public string $logo;
-}
 
-class SerieRepository
-{
     public DatabaseConnection $conn;
 
     // Méthode pour récupérer toutes les séries

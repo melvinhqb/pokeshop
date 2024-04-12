@@ -4,9 +4,6 @@
 
 namespace App\Models;
 
-require_once('app/lib/database.php');
-require_once('app/exceptions/NotFoundException.php');
-
 use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
 
@@ -32,10 +29,7 @@ class Card
     public ?string $hp;
     public int $stock = 0;
     public float $price = 0.0;
-}
 
-class CardRepository
-{
     public DatabaseConnection $conn;
 
     // Méthode pour récupérer une carte par son ID

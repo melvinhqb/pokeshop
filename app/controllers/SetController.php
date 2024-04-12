@@ -6,11 +6,9 @@ namespace App\Controllers;
 
 use App\Controllers\Controller;
 use App\Lib\DatabaseConnection;
-use App\Exceptions\NotFoundException;
-
-use App\Models\SerieRepository;
-use App\Models\SetRepository;
-use App\Models\CardRepository;
+use App\Models\Serie;
+use App\Models\Set;
+use App\Models\Card;
 
 
 class SetController extends Controller
@@ -18,15 +16,15 @@ class SetController extends Controller
     // Méthode pour afficher les cartes d'une extension
     public function show(string $id) {
         try {
-            $serieRepository = new SerieRepository();
+            $serieRepository = new Serie();
             $serieRepository->conn = new DatabaseConnection();
             $series = $serieRepository->getAll();
     
-            $setRepository = new SetRepository();
+            $setRepository = new Set();
             $setRepository->conn = new DatabaseConnection();
             $set = $setRepository->getById($id);
     
-            $cardRepository = new CardRepository();
+            $cardRepository = new Card();
             $cardRepository->conn = new DatabaseConnection();
             $cards = $cardRepository->getAllBySetId($set->id);
             

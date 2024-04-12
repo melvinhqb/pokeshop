@@ -4,9 +4,8 @@
 
 namespace App\Models;
 
-require_once('app/lib/database.php');
-
 use App\Lib\DatabaseConnection;
+use App\Exceptions\NotFoundException;
 
 class User
 {
@@ -14,10 +13,7 @@ class User
     public string $name;
     public string $email;
     public string $password; // Le mot de passe est stocké sous forme hashée
-}
 
-class UserRepository
-{
     public DatabaseConnection $conn;
 
     // Méthode pour ajouter un nouvel utilisateur

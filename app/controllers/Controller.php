@@ -4,11 +4,6 @@
 
 namespace App\Controllers;
 
-require_once 'app/models/Serie.php';
-require_once 'app/models/Set.php';
-require_once 'app/models/Card.php';
-require_once 'app/models/User.php';
-
 class Controller
 {
     // Affiche une vue avec des données.

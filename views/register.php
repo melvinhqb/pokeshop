@@ -3,14 +3,9 @@
 <main>
     <div class="content-wrapper">
         <div class="content">
-        <?php if (!empty($error)): ?>
-            <div class="error-message">
-                <?php echo $error; ?>
-            </div>
-            <?php endif; ?>
-            <form class="contact-form" action="index.php?route=register" method="POST">
+            <form action="index.php?route=register" method="POST">
                 <div class="container">
-                    <h1 style="text-align:center;">Formulaire d'inscription</h1>
+                    <h1 class="center_text">Formulaire d'inscription</h1>
                     <div class="form-group">
                         <label>Username :</label>
                         <input type="text" placeholder="Enter Username" name="name" required>
@@ -24,7 +19,14 @@
                         <input type="password" placeholder="Enter Password" name="password" required>
                     </div>
                     <button type="submit">S'inscrire</button>
-                    <p>Vous avez déjà un compte ? <a href="index.php?route=login">Connectez-vous ici</a>.</p>
+                    <?php if (!empty($error)): ?>
+                        <div class="error-message">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php endif; ?>
+                </div>
+                <div class="container">
+                    <p>Vous avez un compte ? <a href="index.php?route=login">Connectez-vous</a>.</p>
                 </div>
             </form>
         </div>
