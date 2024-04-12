@@ -446,6 +446,10 @@ a.card-link:hover {
     transform: rotate(180deg);
 }
 
+.buybutton {
+    align-items:center;
+}
+
 /*filter style*/
 
 .filter-bar {

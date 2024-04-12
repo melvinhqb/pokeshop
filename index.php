@@ -5,6 +5,7 @@ require_once('app/controllers/Controller.php');
 require_once('app/controllers/HomeController.php');
 require_once('app/controllers/SerieController.php');
 require_once('app/controllers/CardController.php');
+require_once('app/controllers/CartController.php');
 require_once('app/controllers/SetController.php');
 require_once('app/controllers/UserController.php');
 require_once('app/controllers/ContactController.php');
@@ -15,6 +16,7 @@ use App\Controllers\HomeController;
 use App\Controllers\SerieController;
 use App\Controllers\SetController;
 use App\Controllers\CardController;
+use App\Controllers\CartController;
 use App\Controllers\UserController;
 use App\Controllers\ContactController;
 
@@ -33,7 +35,7 @@ function route($route) {
             handleUserActions($route);
             break;
         case 'cart':
-            echo "<h1>Page panier à implémenter</h1>";
+            handleCart();
             break;
         default:
             handleNotFound();
@@ -52,6 +54,10 @@ function handleProducts() {
     }
 }
 
+
+function handleCart() {
+    (new CartController())->show();
+}
 
 function handleNotFound() {
     (new Controller())->pageNotFound();
