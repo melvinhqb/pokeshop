@@ -8,6 +8,7 @@ use App\Controllers\HomeController;
 use App\Controllers\SerieController;
 use App\Controllers\SetController;
 use App\Controllers\CardController;
+use App\Controllers\CartController;
 use App\Controllers\UserController;
 use App\Controllers\ContactController;
 use Dotenv\Dotenv;
@@ -27,7 +28,7 @@ function route($route) {
             handleUserActions($route);
             break;
         case 'cart':
-            echo "<h1>Page panier à implémenter</h1>";
+            handleCart();
             break;
         default:
             handleNotFound();
@@ -56,6 +57,15 @@ function handleContact() {
 }
 
 
+function handleCart() {
+    $cartController = new CartController();
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $cartController->show();
+    } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $cartController->addToCart();
+    }
+}
+
 function handleNotFound() {
     (new Controller())->pageNotFound();
 }
@@ -83,6 +93,8 @@ function handleUserActions($action) {
 // Charger les variables d'environnement
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+
+session_start();
 
 // Extraction et routage de la requête
 $route = isset($_GET['route']) ? $_GET['route'] : '';

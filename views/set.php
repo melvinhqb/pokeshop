@@ -1,5 +1,7 @@
 <!-- views/set.php -->
-<?php ob_start(); ?>
+<?php ob_start(); 
+
+?>
 <main>
     <div class="content-wrapper">
         <?php require('partials/sidebar.php'); ?>
@@ -75,15 +77,55 @@
                             <th>Nom</th>
                             <th>Rareté</th>
                             <th>Prix</th>
+                            <th>Achat</th>
                         </tr>
-                        <?php foreach ($cards as $card): ?>
-                            <tr>
-                                <td><img class='card_image' src='<?php echo $card->image; ?>/low.png' alt='<?php echo $card->name; ?>'></td>
-                                <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
-                                <td><?php echo $card->rarity; ?></td>
-                                <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
-                            </tr>
-                        <?php endforeach; ?>
+
+                            <!-- Your table and card listing -->
+                            <?php foreach ($cards as $card): ?>
+                                <!-- Each card row in the table -->
+                                <tr>
+                                    <!-- Card details -->
+                                    <td><img class='card_image' src='<?php echo $card->image; ?>/low.png' alt='<?php echo $card->name; ?>'></td>
+                                    <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
+                                    <td><?php echo $card->rarity; ?></td>
+                                    <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
+                                    <!-- Buy card form -->
+                                    <td>
+                                        <form id="addToCartForm">
+                                            <input type="hidden" name="card_id" value="<?php echo $card->id; ?>">
+                                            <input type="number" name="quantity" value="1" min="0" step="1">
+                                            <button type="button" onclick="addToCart()">Add to Cart</button>
+                                        </form>
+
+                                        <script>
+                                            function addToCart() {
+                                                // Serialize form data
+                                                var formData = new FormData(document.getElementById('addToCartForm'));
+
+                                                // Send form data via AJAX
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('POST', 'index.php?route=cart', true);
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        // Handle successful response
+                                                        alert(xhr.responseText);
+                                                    } else {
+                                                        // Handle error
+                                                        alert('Error: ' + xhr.statusText);
+                                                    }
+                                                };
+                                                xhr.onerror = function () {
+                                                    // Handle connection error
+                                                    alert('Network Error');
+                                                };
+                                                xhr.send(formData);
+                                            }
+                                        </script>
+
+
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                     </table>
                 </div>
             <?php else: ?>

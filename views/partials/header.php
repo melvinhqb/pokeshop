@@ -1,5 +1,4 @@
 <!-- views/partials/header.php -->
-<?php session_start(); ?>
 <header class="header">
     <nav class="navbar content-wrapper">
         <a href="index.php"><img class="navbar_logo" src="ressources/img/logo.png"></a>

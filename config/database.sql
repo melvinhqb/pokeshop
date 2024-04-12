@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : dim. 07 avr. 2024 à 17:46
+-- Généré le : ven. 12 avr. 2024 à 15:48
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -1255,6 +1255,7 @@ INSERT INTO `series` (`id`, `name`, `logo`) VALUES
 -- Structure de la table `sets`
 --
 
+DROP TABLE IF EXISTS `sets`;
 CREATE TABLE `sets` (
   `id` varchar(255) NOT NULL,
   `serie_id` varchar(255) DEFAULT NULL,
@@ -1302,6 +1303,18 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user_card`
+--
+
+CREATE TABLE `user_card` (
+  `user_id` int(11) NOT NULL,
+  `card_id` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --
 -- Index pour les tables déchargées
 --
@@ -1334,6 +1347,13 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Index pour la table `user_card`
+--
+ALTER TABLE `user_card`
+  ADD PRIMARY KEY (`user_id`,`card_id`),
+  ADD KEY `card_id` (`card_id`);
+
+--
 -- AUTO_INCREMENT pour les tables déchargées
 --
 
@@ -1358,6 +1378,13 @@ ALTER TABLE `cards`
 --
 ALTER TABLE `sets`
   ADD CONSTRAINT `sets_ibfk_1` FOREIGN KEY (`serie_id`) REFERENCES `series` (`id`);
+
+--
+-- Contraintes pour la table `user_card`
+--
+ALTER TABLE `user_card`
+  ADD CONSTRAINT `user_card_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `user_card_ibfk_2` FOREIGN KEY (`card_id`) REFERENCES `cards` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
