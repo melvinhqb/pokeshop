@@ -1,5 +1,7 @@
 <!-- views/set.php -->
-<?php ob_start(); ?>
+<?php ob_start(); 
+
+?>
 <main>
     <div class="content-wrapper">
         <?php require('partials/sidebar.php'); ?>
@@ -75,15 +77,29 @@
                             <th>Nom</th>
                             <th>Rareté</th>
                             <th>Prix</th>
+                            <th>Achat</th>
                         </tr>
-                        <?php foreach ($cards as $card): ?>
-                            <tr>
-                                <td><img class='card_image' src='<?php echo $card->image; ?>/low.png' alt='<?php echo $card->name; ?>'></td>
-                                <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
-                                <td><?php echo $card->rarity; ?></td>
-                                <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
-                            </tr>
-                        <?php endforeach; ?>
+
+
+                        <form method="post" action="views/process/process_form.php">
+                            <!-- Your table and card listing -->
+                            <?php foreach ($cards as $card): ?>
+                                <!-- Each card row in the table -->
+                                <tr>
+                                    <!-- Card details -->
+                                    <td><img class='card_image' src='<?php echo $card->image; ?>/low.png' alt='<?php echo $card->name; ?>'></td>
+                                    <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
+                                    <td><?php echo $card->rarity; ?></td>
+                                    <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
+                                    <!-- Buy card form -->
+                                    <td>
+                                        <input type="number" name="slot_<?php echo str_replace('.', '=', $card->id); ?>" value="1" min="0" step="1">
+                                        <button type="submit" name="buy_card" value="<?php echo str_replace('.', '=', $card->id); ?>">Buy Card</button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </form>
+
                     </table>
                 </div>
             <?php else: ?>
