@@ -93,8 +93,38 @@
                                     <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
                                     <!-- Buy card form -->
                                     <td>
-                                        <input type="number" name="slot_<?php echo str_replace('.', '=', $card->id); ?>" value="1" min="0" step="1">
-                                        <button type="submit" name="buy_card" value="<?php echo str_replace('.', '=', $card->id); ?>">Buy Card</button>
+                                        <form id="addToCartForm">
+                                            <input type="hidden" name="buy_card" value="<?php echo str_replace('.', '=', $card->id); ?>">
+                                            <input type="number" name="slot_<?php  echo str_replace('.', '=', $card->id); ?>" value="1" min="0" step="1">
+                                            <button type="button" onclick="addToCart()">Add to Cart</button>
+                                        </form>
+
+                                        <script>
+                                            function addToCart() {
+                                                // Serialize form data
+                                                var formData = new FormData(document.getElementById('addToCartForm'));
+
+                                                // Send form data via AJAX
+                                                var xhr = new XMLHttpRequest();
+                                                xhr.open('POST', 'views/process/process_form.php', true);
+                                                xhr.onload = function () {
+                                                    if (xhr.status === 200) {
+                                                        // Handle successful response
+                                                        alert(xhr.responseText);
+                                                    } else {
+                                                        // Handle error
+                                                        alert('Error: ' + xhr.statusText);
+                                                    }
+                                                };
+                                                xhr.onerror = function () {
+                                                    // Handle connection error
+                                                    alert('Network Error');
+                                                };
+                                                xhr.send(formData);
+                                            }
+                                        </script>
+
+
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

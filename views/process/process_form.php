@@ -6,7 +6,6 @@ if (isset($_POST['buy_card']) && isset($_SESSION['user_id'])) {
     // Extract card ID and quantity from the form submission
     $card_id = $_POST['buy_card'];
     $slot_key = 'slot_' . $card_id;
-    $slot = $_POST[$slot_key];
 
     // Check if the slot quantity is provided and not empty
     if (isset($_POST[$slot_key]) && $_POST[$slot_key] !== '') {
