@@ -56,7 +56,7 @@ function handleProducts() {
 
 
 function handleCart() {
-    (new CartController())->show();
+        (new CartController())->show($_GET['set']);
 }
 
 function handleNotFound() {
