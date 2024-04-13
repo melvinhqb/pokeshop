@@ -9,7 +9,7 @@
     </div>
     
     <div class="content-wrapper">
-        <?php require('partials/sidebar.php'); ?>
+        <?php include(ROOT_PATH . '/partials/sidebar.php'); ?>
         <div class="content text_center">
             <p class="text_bestseller">Nos Best-Sellers</p>
             <div class="line1">
@@ -27,4 +27,4 @@
 </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php') ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>

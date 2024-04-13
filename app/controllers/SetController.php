@@ -24,7 +24,7 @@ class SetController extends Controller
             $rarities = $cardRepository->getRarities();
             $types = $cardRepository->getTypes();
             
-            $this->view('set', [
+            $this->view('products/set', [
                 'set' => $set,
                 'cards' => $cards,
                 'series' => $series,

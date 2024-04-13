@@ -18,7 +18,7 @@ class CardController extends Controller
             $cardRepository = new Card();
             $card = $cardRepository->getById($id);
         
-            $this->view('card', [
+            $this->view('products/card', [
                 'card' => $card,
                 'series' => $series
             ]);

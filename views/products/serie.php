@@ -2,7 +2,7 @@
 <?php ob_start(); ?>
 <main>
         <div class="content-wrapper">
-<?php include('partials/sidebar.php'); ?>
+<?php include(ROOT_PATH . '/partials/sidebar.php'); ?>
 <div class="content">
     <div class="series-container">
         <?php foreach ($series as $serie): ?>
@@ -31,6 +31,6 @@
                     </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>
 
 <script src="ressources/js/accordionSets.js"></script>

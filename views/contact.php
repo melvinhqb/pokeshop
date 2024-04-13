@@ -68,5 +68,5 @@
   </form>
 </main>
 <?php $content = ob_get_clean(); ?>
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>
 <script src="ressources/js/verificationJS.js" defer></script>

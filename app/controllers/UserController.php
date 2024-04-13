@@ -15,7 +15,7 @@ class UserController extends Controller
             header("Location: index.php");
             exit;
         }
-        $this->view('register');
+        $this->view('profile/register');
     }
 
     // Méthode pour afficher et traiter le formulaire d'inscription
@@ -41,7 +41,7 @@ class UserController extends Controller
             }
         }
     
-        $this->view('register', ['error' => $error]);
+        $this->view('profile/register', ['error' => $error]);
     }
 
     // Méthode pour afficher le formulaire de connexion
@@ -51,7 +51,7 @@ class UserController extends Controller
             header("Location: index.php");
             exit;
         }
-        $this->view('login');
+        $this->view('profile/login');
     }
 
     // Méthode pour afficher et traiter le formulaire de connexion
@@ -78,7 +78,7 @@ class UserController extends Controller
             }
         }
 
-        $this->view('login', ['error' => $error]);
+        $this->view('profile/login', ['error' => $error]);
     }
 
     // Méthode pour déconnecter l'utilisateur

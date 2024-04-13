@@ -34,4 +34,4 @@
 </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>

@@ -21,7 +21,9 @@ class SerieController extends Controller
             $serie->sets = $setRepository->getAllBySerieId($serie->id);
         }
 
-        $this->view('serie', ['series' => $series]);
+        $this->view('products/serie', [
+            'series' => $series
+        ]);
     }
 }
 

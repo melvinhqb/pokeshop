@@ -3,7 +3,7 @@
 
 <main>
     <div class="content-wrapper">
-        <?php require('partials/sidebar.php'); ?>
+        <?php include(ROOT_PATH . '/partials/sidebar.php'); ?>
         <div class="content">
             <h1>Extension <?php echo $set->name; ?></h1>
             <?php if (!empty($cards)): ?>
@@ -123,7 +123,7 @@
 </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>
 
 <script src="ressources/js/imageZoomModal.js"></script>
 <script src="ressources/js/accordionSets.js"></script>
