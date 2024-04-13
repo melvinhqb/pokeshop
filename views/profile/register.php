@@ -3,7 +3,7 @@
 <main>
     <div class="content-wrapper">
         <div class="content">
-            <form action="index.php?route=register" method="POST">
+            <form action="index.php?route=profile&action=register" method="POST">
                 <div class="container">
                     <h1 class="center_text">Formulaire d'inscription</h1>
                     <div class="form-group">
@@ -26,7 +26,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="container">
-                    <p>Vous avez un compte ? <a href="index.php?route=login">Connectez-vous</a>.</p>
+                    <p>Vous avez un compte ? <a href="index.php?route=profile&action=login">Connectez-vous</a>.</p>
                 </div>
             </form>
         </div>

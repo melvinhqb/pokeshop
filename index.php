@@ -22,13 +22,14 @@ function route($route) {
         case 'contact':
             handleContact();
             break;
-        case 'login':
-        case 'register':
-        case 'logout':
-            handleUserActions($route);
+        case 'profile':
+            handleProfile();
             break;
         case 'cart':
             handleCart();
+            break;
+        case 'admin':
+            handleAdmin();
             break;
         default:
             handleNotFound();
@@ -74,24 +75,43 @@ function handleNotFound() {
     (new Controller())->pageNotFound();
 }
 
-// Gestion des actions utilisateur
-function handleUserActions($action) {
+// Gestion des actions de profil
+function handleProfile() {
     $userController = new UserController();
+    $action = $_GET['action'] ?? '';
+
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-        if ($action === 'login') {
-            $userController->loginForm();
-        } elseif ($action === 'register') {
-            $userController->registerForm();
-        } elseif ($action === 'logout') {
-            $userController->logout();
+        switch ($action) {
+            case 'login':
+                $userController->loginForm();
+                break;
+            case 'register':
+                $userController->registerForm();
+                break;
+            case 'logout':
+                $userController->logout();
+                break;
+            default:
+                handleNotFound();
+                break;
         }
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        if ($action === 'login') {
-            $userController->login();
-        } elseif ($action === 'register') {
-            $userController->register();
+        switch ($action) {
+            case 'login':
+                $userController->login();
+                break;
+            case 'register':
+                $userController->register();
+                break;
+            default:
+                handleNotFound();
+                break;
         }
     }
+}
+
+function handleAdmin() {
+    
 }
 
 // Charger les variables d'environnement

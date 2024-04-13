@@ -13,7 +13,7 @@ class CartController extends Controller
     {
         // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?route=login");
+            header("Location: index.php?route=profile&action=login");
             exit;
         }
 
@@ -27,7 +27,7 @@ class CartController extends Controller
     {
         // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?route=login");
+            header("Location: index.php?route=profile&action=login");
             exit;
         }
 
@@ -54,7 +54,7 @@ class CartController extends Controller
     public function deleteAll() {
         // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
         if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?route=login");
+            header("Location: index.php?route=profile&action=login");
             exit;
         }
 
