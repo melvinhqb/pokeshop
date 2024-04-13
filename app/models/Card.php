@@ -62,6 +62,20 @@ class Card
         return $cards;
     }
 
+    public function getStockById(string $cardId): int
+    {
+        $sql = "SELECT stock FROM cards WHERE id='$cardId'";
+        $result = $this->conn->connect()->query($sql);
+
+        $row = $result->fetch_assoc();
+
+        if ($row) {
+            return intval($row['stock']);
+        } else {
+            throw new NotFoundException("Aucune carte trouvée avec l'ID $cardId.");
+        }
+    }
+
     // Méthode utilitaire pour créer un objet Card à partir d'une ligne de résultat SQL
     private function createCardFromRow(array $row): Card
     {

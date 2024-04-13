@@ -90,11 +90,11 @@
                                     <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
                                     <!-- Buy card form -->
                                     <td>
-                                        <form id="addToCartForm">
-                                            <input type="hidden" name="card_id" value="<?php echo $card->id; ?>">
-                                            <input type="number" name="quantity" value="1" min="0" step="1">
-                                            <button type="button" onclick="addToCart()">Add to Cart</button>
-                                        </form>
+                                    <form onsubmit="addToCart(event)">
+                                        <input type="hidden" name="card_id" value="<?php echo $card->id ?>">
+                                        <input type="number" name="quantity" value="1" min="0" step="1">
+                                        <button type="submit">Add to Cart</button>
+                                    </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -113,26 +113,39 @@
 <script src="ressources/js/imageZoomModal.js"></script>
 <script src="ressources/js/accordionSets.js"></script>
 <script>
-    function addToCart(cardId) {
-        // Récupération des données du formulaire
-        var formData = new FormData(document.getElementById('addToCartForm'));
+    function addToCart(event) {
+        // Empêcher le formulaire de se soumettre normalement
+        event.preventDefault();
 
-        // Send form data via AJAX
+        // Récupérer le formulaire soumis
+        var form = event.target;
+
+        // Récupérer les données du formulaire
+        var formData = new FormData(form);
+
+        // Envoyer les données du formulaire via AJAX
         var xhr = new XMLHttpRequest();
         xhr.open('POST', 'index.php?route=cart', true);
         xhr.onload = function () {
             if (xhr.status === 200) {
-                // Handle successful response
-                alert(xhr.responseText);
+                // Gérer la réponse réussie
+                
             } else {
-                // Handle error
+                // Gérer l'erreur
                 alert('Error: ' + xhr.statusText);
             }
         };
         xhr.onerror = function () {
-            // Handle connection error
+            // Gérer l'erreur de connexion
             alert('Network Error');
         };
         xhr.send(formData);
+    }
+
+    function updateTable(responseData) {
+        // Mettre à jour le contenu du tableau avec les nouvelles données
+        // Par exemple, vous pouvez remplacer le contenu du tableau avec celui reçu du serveur
+        var tableContainer = document.getElementById('tableContainer');
+        tableContainer.innerHTML = responseData;
     }
 </script>

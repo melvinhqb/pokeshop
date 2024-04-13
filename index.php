@@ -62,7 +62,11 @@ function handleCart() {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $cartController->show();
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $cartController->addToCart();
+        if (isset($_POST['action']) && $_POST['action'] == 'deleteFromCart') {
+            $cartController->deleteAll();
+        } else {
+            $cartController->addToCart();
+        }
     }
 }
 
