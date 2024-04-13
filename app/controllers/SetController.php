@@ -9,6 +9,7 @@ use App\Lib\DatabaseConnection;
 use App\Models\Serie;
 use App\Models\Set;
 use App\Models\Card;
+use App\Models\FilterRepository;
 
 
 class SetController extends Controller
@@ -27,11 +28,18 @@ class SetController extends Controller
             $cardRepository = new Card();
             $cardRepository->conn = new DatabaseConnection();
             $cards = $cardRepository->getAllBySetId($set->id);
+
+            $filterRepository = new FilterRepository();
+            $filterRepository->conn = new DatabaseConnection();
+            $rarities = $filterRepository->getRarities();
+            $types = $filterRepository->getTypes();
             
             $this->view('set', [
                 'set' => $set,
                 'cards' => $cards,
-                'series' => $series
+                'series' => $series,
+                'rarities' => $rarities, 
+                'types' => $types
             ]);
         } catch (NotFoundException $e) {
             $this->pageNotFound($e->getMessage());
