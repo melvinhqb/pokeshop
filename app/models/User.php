@@ -4,27 +4,25 @@
 
 namespace App\Models;
 
-use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
+use App\Lib\DatabaseConnection;
 
-class User
+class User extends Model
 {
     public string $id;
     public string $name;
     public string $email;
     public string $password; // Le mot de passe est stocké sous forme hashée
 
-    public DatabaseConnection $conn;
-
     // Méthode pour ajouter un nouvel utilisateur
-    public function addNewUser(string $name, string $email, string $password)
+    public function addNewUser(string $name, string $email, string $password): bool|int
     {
         // Vérifier d'abord si l'email existe déjà
         $emailCheckSql = "SELECT COUNT(*) AS emailCount FROM users WHERE email = ?";
-        $emailCheckStmt = $this->conn->connect()->prepare($emailCheckSql);
-        $emailCheckStmt->bind_param("s", $email);
-        $emailCheckStmt->execute();
-        $emailCheckResult = $emailCheckStmt->get_result()->fetch_assoc();
+        $stmt = $this->conn->prepare($emailCheckSql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $emailCheckResult = $stmt->get_result()->fetch_assoc();
         if ($emailCheckResult['emailCount'] > 0) {
             return false; // Retourne false si l'email existe déjà
         }
@@ -32,10 +30,10 @@ class User
         // Insère le nouvel utilisateur si l'email n'existe pas.
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
-        $stmt = $this->conn->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sss", $name, $email, $hashedPassword);
         if ($stmt->execute()) {
-            return $this->conn->connect()->insert_id; // Retourne l'ID de l'utilisateur inséré
+            return $this->conn->insert_id; // Retourne l'ID de l'utilisateur inséré
         } else {
             return false; // Retourne false en cas d'échec de l'insertion
         }
@@ -46,7 +44,7 @@ class User
     {
         // Recherche l'utilisateur par email.
         $sql = "SELECT id, name, email, password FROM users WHERE email = ?";
-        $stmt = $this->conn->connect()->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -63,12 +61,11 @@ class User
     // Méthode utilitaire pour créer un objet User à partir d'une ligne de résultat SQL
     private function createUserFromRow(array $row): User
     {
-        $user = new User();
+        $user = new self();
         $user->id = $row['id'];
         $user->name = $row['name'];
         $user->email = $row['email'];
         $user->password = $row['password']; // Le mot de passe stocké est déjà hashé
-
         return $user;
     }
 }

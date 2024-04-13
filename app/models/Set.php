@@ -4,10 +4,9 @@
 
 namespace App\Models;
 
-use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
 
-class Set
+class Set extends Model  // Assuming Model handles the database connection
 {
     public string $id;
     public ?string $name;
@@ -17,16 +16,14 @@ class Set
     public ?string $symbol;
     public ?string $cardCount;
 
-    public DatabaseConnection $conn;
-
     // Méthode pour récupérer toutes les extensions
     public function getAll(): array
     {
         $sql = "SELECT * FROM sets ORDER BY releaseDate DESC";
-        $result = $this->conn->connect()->query($sql);
+        $result = $this->conn->query($sql);
 
         $sets = [];
-        while (($row = $result->fetch_assoc())) {
+        while ($row = $result->fetch_assoc()) {
             $sets[] = $this->createSetFromRow($row);
         }
 
@@ -36,9 +33,11 @@ class Set
     // Méthode pour récupérer une extension par son ID
     public function getById(string $id): Set
     {
-        $sql = "SELECT * FROM sets WHERE id = '$id'";
-        $result = $this->conn->connect()->query($sql);
-
+        $sql = "SELECT * FROM sets WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
         if (!$row) {
@@ -51,11 +50,14 @@ class Set
     // Méthode pour récupérer toutes les extensions d'une serie
     public function getAllBySerieId(string $id): array
     {
-        $sql = "SELECT * FROM sets WHERE serie_id = '$id' ORDER BY releaseDate DESC";
-        $result = $this->conn->connect()->query($sql);
+        $sql = "SELECT * FROM sets WHERE serie_id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("s", $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         $sets = [];
-        while (($row = $result->fetch_assoc())) {
+        while ($row = $result->fetch_assoc()) {
             $sets[] = $this->createSetFromRow($row);
         }
 
@@ -65,7 +67,7 @@ class Set
     // Méthode utilitaire pour créer un objet Set à partir d'une ligne de résultat SQL
     private function createSetFromRow(array $row): Set
     {
-        $set = new Set();
+        $set = new self();
         $set->id = $row['id'];
         $set->name = $row['name'];
         $set->releaseDate = $row['releaseDate'];

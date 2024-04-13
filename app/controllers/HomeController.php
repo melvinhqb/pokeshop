@@ -4,8 +4,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
-use App\Lib\DatabaseConnection;
 use App\Models\Serie;
 
 class HomeController extends Controller
@@ -13,12 +11,12 @@ class HomeController extends Controller
     // Méthode pour afficher la page d'accueil
     public function index()
     {
-        $serieRepository = new Serie();
-        $serieRepository->conn = new DatabaseConnection();
-        $series = $serieRepository->getAll();
+        $serieRepository = new Serie();  // Serie hérite de Model, la connexion est gérée dans le modèle
+        $series = $serieRepository->getAll();  // Récupération de toutes les séries
     
         $this->view('home', [
-            'series' => $series
+            'series' => $series  // Passage des données à la vue
         ]);
     }
 }
+

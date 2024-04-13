@@ -4,8 +4,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
-use App\Lib\DatabaseConnection;
 use App\Models\Serie;
 use App\Models\Set;
 
@@ -15,17 +13,15 @@ class SerieController extends Controller
     public function index()
     {
         $serieRepository = new Serie();
-        $serieRepository->conn = new DatabaseConnection();
         $series = $serieRepository->getAll();
 
         $setRepository = new Set();
-        $setRepository->conn = new DatabaseConnection();
         foreach ($series as $serie) {
+            // Supposons que Set::getAllBySerieId(int $serieId) renvoie tous les sets pour une série donnée
             $serie->sets = $setRepository->getAllBySerieId($serie->id);
         }
 
-        $this->view('serie', [
-            'series' => $series
-        ]);
+        $this->view('serie', ['series' => $series]);
     }
 }
+

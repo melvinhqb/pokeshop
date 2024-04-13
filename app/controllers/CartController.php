@@ -1,12 +1,8 @@
 <?php
 
-// app/controllers/CardController.php
+// app/controllers/CartController.php
 
 namespace App\Controllers;
-
-use App\Controllers\Controller;
-use App\Lib\DatabaseConnection;
-use App\Exceptions\NotFoundException;
 
 use App\Models\Cart;
 
@@ -21,13 +17,10 @@ class CartController extends Controller
             exit;
         }
 
-        // Récupérer la liste des carte de l'utilisateur qui a l'id = $_SESSION['user_id']
-        // Utilise les méthodes de Cart.php
         $cart = new Cart();
-        $cart->conn = new DatabaseConnection();
         $cartItems = $cart->getCartItems($_SESSION['user_id']);
 
-        $this->view('cart', ['cartItems' => $cartItems]); // Ajouter la liste des cartes en paramètre
+        $this->view('cart', ['cartItems' => $cartItems]); // Pass the list of items to the view
     }
 
     public function addToCart()
@@ -43,23 +36,18 @@ class CartController extends Controller
             $cardId = $_POST['card_id'];
             $quantity = $_POST['quantity'];
             
-            if ($cardId !== '' && $quantity !== '') {
-                // Crée un nouvel objet Cart
+            if (!empty($cardId) && !empty($quantity)) {
                 $cart = new Cart();
-                $cart->conn = new DatabaseConnection();
-                // Ajoutez l'élément au panier dans la base de données ou tout autre système de stockage
-                // Utiliser les méthodes dans Cart.php
-                //echo "cardId: $cardId\nquantity: $quantity\nuser_id: " . $_SESSION['user_id'] . "\n" . "user_name: " . $_SESSION['user_name'];
-                
                 $cart->addToCart($userId, $cardId, $quantity);
-
             } else {
-                // Gère les erreurs si les données ne sont pas définies
+                // Handle errors if data is not defined
                 echo "Erreur : Données manquantes.";
+                exit;
             }
         } else {
-            // Gère les erreurs si la méthode n'est pas POST
+            // Handle errors if the method is not POST
             echo "Erreur : Méthode non autorisée.";
+            exit;
         }
     }
 
@@ -75,11 +63,11 @@ class CartController extends Controller
             $cardId = $_POST['card_id'];
 
             $cart = new Cart();
-            $cart->conn = new DatabaseConnection();
             $cart->deleteFrom($userId, $cardId);
         } else {
-            // Gère les erreurs si la méthode n'est pas POST
+            // Handle errors if the method is not POST
             echo "Erreur : Méthode non autorisée.";
+            exit;
         }
     }
 }
