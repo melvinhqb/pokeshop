@@ -41,7 +41,7 @@ class SetController extends Controller
                 'rarities' => $rarities, 
                 'types' => $types
             ]);
-        } catch (NotFoundException $e) {
+        } catch (\Exception $e) {
             $this->pageNotFound($e->getMessage());
         }
     }
