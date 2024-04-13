@@ -534,7 +534,22 @@ a.card-link:hover {
     background-color: #ffffff ;
     border-radius: 0.5em;
     padding:1em;
-    
+    cursor: pointer;
+}
+.price-content {
+    display: flex;
+    justify-content: space-between;
+    flex:1;
+}
+
+#price{
+    display: inline-block;
+    width:80%;
+}
+#priceOutput{
+    display: inline-block;
+    text-align:end;
+    width:5px;
 }
 
 .view-toggle {

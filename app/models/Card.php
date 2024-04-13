@@ -104,3 +104,29 @@ class Card
         return $card;
     }
 }
+
+
+class FilterRepository {
+    public DatabaseConnection $conn;
+
+    public function getRarities(): array {
+        $sql = "SELECT DISTINCT rarity FROM cards";
+        $result = $this->conn->connect()->query($sql);
+        $rarities = [];
+        while ($row = $result->fetch_assoc()) {
+            $rarities[] = $row['rarity'];
+        }
+        return $rarities;
+    }
+
+    public function getTypes(): array {
+        $sql = "SELECT DISTINCT types FROM cards";
+        $result = $this->conn->connect()->query($sql);
+        $types = [];
+        while ($row = $result->fetch_assoc()) {
+            $types[] = $row['types'];
+        }
+        return $types;
+    }
+    
+}
