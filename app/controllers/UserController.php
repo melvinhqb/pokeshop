@@ -11,7 +11,6 @@ class UserController extends Controller
     // Méthode pour afficher le formulaire d'inscription
     public function registerForm()
     {
-        session_start();  // Ensure session is not started
         if (isset($_SESSION['user_id'])) {
             header("Location: index.php");
             exit;
@@ -48,7 +47,6 @@ class UserController extends Controller
     // Méthode pour afficher le formulaire de connexion
     public function loginForm()
     {
-        session_start();  // Ensure session is not started
         if (isset($_SESSION['user_id'])) {
             header("Location: index.php");
             exit;

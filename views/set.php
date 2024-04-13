@@ -145,7 +145,7 @@
         xhr.onload = function () {
             if (xhr.status === 200) {
                 // Gérer la réponse réussie
-                
+                alert("La carte a été ajouté à votre panier");
             } else {
                 // Gérer l'erreur
                 alert('Error: ' + xhr.statusText);
