@@ -28,8 +28,8 @@ function route($route) {
         case 'cart':
             handleCart();
             break;
-        case 'admin':
-            handleAdmin();
+        case 'payment':
+            handlePayment();
             break;
         default:
             handleNotFound();
@@ -60,16 +60,18 @@ function handleContact() {
 
 function handleCart() {
     $cartController = new CartController();
+    $action = $_GET['action'] ?? '';
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $cartController->show();
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['action']) && $_POST['action'] == 'deleteFromCart') {
-            $cartController->deleteAll();
+            $cartController->deleteAll(); // Supprime tous les articles du panier
         } else {
-            $cartController->addToCart();
+            $cartController->addToCart(); // Ajoute un article au panier
         }
     }
 }
+
 
 function handleNotFound() {
     (new Controller())->pageNotFound();
@@ -110,8 +112,13 @@ function handleProfile() {
     }
 }
 
-function handleAdmin() {
-    
+function handlePayment() {
+    $cartController = new CartController();
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $cartController->paymentForm();
+    } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $cartController->processPayment();
+    }
 }
 
 // Charger les variables d'environnement
