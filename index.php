@@ -11,6 +11,7 @@ use App\Controllers\CardController;
 use App\Controllers\CartController;
 use App\Controllers\UserController;
 use App\Controllers\ContactController;
+use App\Controllers\AdminController;
 use Dotenv\Dotenv;
 
 // Fonction principale de routage
@@ -30,6 +31,9 @@ function route($route) {
             break;
         case 'payment':
             handlePayment();
+            break;
+        case 'admin':
+            handleAdmin();
             break;
         default:
             handleNotFound();
@@ -119,6 +123,11 @@ function handlePayment() {
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $cartController->processPayment();
     }
+}
+
+function handleAdmin() {
+    $adminController = new AdminController();
+    $adminController->dashboard();
 }
 
 // Charger les variables d'environnement

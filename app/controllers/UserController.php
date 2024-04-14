@@ -70,6 +70,7 @@ class UserController extends Controller
                 session_start();
                 $_SESSION['user_id'] = $user->id;
                 $_SESSION['user_name'] = $user->name;
+                $_SESSION['admin'] = $user->isAdmin;
 
                 header('Location: index.php');
                 exit;
