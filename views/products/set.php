@@ -114,7 +114,7 @@
                                                     <input type="number" name="quantity" value="1" min="0" step="1">
                                                     <button type="submit">Add to Cart</button>';
                                             } else {
-                                                echo 'Please login to buy';
+                                                echo 'Veuillez vous connecter pour acheter';
                                             }
                                         } catch (Exception $e) {
                                             echo "Caught exception: " . $e->getMessage();
