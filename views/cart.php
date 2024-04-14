@@ -29,6 +29,11 @@
                             <input type="hidden" name="card_id" value="<?php echo $item['card']->id ?>">
                             <button type="submit">Tout retirer</button>
                         </form>
+                        <form onsubmit="modifyToCart(event)">
+                            <input type="hidden" name="action" value="deleteFromCart">
+                            <input type="number" name="card_id" value="<?php echo $item['card']->id ?>">
+                            <button type="sub">modifier</button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>
