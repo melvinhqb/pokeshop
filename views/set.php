@@ -75,8 +75,8 @@
                             <div class="select-items select-hide">
                                 <div class=price-content>
                                     <label for=price>Price Max: </label>
-                                    <input type="range" id="price" name="price" min="0" max="500" oninput="priceOutput.value = price.value; filterCards('data-price', this.value);" >
-                                    <output id="priceOutput">250</output>$</div>
+                                    <input type="range" id="price" name="price" min="0" max="100" oninput="priceOutput.value = price.value; filterCards('data-price', this.value);" >
+                                    <output id="priceOutput">50</output>$</div>
                                 
                             
                             </div>
