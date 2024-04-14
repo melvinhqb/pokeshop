@@ -106,19 +106,20 @@
                                     <!-- Buy card form -->
                                     <td>
                                     <form onsubmit="addToCart(event)">
-                                        <?php 
+                                    <?php 
                                         try {
-                                            if($_SESSION){
-                                                echo '<input type="hidden" name="card_id" value="<?php echo $card->id ?>">
-                                                <input type="number" name="quantity" value="1" min="0" step="1">
-                                                <button type="submit">Add to Cart</button>';
-                                            }
-                                            else{
-                                                echo 'login to buy';
+                                            if ($_SESSION) {
+                                                // Utiliser la concaténation pour inclure $card->id
+                                                echo '<input type="hidden" name="card_id" value="' . $card->id . '">
+                                                    <input type="number" name="quantity" value="1" min="0" step="1">
+                                                    <button type="submit">Add to Cart</button>';
+                                            } else {
+                                                echo 'Please login to buy';
                                             }
                                         } catch (Exception $e) {
                                             echo "Caught exception: " . $e->getMessage();
-                                        } finally{} ?>
+                                        }
+                                        ?>
                                     </form>
                                     </td>
                                 </tr>
