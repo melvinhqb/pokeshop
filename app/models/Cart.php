@@ -30,9 +30,8 @@ class Cart extends Model
             $stmt->bind_param("isi", $userId, $cardId, $quantity);
         } else {
             $newQuantity = $currentQuantity + $quantity;
-            $sql = "UPDATE user_card SET quantity=? WHERE user_id=? AND card_id=?";
+            $sql = "UPDATE user_card SET quantity=$newQuantity WHERE user_id=$userId AND card_id='$cardId'";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bind_param("isi", $newQuantity, $userId, $cardId);
         }
         $stmt->execute();
     }
