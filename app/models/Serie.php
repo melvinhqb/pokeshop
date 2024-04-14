@@ -4,21 +4,17 @@
 
 namespace App\Models;
 
-use App\Lib\DatabaseConnection;
 use App\Exceptions\NotFoundException;
 
-class Serie
+class Serie extends Model
 {
     public string $id;
     public string $name;
     public string $logo;
 
-    public DatabaseConnection $conn;
-
     // Méthode pour récupérer toutes les séries
     public function getAll(): array
     {
-
         $sql = "SELECT s.id, s.name, s.logo
                 FROM series s
                 LEFT JOIN (
@@ -27,10 +23,10 @@ class Serie
                     GROUP BY serie_id
                 ) t ON s.id = t.serie_id 
                 ORDER BY t.max_releaseDate DESC";
-        $result = $this->conn->connect()->query($sql);
+        $result = $this->conn->query($sql);
 
         $series = [];
-        while (($row = $result->fetch_assoc())) {
+        while ($row = $result->fetch_assoc()) {
             $series[] = $this->createSerieFromRow($row);
         }
 
@@ -40,9 +36,11 @@ class Serie
     // Méthode pour récupérer une série par son ID
     public function getById(string $id): Serie
     {
-        $sql = "SELECT * FROM series WHERE id = $id";
-        $result = $this->conn->connect()->query($sql);
-
+        $sql = "SELECT * FROM series WHERE id = ?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
         $row = $result->fetch_assoc();
 
         if (!$row) {
@@ -55,7 +53,7 @@ class Serie
     // Méthode utilitaire pour créer un objet Serie à partir d'une ligne de résultat SQL
     private function createSerieFromRow(array $row): Serie
     {
-        $serie = new Serie();
+        $serie = new self(); // Utilisez `new self()` pour créer une instance de la même classe
         $serie->id = $row['id'];
         $serie->name = $row['name'];
         $serie->logo = $row['logo'];

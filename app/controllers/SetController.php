@@ -4,13 +4,9 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
-use App\Lib\DatabaseConnection;
 use App\Models\Serie;
 use App\Models\Set;
 use App\Models\Card;
-use App\Models\FilterRepository;
-
 
 class SetController extends Controller
 {
@@ -18,31 +14,26 @@ class SetController extends Controller
     public function show(string $id) {
         try {
             $serieRepository = new Serie();
-            $serieRepository->conn = new DatabaseConnection();
             $series = $serieRepository->getAll();
     
             $setRepository = new Set();
-            $setRepository->conn = new DatabaseConnection();
             $set = $setRepository->getById($id);
     
             $cardRepository = new Card();
-            $cardRepository->conn = new DatabaseConnection();
             $cards = $cardRepository->getAllBySetId($set->id);
-
-            $filterRepository = new FilterRepository();
-            $filterRepository->conn = new DatabaseConnection();
-            $rarities = $filterRepository->getRarities();
-            $types = $filterRepository->getTypes();
+            $rarities = $cardRepository->getRarities();
+            $types = $cardRepository->getTypes();
             
-            $this->view('set', [
+            $this->view('products/set', [
                 'set' => $set,
                 'cards' => $cards,
                 'series' => $series,
                 'rarities' => $rarities, 
                 'types' => $types
             ]);
-        } catch (NotFoundException $e) {
+        } catch (\Exception $e) {
             $this->pageNotFound($e->getMessage());
         }
     }
 }
+

@@ -4,8 +4,6 @@
 
 namespace App\Controllers;
 
-use App\Controllers\Controller;
-use App\Lib\DatabaseConnection;
 use App\Models\User;
 
 class UserController extends Controller
@@ -13,7 +11,11 @@ class UserController extends Controller
     // Méthode pour afficher le formulaire d'inscription
     public function registerForm()
     {
-        $this->view('register');
+        if (isset($_SESSION['user_id'])) {
+            header("Location: index.php");
+            exit;
+        }
+        $this->view('profile/register');
     }
 
     // Méthode pour afficher et traiter le formulaire d'inscription
@@ -25,7 +27,6 @@ class UserController extends Controller
             $password = $_POST['password'] ?? '';
     
             $userRepository = new User();
-            $userRepository->conn = new DatabaseConnection();
             $userId = $userRepository->addNewUser($name, $email, $password);
     
             if ($userId) {
@@ -40,13 +41,17 @@ class UserController extends Controller
             }
         }
     
-        $this->view('register', ['error' => $error]);
+        $this->view('profile/register', ['error' => $error]);
     }
 
     // Méthode pour afficher le formulaire de connexion
     public function loginForm()
     {
-        $this->view('login');
+        if (isset($_SESSION['user_id'])) {
+            header("Location: index.php");
+            exit;
+        }
+        $this->view('profile/login');
     }
 
     // Méthode pour afficher et traiter le formulaire de connexion
@@ -59,7 +64,6 @@ class UserController extends Controller
             $password = $_POST['password'] ?? '';
 
             $userRepository = new User();
-            $userRepository->conn = new DatabaseConnection();
             $user = $userRepository->verifyUser($email, $password);
 
             if ($user !== null) {
@@ -74,7 +78,7 @@ class UserController extends Controller
             }
         }
 
-        $this->view('login', ['error' => $error]);
+        $this->view('profile/login', ['error' => $error]);
     }
 
     // Méthode pour déconnecter l'utilisateur

@@ -3,7 +3,7 @@
 
 <main>
     <div class="content-wrapper">
-        <?php require('partials/sidebar.php'); ?>
+        <?php include(ROOT_PATH . '/partials/sidebar.php'); ?>
         <div class="content">
             <h1>Extension <?php echo $set->name; ?></h1>
             <?php if (!empty($cards)): ?>
@@ -105,11 +105,22 @@
                                     <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
                                     <!-- Buy card form -->
                                     <td>
-                                        <form id="addToCartForm">
-                                            <input type="hidden" name="card_id" value="<?php echo $card->id; ?>">
-                                            <input type="number" name="quantity" value="1" min="0" step="1">
-                                            <button type="button" onclick="addToCart()">Add to Cart</button>
-                                        </form>
+                                    <form onsubmit="addToCart(event)">
+                                    <?php 
+                                        try {
+                                            if ($_SESSION) {
+                                                // Utiliser la concaténation pour inclure $card->id
+                                                echo '<input type="hidden" name="card_id" value="' . $card->id . '">
+                                                    <input type="number" name="quantity" value="1" min="0" step="1">
+                                                    <button type="submit">Add to Cart</button>';
+                                            } else {
+                                                echo 'Veuillez vous connecter pour acheter';
+                                            }
+                                        } catch (Exception $e) {
+                                            echo "Caught exception: " . $e->getMessage();
+                                        }
+                                        ?>
+                                    </form>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
@@ -123,32 +134,10 @@
 </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>
 
 <script src="ressources/js/imageZoomModal.js"></script>
 <script src="ressources/js/accordionSets.js"></script>
 <script src="ressources/js/filter.js"></script>
-<script>
-    function addToCart(cardId) {
-        // Récupération des données du formulaire
-        var formData = new FormData(document.getElementById('addToCartForm'));
-
-        // Send form data via AJAX
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', 'index.php?route=cart', true);
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                // Handle successful response
-                alert(xhr.responseText);
-            } else {
-                // Handle error
-                alert('Error: ' + xhr.statusText);
-            }
-        };
-        xhr.onerror = function () {
-            // Handle connection error
-            alert('Network Error');
-        };
-        xhr.send(formData);
-    }
-</script>
+<script src="ressources/js/addToCart.js"></script>
+<script src="ressources/js/updateTable.js"></script>

@@ -10,6 +10,7 @@ class Controller
     public function view($view, $data = [])
     {
         extract($data);
+        define('ROOT_PATH', realpath('./views'));
         require_once 'views/' . $view . '.php';
     }
 

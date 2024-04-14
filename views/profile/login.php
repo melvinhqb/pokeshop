@@ -1,15 +1,11 @@
-<!-- views/register.php -->
+<!-- views/login.php -->
 <?php ob_start(); ?>
 <main>
     <div class="content-wrapper">
-        <div class="content">
-            <form action="index.php?route=register" method="POST">
+    <div class="content">
+            <form action="index.php?route=profile&action=login" method="POST">
                 <div class="container">
-                    <h1 class="center_text">Formulaire d'inscription</h1>
-                    <div class="form-group">
-                        <label>Username :</label>
-                        <input type="text" placeholder="Enter Username" name="name" required>
-                    </div>
+                    <h1 class="center_text">Formulaire de connexion</h1>
                     <div class="form-group">
                         <label>Email :</label>
                         <input type="email" placeholder="Enter Email" name="email" required>
@@ -18,7 +14,7 @@
                         <label>Password :</label>
                         <input type="password" placeholder="Enter Password" name="password" required>
                     </div>
-                    <button type="submit">S'inscrire</button>
+                    <button type="submit">Se connecter</button>
                     <?php if (!empty($error)): ?>
                         <div class="error-message">
                             <?php echo $error; ?>
@@ -26,7 +22,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="container">
-                    <p>Vous avez un compte ? <a href="index.php?route=login">Connectez-vous</a>.</p>
+                    <p>Vous n'avez pas de compte ? <a href="index.php?route=profile&action=register">Inscrivez-vous</a></p>
                 </div>
             </form>
         </div>
@@ -34,4 +30,4 @@
 </main>
 <?php $content = ob_get_clean(); ?>
 
-<?php require('layout.php'); ?>
+<?php require_once(ROOT_PATH . '/layout.php'); ?>
