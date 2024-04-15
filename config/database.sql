@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 12 avr. 2024 à 15:48
+-- Généré le : dim. 14 avr. 2024 à 21:44
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -1255,7 +1255,6 @@ INSERT INTO `series` (`id`, `name`, `logo`) VALUES
 -- Structure de la table `sets`
 --
 
-DROP TABLE IF EXISTS `sets`;
 CREATE TABLE `sets` (
   `id` varchar(255) NOT NULL,
   `serie_id` varchar(255) DEFAULT NULL,
@@ -1300,7 +1299,8 @@ CREATE TABLE `users` (
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `isAdmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------

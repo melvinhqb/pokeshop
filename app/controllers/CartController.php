@@ -8,15 +8,18 @@ use App\Models\Cart;
 
 class CartController extends Controller
 {
-    // Méthode pour afficher le panier de l'utilisateur
-    public function show()
+
+    public function __construct()
     {
         // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
         if (!isset($_SESSION['user_id'])) {
             header("Location: index.php?route=profile&action=login");
             exit;
         }
-
+    }
+    // Méthode pour afficher le panier de l'utilisateur
+    public function show()
+    {
         $cart = new Cart();
         $cartItems = $cart->getCartItems($_SESSION['user_id']);
 
@@ -25,12 +28,6 @@ class CartController extends Controller
 
     public function addToCart()
     {
-        // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?route=profile&action=login");
-            exit;
-        }
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_SESSION['user_id'];
             $cardId = $_POST['card_id'];
@@ -51,13 +48,8 @@ class CartController extends Controller
         }
     }
 
-    public function deleteAll() {
-        // Vérifie qu'un utilisateur est connecté pour ouvrir un panier
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: index.php?route=profile&action=login");
-            exit;
-        }
-
+    public function deleteAll()
+    {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userId = $_SESSION['user_id'];
             $cardId = $_POST['card_id'];
@@ -69,5 +61,19 @@ class CartController extends Controller
             echo "Erreur : Méthode non autorisée.";
             exit;
         }
+    }
+
+    public function paymentForm()
+    {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: index.php?route=profile&action=login");
+            exit;
+        }
+        $this->view('payment');
+    }
+
+    public function processPayment()
+    {
+        header("Location: index.php");
     }
 }

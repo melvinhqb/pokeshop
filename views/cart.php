@@ -38,6 +38,7 @@
                 </tr>
             <?php endforeach; ?>
             </table>
+            <a href="index.php?route=payment">Payer</a>
         </div>
     </div>
 </main>

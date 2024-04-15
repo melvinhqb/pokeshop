@@ -13,6 +13,7 @@ class User extends Model
     public string $name;
     public string $email;
     public string $password; // Le mot de passe est stocké sous forme hashée
+    public bool $isAdmin;
 
     // Méthode pour ajouter un nouvel utilisateur
     public function addNewUser(string $name, string $email, string $password): bool|int
@@ -43,7 +44,7 @@ class User extends Model
     public function verifyUser(string $email, string $password): ?User
     {
         // Recherche l'utilisateur par email.
-        $sql = "SELECT id, name, email, password FROM users WHERE email = ?";
+        $sql = "SELECT id, name, email, password, isAdmin FROM users WHERE email = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -61,11 +62,12 @@ class User extends Model
     // Méthode utilitaire pour créer un objet User à partir d'une ligne de résultat SQL
     private function createUserFromRow(array $row): User
     {
-        $user = new self();
+        $user = new User();
         $user->id = $row['id'];
         $user->name = $row['name'];
         $user->email = $row['email'];
         $user->password = $row['password']; // Le mot de passe stocké est déjà hashé
+        $user->isAdmin = $row['isAdmin'];
         return $user;
     }
 }
