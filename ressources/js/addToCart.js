@@ -14,15 +14,35 @@ function addToCart(event) {
     xhr.onload = function () {
         if (xhr.status === 200) {
             // Gérer la réponse réussie
-            alert("La carte a été ajouté à votre panier");
+            showCustomAlert("La carte a été ajouté à votre panier");
         } else {
             // Gérer l'erreur
-            alert('Error: ' + xhr.statusText);
+            showCustomAlert('Error: ' + xhr.statusText);
         }
     };
     xhr.onerror = function () {
         // Gérer l'erreur de connexion
-        alert('Network Error');
+        showCustomAlert('Network Error');
     };
     xhr.send(formData);
+}
+
+
+function showCustomAlert(message) {
+    document.getElementById('custom-alert-text').textContent = message;
+    var alertBox = document.getElementById('custom-alert');
+    alertBox.className = 'custom-alert-show';
+
+    // Fermer le popup sur le bouton de fermeture
+    alertBox.querySelector('.custom-alert-closebtn').onclick = function() {
+        alertBox.className = 'custom-alert-hidden';
+        
+    };
+
+    // Fermer le popup si l'utilisateur clique à l'extérieur
+    window.onclick = function(event) {
+        if (event.target === alertBox) {
+            alertBox.className = 'custom-alert-hidden';
+        }
+    };
 }

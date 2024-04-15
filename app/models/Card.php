@@ -26,6 +26,7 @@ class Card extends Model
     public ?string $legal;
     public ?string $variants;
     public ?string $hp;
+    public ?string $setId;
     public int $stock = 0;
     public float $price = 0.0;
 
@@ -85,6 +86,24 @@ class Card extends Model
         }
         return $types;
     }
+    public function getSetId(): array{
+        $sql= "SELECT DISTINCT set_id FROM cards";
+        $result= $this->conn->query($sql);
+        $setId =[];
+        while ($row = $result->fetch_assoc()) {
+            $setId[] = $row['set_id'];
+        }
+        return $setId;
+    }
+
+    public function getSet(): ?Set {
+        if ($this->setId) {
+            $set = new Set();
+            return $set->getById($this->setId);
+        }
+        return null;
+    }
+    
 
     public function getStockById(string $cardId): int
     {
@@ -99,6 +118,7 @@ class Card extends Model
             throw new NotFoundException("Aucune carte trouvée avec l'ID $cardId.");
         }
     }
+
 
     // Utility method to create a Card object from a database row
     private function createCardFromRow(array $row): Card
@@ -124,6 +144,7 @@ class Card extends Model
         $card->hp = $row['hp'];
         $card->price = $row['price'];
         $card->stock = $row['stock'];
+        $card->setId= $row['set_id'];
 
         return $card;
     }

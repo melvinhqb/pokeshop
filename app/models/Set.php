@@ -15,6 +15,7 @@ class Set extends Model  // Assuming Model handles the database connection
     public ?string $logo;
     public ?string $symbol;
     public ?string $cardCount;
+    public ?string $serieId;
 
     // Méthode pour récupérer toutes les extensions
     public function getAll(): array
@@ -64,6 +65,24 @@ class Set extends Model  // Assuming Model handles the database connection
         return $sets;
     }
 
+    public function getSerieId(): array{
+        $sql= "SELECT DISTINCT serie_id FROM sets";
+        $result= $this->conn->query($sql);
+        $serieId =[];
+        while ($row = $result->fetch_assoc()) {
+            $serieId[] = $row['serie_id'];
+        }
+        return $serieId;
+    }
+
+    public function getSerie(): ?Serie {
+        if ($this->serieId) {
+            $serie = new Serie();
+            return $serie->getById($this->serieId);
+        }
+        return null;
+    }
+
     // Méthode utilitaire pour créer un objet Set à partir d'une ligne de résultat SQL
     private function createSetFromRow(array $row): Set
     {
@@ -75,6 +94,7 @@ class Set extends Model  // Assuming Model handles the database connection
         $set->logo = $row['logo'];
         $set->symbol = $row['symbol'];
         $set->cardCount = $row['cardCount'];
+        $set->serieId =$row['serie_id'];
 
         return $set;
     }

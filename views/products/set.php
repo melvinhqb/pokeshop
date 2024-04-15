@@ -33,10 +33,20 @@
 
                             </div>
                         </div>
-                    
+                        
+                        <!--grid and table view icon -->
                         <div class="view-toggle">
-                            <button type="button" id="grid-view">Grid View</button>
-                            <button type="button" id="table-view">Table View</button>
+                            <button type="submit" id="grid-icon" class="icon active" >
+                                    <div class="square"></div>
+                                    <div class="square"></div>
+                                    <div class="square"></div>
+                                    <div class="square"></div>
+                            </button>
+                            <button type="submit" id="table-icon" class="icon">
+                                    <div class="rectangle"></div>
+                                    <div class="rectangle"></div>
+                                    <div class="rectangle"></div>
+                                </button>
                         </div>
 
                     </div>
@@ -82,49 +92,85 @@
                             </div>
                         </div>
                     </div>  
-
-
-                    <!-- Ajouter bouton filtre qui exécute un JS qui filtre en fonnction de la colonne rareté, prix et type -->
-                    <table border='1'>
-                        <tr>
-                            <th>Image</th>
-                            <th>Nom</th>
-                            <th>Rareté</th>
-                            <th>Prix</th>
-                            <th>Achat</th>
-                        </tr>
-
-                            <!-- Your table and card listing -->
+                    <div  class="view-container">
+                        <div class="grid-container" id="grid-view">
                             <?php foreach ($cards as $card): ?>
-                                <!-- Each card row in the table -->
-                                <tr class="card-row" data-rarity="<?= htmlspecialchars($card->rarity); ?>" data-type="<?= htmlspecialchars($card->types); ?>" data-price="<?php echo number_format($card->price, 2, ',', '.'); ?>">
-                                    <!-- Card details -->
-                                    <td><img class='card_image' src='<?php echo $card->image; ?>/low.png' alt='<?php echo $card->name; ?>'></td>
-                                    <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
-                                    <td><?php echo $card->rarity; ?></td>
-                                    <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
-                                    <!-- Buy card form -->
-                                    <td>
+                            <div class="card-row" data-rarity="<?= htmlspecialchars($card->rarity); ?>" data-type="<?= htmlspecialchars($card->types); ?>" data-price="<?php echo number_format($card->price, 2, ',', '.'); ?>">
+                                <img class='card_image' src='<?php echo $card->image; ?>/high.png' alt='<?php echo $card->name; ?>'>  
+                                <div class="card-grid-info">
+                                    <a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a>
+                                    <br><strong><?php echo number_format($card->price, 2, ',', '.'); ?> €</strong>
                                     <form onsubmit="addToCart(event)">
-                                    <?php 
-                                        try {
-                                            if ($_SESSION) {
-                                                // Utiliser la concaténation pour inclure $card->id
-                                                echo '<input type="hidden" name="card_id" value="' . $card->id . '">
-                                                    <input type="number" name="quantity" value="1" min="0" step="1">
-                                                    <button type="submit">Add to Cart</button>';
-                                            } else {
-                                                echo 'Veuillez vous connecter pour acheter';
+                                        <?php 
+                                            try {
+                                                if ($_SESSION) {
+                                                    // Utiliser la concaténation pour inclure $card->id
+                                                    echo '<div class="quantity-input">
+                                                                <input type="hidden" name="card_id" value="' . $card->id . '">
+                                                                <input type="number" name="quantity" value="1" min="0" step="1">
+                                                          </div>
+                                                          <button type="submit">Add to Cart</button>';
+                                                    echo '<div id="custom-alert" class="custom-alert-hidden">
+                                                            <div class="custom-alert-content">
+                                                            <p id="custom-alert-text">Ce texte sera remplacé par le message dalerte.</p>
+                                                            <button type="button" class="custom-alert-closebtn" >Ok</button></div></div> ';
+                                                                
+                                                } else {
+                                                    echo 'Veuillez vous connecter pour acheter';
+                                                    
+                                                }
+                                            } catch (Exception $e) {
+                                                echo "Caught exception: " . $e->getMessage();
                                             }
-                                        } catch (Exception $e) {
-                                            echo "Caught exception: " . $e->getMessage();
-                                        }
-                                        ?>
-                                    </form>
-                                    </td>
-                                </tr>
+                                            ?>
+                                        </form>
+                                </div>  
+                            </div>
                             <?php endforeach; ?>
-                    </table>
+                        </div>
+                    </div>
+                    <div id="table-view" class="view-container" style="display:none;">                   
+                        <table border='1'>
+                            <tr>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Rareté</th>
+                                <th>Prix</th>
+                                <th>Achat</th>
+                            </tr>
+
+                                <!-- Your table and card listing -->
+                                <?php foreach ($cards as $card): ?>
+                                    <!-- Each card row in the table -->
+                                    <tr class="card-row" data-rarity="<?= htmlspecialchars($card->rarity); ?>" data-type="<?= htmlspecialchars($card->types); ?>" data-price="<?php echo number_format($card->price, 2, ',', '.'); ?>">
+                                        <!-- Card details -->
+                                        <td><img class='card_image' src='<?php echo $card->image; ?>/high.png' alt='<?php echo $card->name; ?>'></td>
+                                        <td><a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a></td>
+                                        <td><?php echo $card->rarity; ?></td>
+                                        <td><?php echo number_format($card->price, 2, ',', '.'); ?> €</td>
+                                        <!-- Buy card form -->
+                                        <td>
+                                        <form onsubmit="addToCart(event)">
+                                        <?php 
+                                            try {
+                                                if ($_SESSION) {
+                                                    // Utiliser la concaténation pour inclure $card->id
+                                                    echo '<input type="hidden" name="card_id" value="' . $card->id . '">
+                                                        <input type="number" name="quantity" value="1" min="0" step="1">
+                                                        <button type="submit">Add to Cart</button>';
+                                                } else {
+                                                    echo 'Veuillez vous connecter pour acheter';
+                                                }
+                                            } catch (Exception $e) {
+                                                echo "Caught exception: " . $e->getMessage();
+                                            }
+                                            ?>
+                                        </form>
+                                        </td>
+                                    </tr>
+                                <?php endforeach; ?>
+                        </table>
+                    </div> 
                 </div>
             <?php else: ?>
                 Aucune carte associée à cet ensemble.
@@ -141,3 +187,4 @@
 <script src="ressources/js/filter.js"></script>
 <script src="ressources/js/addToCart.js"></script>
 <script src="ressources/js/updateTable.js"></script>
+<script src="ressources/js/switchViewsProducts.js"></script>

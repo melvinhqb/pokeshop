@@ -116,7 +116,7 @@ li {
     width: 100%;
 }
 
-.active::before {
+.nav_link .active::before {
     content: '';
     position: absolute;
     bottom: 2px;
@@ -166,7 +166,7 @@ li {
     color: white;
     padding: 1em;
     border: 0.1em transparent;
-    border-radius: 1em;
+    border-radius: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -185,7 +185,7 @@ ul {
     padding: 1em;
     margin-bottom: 1.5em;
     border: 0.1em transparent;
-    border-radius: 1em;
+    border-radius: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -236,7 +236,7 @@ ul {
     color: white;
     padding: 1em;
     border: 0.1em transparent;
-    border-radius: 1em;
+    border-radius: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -279,6 +279,11 @@ ul {
     box-shadow:0 0 10px black;
 }
 
+.view-container{
+    
+    width: 100%;
+}
+/*Table view*/
 table {
     width: 100%;
     border-collapse: collapse;
@@ -330,7 +335,7 @@ a.card-link:hover {
     text-decoration: underline;
 }
 
-.card_image {
+table .card_image {
     width: 50px;
     height: auto;
 }
@@ -357,8 +362,8 @@ a.card-link:hover {
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 20px;
+    background-color: transparent;
+    padding: 5px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     cursor: zoom-out;
@@ -455,7 +460,7 @@ a.card-link:hover {
 .filter-bar {
     display: flex; /* aligne horizontalement les enfants */
     justify-content:space-between; /* répartit l'espace uniformément entre les enfants */
-    padding: 10px; /* espacement autour du contenu */
+    padding: 25px; /* espacement autour du contenu */
     align-items:center;
     flex:1;
     align-self:flex-start; /*prend tout l'espace disponible */
@@ -463,8 +468,6 @@ a.card-link:hover {
     border-bottom: 1px #ddd solid;
     border-top: 1px #ddd solid;
     width:auto;
-    padding: 25px;
-    
     margin-top:20px;
     background-color: #f9f9f9;
     
@@ -518,9 +521,7 @@ a.card-link:hover {
     display: flex; /* Utilisation de flexbox pour le placement en ligne des éléments */
     justify-content: space-between; /* Espace uniforme entre les éléments */
     box-sizing: border-box;
- /* Assurez-vous que le fond est uni */
     width: 100%; /* Assurez-vous que la div prend toute la largeur */
-     /* Une ombre pour distinguer le menu déroulant */
     z-index: 10; /* S'assure que le menu déroulant passe au-dessus des autres éléments */
 }
 
@@ -552,11 +553,182 @@ a.card-link:hover {
     width:5px;
 }
 
-.view-toggle {
-    display: flex;
-    align-items: center;
+/*grid view*/
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-rows: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff; /* or any color you want for the background */
+    border-radius: 10px; /* Rounded corners for the grid container */
+  }
+  
+
+  .grid-container .card-row {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    overflow: hidden; /* Conservez le 'hidden' pour éviter que l'effet de survol ne déborde */
+    transition: transform 0.3s ease;
+    border-radius: 4px;
+    margin: 20px; /* Définissez la marge ici et ne la changez pas au survol */
+  }
+  
+  .grid-container .card-row img {
+    max-width: 80%;
+    padding:5px; /* Ajusté pour utiliser toute la largeur du parent .card-row */
+    transition: transform 0.3s ease; /* Ajout de la transition pour l'effet zoom */
+  }
+  
+  .grid-container .card-row img:hover {
+    transform: scale(1.05) rotateX(10deg); /* Ajustez l'échelle et l'angle selon vos préférences */
+    z-index: 2; /* Assurez-vous que z-index est plus élevé pour que l'image survolée soit au-dessus des autres */
+    opacity: 0.7;
+  }
+  
+
+  .grid-container .card-row img:hover::after {
+    position: relative;
+    top: 10px;
+    right: 10px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    z-index: 3;
+}
+  
+.card-grid-info form{
+    display:grid;
+    gap: 4px;
+    padding: 5px;
+    
 }
 
+/*Grid Table icon */
+.view-toggle {
+    display: grid;
+    align-items:center;
+    grid-template-columns: repeat(2, 50px);
+    max-width: fit-content;
+}
+#grid-icon{
+    display: grid;
+    grid-template-columns: repeat(2, 1.3em); /* Crée deux colonnes */
+    grid-template-rows: repeat(2, 1.3em); /* Crée deux lignes */
+    gap: 0.1em; /* Espacement entre les carrés */
+    padding:0px;
+    margin: 0 auto;
+    width: fit-content;  
+    background: transparent;
+  }
+  
+#table-icon{
+    display: inline-block; 
+    align-content: center;
+    padding:5px;
+    margin-left:0px;
+    background: transparent ;
+}
+.square {
+    height: 1.3em;
+    border-radius: 0.25em;
+    background: #6e0654b4;
+   
+}
+.rectangle{
+    display:block;
+    height:0.8em;
+    width:2.6em;
+    border-radius: 0.25em;
+    background: #6e0654b4;
+    transition:0.4s;
+    margin: 0.1em 0;
+   
+}
+
+/*Card details page*/
+.card-wrapper{
+    border-radius: 0.5em;
+    padding-left:20px;
+    padding-right: 20px;
+    flex:1;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: flex-start;
+    gap: 20px;
+
+}
+.card-media-wrapper{
+    background-color: #007bff transparent;
+    max-width:35%;
+    
+    padding:10px;
+    
+    display:flex;
+    
+    justify-content:space-around;
+}
+
+.card-media-wrapper .card_image{
+    max-width:100%;
+    height:60%;
+    margin-top:20px;
+}    
+.card-media-wrapper .card_image:hover{
+    cursor: zoom-in;
+}
+.card-details-wrapper{
+    background-color: #ffffff;
+    border-radius:4px;
+    padding:30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display:flex;
+    flex:1;
+    flex-direction:column;
+    margin-right:20px;
+}
+.card-details-title{
+    margin-left: 20px;
+    margin-right: 20px;
+    max-width: 45%;
+    display: block;
+    border-bottom: 1px solid #ddd;
+}
+.card-details-title h1{
+    padding-left:0px;
+    font-weight:570;
+    font-size:35px;
+
+}
+.card-details-title p{
+    padding-bottom:20px;
+    padding-top: 15px;
+    font-size:35px;
+}
+.card-details-info{
+    font-weight: 400;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top:10px;
+    overflow: hidden;
+    box-shadow: 0 0 0;
+}
+.card-details-info table{
+    box-shadow: 0 0 0;
+    margin-top:0px;
+    padding:5px;
+
+}
+.card-details-info td{
+    border-bottom: 1px transparent #ddd;
+}
+.card-details-info h3{
+    font-weight:500; 
+    margin-top:20px;
+    padding-bottom:10px;
+    border-bottom: 1px solid #ddd;
+}
 
 /* Formulaire */
 
@@ -699,3 +871,45 @@ footer {
     background: linear-gradient(90deg, #e4134d, #851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
+/*pop up JS*/
+.custom-alert-hidden{
+    display: none;
+  }
+  
+  .custom-alert-show {
+    display: block; /* ou 'flex', selon la disposition souhaitée */
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
+  
+  .custom-alert-content {
+    background: white;
+    max-width: 500px;
+    padding: 20px;
+    border-radius: 5px;
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+  }
+  
+  .custom-alert-closebtn {
+    margin-top:5px;
+    float: right;
+    cursor: pointer;
+    width: 100%;
+    padding:10px;
+    background: linear-gradient(90deg, #e4134d, #851b7b);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  

@@ -10,9 +10,11 @@
             </ul>
             <div class="navbar_end">
                 <?php if (isset($_SESSION['user_id'])): ?>
-                    <a class="nav_link" href="index.php?route=cart">Panier</a>
-                    <a class="nav_link" href="index.php?route=profile&action=logout">Logout <?php echo $_SESSION['user_name']; ?></a>
-                <?php else: ?>
+                    <ul class="navbar_menu">
+                        <li class="navbar_item"><a class="nav_link" href="index.php?route=cart">Panier</a></li>
+                        <li class="navbar_item"><a class="nav_link" href="index.php?route=profile&action=logout">Logout <?php echo $_SESSION['user_name']; ?></a></li>
+                    </ul>
+                    <?php else: ?>
                     <a class="nav_link" href="index.php?route=profile&action=login">Login</a>
                 <?php endif; ?>
             </div>
