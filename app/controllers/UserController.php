@@ -4,7 +4,7 @@
 
 namespace App\Controllers;
 
-use App\Models\User;
+use App\Repositories\UserRepository;
 
 class UserController extends Controller
 {
@@ -26,7 +26,7 @@ class UserController extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
     
-            $userRepository = new User();
+            $userRepository = new UserRepository();
             $userId = $userRepository->addNewUser($name, $email, $password);
     
             if ($userId) {
@@ -63,7 +63,7 @@ class UserController extends Controller
             $email = $_POST['email'] ?? '';
             $password = $_POST['password'] ?? '';
 
-            $userRepository = new User();
+            $userRepository = new UserRepository();
             $user = $userRepository->verifyUser($email, $password);
 
             if ($user !== null) {

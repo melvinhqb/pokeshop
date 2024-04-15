@@ -39,6 +39,7 @@
             <?php endforeach; ?>
             </table>
             <a href="index.php?route=payment">Payer</a>
+            <?php echo "<pre>"; print_r($cartItems); echo"</pre>";?>
         </div>
     </div>
 </main>

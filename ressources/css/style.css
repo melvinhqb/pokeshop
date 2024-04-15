@@ -116,7 +116,7 @@ li {
     width: 100%;
 }
 
-.nav_link .active::before {
+.active::before {
     content: '';
     position: absolute;
     bottom: 2px;

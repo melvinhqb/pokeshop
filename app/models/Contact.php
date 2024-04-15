@@ -4,7 +4,7 @@
 
 namespace App\Models;
 
-class Contact
+class Contact extends Model
 {
     public string $dateContact;
     public string $lastName;

@@ -78,8 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         $cardCount = isset($set_details['cardCount']) ? json_encode($set_details['cardCount']) : null;
 
                         // Insérer les informations de l'ensemble dans la base de données
-                        $insert_set_sql = "INSERT INTO sets (id, name, releaseDate, legal, logo, symbol, serie_id) 
-                                            VALUES ('$set_id', '$name', '$releaseDate', '$legal', '$logo', '$symbol', '$serie_id')";
+                        $insert_set_sql = "INSERT INTO sets (id, name, releaseDate, legal, logo, symbol, serie_id, cardCount) 
+                                            VALUES ('$set_id', '$name', '$releaseDate', '$legal', '$logo', '$symbol', '$serie_id', '$cardCount')";
                         if ($conn->query($insert_set_sql) === TRUE) {
                             echo "Ensemble ajouté avec succès dans la table sets.<br>";
                         } else {

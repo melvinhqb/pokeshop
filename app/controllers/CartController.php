@@ -4,7 +4,7 @@
 
 namespace App\Controllers;
 
-use App\Models\Cart;
+use App\Repositories\CartRepository;
 
 class CartController extends Controller
 {
@@ -20,7 +20,7 @@ class CartController extends Controller
     // Méthode pour afficher le panier de l'utilisateur
     public function show()
     {
-        $cart = new Cart();
+        $cart = new CartRepository();
         $cartItems = $cart->getCartItems($_SESSION['user_id']);
 
         $this->view('cart', ['cartItems' => $cartItems]); // Pass the list of items to the view
@@ -34,7 +34,7 @@ class CartController extends Controller
             $quantity = $_POST['quantity'];
             
             if (!empty($cardId) && !empty($quantity)) {
-                $cart = new Cart();
+                $cart = new CartRepository();
                 $cart->addToCart($userId, $cardId, $quantity);
             } else {
                 // Handle errors if data is not defined
@@ -54,7 +54,7 @@ class CartController extends Controller
             $userId = $_SESSION['user_id'];
             $cardId = $_POST['card_id'];
 
-            $cart = new Cart();
+            $cart = new CartRepository();
             $cart->deleteFrom($userId, $cardId);
         } else {
             // Handle errors if the method is not POST

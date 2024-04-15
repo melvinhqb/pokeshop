@@ -4,22 +4,22 @@
 
 namespace App\Controllers;
 
-use App\Models\Serie;
-use App\Models\Set;
-use App\Models\Card;
+use App\Repositories\SerieRepository;
+use App\Repositories\SetRepository;
+use App\Repositories\CardRepository;
 
 class SetController extends Controller
 {
     // Méthode pour afficher les cartes d'une extension
     public function show(string $id) {
         try {
-            $serieRepository = new Serie();
+            $serieRepository = new SerieRepository();
             $series = $serieRepository->getAll();
     
-            $setRepository = new Set();
+            $setRepository = new SetRepository();
             $set = $setRepository->getById($id);
     
-            $cardRepository = new Card();
+            $cardRepository = new CardRepository();
             $cards = $cardRepository->getAllBySetId($set->id);
             $rarities = $cardRepository->getRarities();
             $types = $cardRepository->getTypes();

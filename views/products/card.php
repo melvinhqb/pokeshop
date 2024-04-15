@@ -21,11 +21,11 @@
                             <tr><td><p>Numéro de la carte: </p></td> <td><?php echo $card->localId ?></td></tr>
                             <tr>
                                 <td><p>Série: </p></td> 
-                                <td> <?php echo ($card->getSet())->name ?></td>
+                                <td> <?php echo $card->set->name ?></td>
                             </tr>
                             <tr>
                                 <td><p>Extension: </strong></td> 
-                                <td> <?php echo (($card->getSet())->getSerie())->name ?></td>
+                                <td> <?php echo $card->set->serie->name ?></td>
                             </tr>
                             <tr><td><p>Type: </td> <td> <?php echo str_replace('"', '', trim($card->types, '[]')) ?></td></tr>
                             <tr><td><p>Rareté: </p></td> <td> <?php echo $card->rarity ?></td></tr>
@@ -54,7 +54,6 @@
                             </tr>
                         </table>
                     </div>
-                    
                 </div>
             </div>
         </div>

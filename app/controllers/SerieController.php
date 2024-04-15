@@ -4,20 +4,20 @@
 
 namespace App\Controllers;
 
-use App\Models\Serie;
-use App\Models\Set;
+use App\Repositories\SerieRepository;
+use App\Repositories\SetRepository;
 
 class SerieController extends Controller
 {
     // Méthode pour afficher la liste des séries
     public function index()
     {
-        $serieRepository = new Serie();
+        $serieRepository = new SerieRepository();
         $series = $serieRepository->getAll();
 
-        $setRepository = new Set();
+        $setRepository = new SetRepository();
         foreach ($series as $serie) {
-            // Supposons que Set::getAllBySerieId(int $serieId) renvoie tous les sets pour une série donnée
+            // Supposons que SetRepository::getAllBySerieId(int $serieId) renvoie tous les sets pour une série donnée
             $serie->sets = $setRepository->getAllBySerieId($serie->id);
         }
 
