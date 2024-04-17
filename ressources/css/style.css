@@ -458,12 +458,12 @@ table .card_image {
 /*filter style*/
 
 .filter-bar {
-    display: flex; /* aligne horizontalement les enfants */
-    justify-content:space-between; /* répartit l'espace uniformément entre les enfants */
-    padding: 25px; /* espacement autour du contenu */
+    display: flex; 
+    justify-content:space-between; 
+    padding: 25px; 
     align-items:center;
     flex:1;
-    align-self:flex-start; /*prend tout l'espace disponible */
+    align-self:flex-start; 
     flex-direction: row;
     border-bottom: 1px #ddd solid;
     border-top: 1px #ddd solid;
@@ -502,14 +502,12 @@ table .card_image {
 
 
 .filter-contents{
-    display: flex; /* aligne horizontalement les enfants */
-    justify-content: space-between; /* répartit l'espace uniformément entre les enfants */
-     /* aligne verticalement les enfants au milieu */
-    padding: 10px; /* espacement autour du contenu */
+    display: flex; 
+    justify-content: space-between; 
+    padding: 10px; 
     align-items:center;
     flex:1;
-     /* La série et ses sets prennent tout l'espace disponible */
-    /* Utilisation de flexbox pour le placement en ligne des éléments */
+     
     flex-direction: row;
 }
 .filter-content.hidden {
@@ -522,7 +520,7 @@ table .card_image {
     justify-content: space-between; /* Espace uniforme entre les éléments */
     box-sizing: border-box;
     width: 100%; /* Assurez-vous que la div prend toute la largeur */
-    z-index: 10; /* S'assure que le menu déroulant passe au-dessus des autres éléments */
+    z-index: 10; 
 }
 
 .select-items{
