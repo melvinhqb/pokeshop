@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Repositories\CartRepository;
 
+
 class CartController extends Controller
 {
 
@@ -32,7 +33,6 @@ class CartController extends Controller
             $userId = $_SESSION['user_id'];
             $cardId = $_POST['card_id'];
             $quantity = $_POST['quantity'];
-            
             if (!empty($cardId) && !empty($quantity)) {
                 $cart = new CartRepository();
                 $cart->addToCart($userId, $cardId, $quantity);
@@ -55,7 +55,7 @@ class CartController extends Controller
             $cardId = $_POST['card_id'];
 
             $cart = new CartRepository();
-            $cart->deleteFrom($userId, $cardId);
+            $cart->deleteFromCart($userId, $cardId);
         } else {
             // Handle errors if the method is not POST
             echo "Erreur : Méthode non autorisée.";

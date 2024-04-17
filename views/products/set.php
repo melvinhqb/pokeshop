@@ -93,7 +93,7 @@
                         </div>
                     </div>  
                     <div  class="view-container">
-                        <div class="grid-container" id="grid-view">
+                        <div class="view-container" id="grid-view">
                             <?php foreach ($cards as $card): ?>
                             <div class="card-row" data-rarity="<?= htmlspecialchars($card->rarity); ?>" data-type="<?= htmlspecialchars($card->types); ?>" data-price="<?php echo number_format($card->price, 2, ',', '.'); ?>">
                                 <img class='card_image' src='<?php echo $card->image; ?>/high.png' alt='<?php echo $card->name; ?>'>  
@@ -101,28 +101,37 @@
                                     <a class='card-link' href='index.php?route=products&card=<?php echo $card->id; ?>'><?php echo $card->name; ?></a>
                                     <br><strong><?php echo number_format($card->price, 2, ',', '.'); ?> €</strong>
                                     <form onsubmit="addToCart(event)">
-                                        <?php 
-                                            try {
-                                                if ($_SESSION) {
-                                                    // Utiliser la concaténation pour inclure $card->id
-                                                    echo '<div class="quantity-input">
-                                                                <input type="hidden" name="card_id" value="' . $card->id . '">
-                                                                <input type="number" name="quantity" value="1" min="0" step="1">
-                                                          </div>
-                                                          <button type="submit">Add to Cart</button>';
-                                                    echo '<div id="custom-alert" class="custom-alert-hidden">
-                                                            <div class="custom-alert-content">
-                                                            <p id="custom-alert-text">Ce texte sera remplacé par le message dalerte.</p>
-                                                            <button type="button" class="custom-alert-closebtn" >Ok</button></div></div> ';
-                                                                
-                                                } else {
-                                                    echo 'Veuillez vous connecter pour acheter';
+                                    <?php 
+                                        try {
+                                            if ($_SESSION) { ;?>
+                                                
+                                                <div class="quantity-container">
+                                                    <div class="quantity-input">
+                                                        
+                                                        <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
+                                                        <input type="hidden" name="card_id" value="<?php echo $card->id ?>">
+                                                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $card->stock ?>" step="1" >
+                                                        <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus">+</button>
+                                                        
+                                                        
+                                                    </div>
+                                                    <div class="stock-error-field">
+                                                        <p class="stock-message error-message-hidden"></p>
+                                                    </div>
+                                                    <button type="submit">Add to Cart</button>
                                                     
-                                                }
-                                            } catch (Exception $e) {
-                                                echo "Caught exception: " . $e->getMessage();
+                                                    <div id="custom-alert" class="custom-alert-hidden">
+                                                            <div class="custom-alert-content">
+                                                            <p id="custom-alert-text"></p>
+                                                            <button type="button" class="custom-alert-closebtn" >Ok</button></div></div> 
+                                                </div>
+                                            <?php } else {
+                                                echo 'Veuillez vous connecter pour acheter';
                                             }
-                                            ?>
+                                        } catch (Exception $e) {
+                                            echo "Caught exception: " . $e->getMessage();
+                                        }
+                                        ?>
                                         </form>
                                 </div>  
                             </div>
@@ -136,7 +145,7 @@
                                 <th>Nom</th>
                                 <th>Rareté</th>
                                 <th>Prix</th>
-                                <th>Achat</th>
+                                <th colspan=2>Achat</th>
                             </tr>
 
                                 <!-- Your table and card listing -->
@@ -152,19 +161,38 @@
                                         <td>
                                         <form onsubmit="addToCart(event)">
                                         <?php 
-                                            try {
-                                                if ($_SESSION) {
-                                                    // Utiliser la concaténation pour inclure $card->id
-                                                    echo '<input type="hidden" name="card_id" value="' . $card->id . '">
-                                                        <input type="number" name="quantity" value="1" min="0" step="1">
-                                                        <button type="submit">Add to Cart</button>';
-                                                } else {
-                                                    echo 'Veuillez vous connecter pour acheter';
-                                                }
-                                            } catch (Exception $e) {
-                                                echo "Caught exception: " . $e->getMessage();
+                                        try {
+                                            if ($_SESSION) { ;?>
+                                                
+                                                <div class="quantity-container">
+                                                    <div class="quantity-input">
+                                                        
+                                                        <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
+                                                        <input type="hidden" name="card_id" value="<?php echo $card->id ?>">
+                                                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $card->stock ?>" step="1" >
+                                                        <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus">+</button>
+                                                        
+                                                        
+                                                    </div>
+
+                                                    <button type="submit">Add to Cart</button>
+                                                    <div class="stock-error-field">
+                                                        <p class="stock-message error-message-hidden"></p>
+                                                    </div>
+                                                    <div id="custom-alert" class="custom-alert-hidden">
+                                                            <div class="custom-alert-content">
+                                                                <p id="custom-alert-text"></p>
+                                                                <button type="button" class="custom-alert-closebtn" >Ok</button>
+                                                            </div>
+                                                    </div> 
+                                                </div>
+                                            <?php } else {
+                                                echo 'Veuillez vous connecter pour acheter';
                                             }
-                                            ?>
+                                        } catch (Exception $e) {
+                                            echo "Caught exception: " . $e->getMessage();
+                                        }
+                                        ?>
                                         </form>
                                         </td>
                                     </tr>
@@ -188,3 +216,4 @@
 <script src="ressources/js/addToCart.js"></script>
 <script src="ressources/js/updateTable.js"></script>
 <script src="ressources/js/switchViewsProducts.js"></script>
+<script src="ressources/js/quantityButtons.js"></script>

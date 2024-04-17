@@ -296,7 +296,7 @@ table {
 
 th, td {
     padding: 15px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ddd;
     border-left: 1px solid transparent;
 }
@@ -554,7 +554,7 @@ table .card_image {
 }
 
 /*grid view*/
-.grid-container {
+#grid-view {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-template-rows: repeat(auto-fill, minmax(180px, 1fr));
@@ -565,7 +565,7 @@ table .card_image {
   }
   
 
-  .grid-container .card-row {
+  #grid-view .card-row {
     position: relative;
     display: inline-block;
     text-align: center;
@@ -575,20 +575,21 @@ table .card_image {
     margin: 20px; /* Définissez la marge ici et ne la changez pas au survol */
   }
   
-  .grid-container .card-row img {
+  #grid-view .card-row img {
     max-width: 80%;
     padding:5px; /* Ajusté pour utiliser toute la largeur du parent .card-row */
     transition: transform 0.3s ease; /* Ajout de la transition pour l'effet zoom */
+    cursor:zoom-in;
   }
   
-  .grid-container .card-row img:hover {
+  #grid-view .card-row img:hover {
     transform: scale(1.05) rotateX(10deg); /* Ajustez l'échelle et l'angle selon vos préférences */
     z-index: 2; /* Assurez-vous que z-index est plus élevé pour que l'image survolée soit au-dessus des autres */
     opacity: 0.7;
   }
   
 
-  .grid-container .card-row img:hover::after {
+  #grid-view .card-row img:hover::after {
     position: relative;
     top: 10px;
     right: 10px;
@@ -825,7 +826,7 @@ button[type="submit"]:hover {
     opacity: 0.9;
 }
 
-.error-message {
+.error-message{
     color: red;
     text-align: center;
     margin-top: 20px;
@@ -842,7 +843,7 @@ button[type="submit"]:hover {
 footer {
     width: 100%;
     font-size: 1.1em;
-    font-weight: bold;
+    font-weight: 400;
     color: white;
     padding: 2em 0;
     background:linear-gradient(90deg,#e4134d,#851b7b);
@@ -872,13 +873,13 @@ footer {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/*pop up JS*/
+/*pop up JS instead of localhost indique*/
 .custom-alert-hidden{
     display: none;
   }
   
   .custom-alert-show {
-    display: block; /* ou 'flex', selon la disposition souhaitée */
+    display: block; 
     position: fixed;
     left: 0;
     top: 0;
@@ -913,3 +914,118 @@ footer {
     cursor: pointer;
   }
   
+/*Add to cart for grid table and card*/  
+td form{
+    display:flex;
+    justify-content: center;
+    padding:10px;
+    margin-bottom: 20px;
+}
+.card-grid-info .quantity-container{
+    
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-flow: row;
+    gap: 10px;
+    
+    
+    max-width: 100%;
+   /* flex-direction: column;
+    align-content: center;
+    max-width: 100%;
+*/
+}
+.quantity-container{
+    display:grid;
+    grid-template-columns: repeat(2, 200px);
+    position:relative;
+  }
+
+.card-grid-info div .quantity-input, .quantity-input {
+    justify-self: center;
+    justify-content: center;
+    display: flex;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+     /* Bords arrondis */
+    background: #6e0654b4 transparent; /* Bords arrondis */
+    
+}
+
+#quantity, .card-grid-info div div #quantity{
+    border: none;
+    text-align: center;
+    max-width: 50px; /* Largeur fixe pour l'input */
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+    padding:5px 20px;
+}
+.card-grid-info div div #quantity::-webkit-outer-spin-button,
+.card-grid-info #quantity::-webkit-inner-spin-button,
+#quantity::-webkit-outer-spin-button,
+#quantity::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.card-grid-info div div .quantity-change-btn,  .quantity-change-btn{
+    background-color: transparent;
+    border: none;
+    padding: 5px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight:bold;
+    display: grid;
+    
+}
+
+.card-grid-info div div .disabled, .disabled{
+    background-color: rgba(162, 132, 170, 0.175); 
+    cursor: not-allowed; /* Change le curseur pour indiquer que le bouton est désactivé */
+    opacity: 0.5;/* Rend le bouton plus transparent pour indiquer qu'il est désactivé */
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px; 
+}
+
+.card-grid-info div div .minus:hover, .minus:hover{
+    opacity:60%;
+    background-color: #6e06542a;
+    transition: background-color 0.3s ease;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.card-grid-info div div .plus:hover, .plus:hover{
+    opacity:60%;
+    background-color: #6e06542a;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    transition: background-color 0.3s ease;
+}
+
+/*stock errors for card and product*/
+.stock-error-field, .card-grid-info div .stock-error-field{
+    position: relative;
+    color: red;
+    font-size: 12px;
+    margin-right:40px;
+
+}
+
+.card-grid-info div .error-message-hidden, .error-message-hidden {
+    visibility: hidden; /* Cela cache le texte mais garde l'espace */
+    opacity: 0;
+    position: absolute; /* Positionnement absolu */
+    bottom: -10px; /* Décalez le message en dessous du conteneur de quantité */
+    left: 0; /* Alignez à gauche */
+    width: 100%; /* Forcez à prendre toute la largeur du conteneur de quantité */
+    transition: visibility 0s, opacity 0.5s linear;
+}
+.error-message-shown {
+    visibility: visible;
+    opacity: 1;
+    position: absolute; 
+    bottom: -20px;
+    width: 120%;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+.card-grid-info div .error-message-shown{
+    bottom: -7px;
+}

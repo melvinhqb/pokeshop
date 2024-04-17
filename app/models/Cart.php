@@ -9,4 +9,5 @@ class Cart extends Model
     public int $userId;
     public string $cardId;
     public int $quantity;
+
 }

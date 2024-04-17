@@ -5,6 +5,10 @@
     <?php include(ROOT_PATH . '/partials/sidebar.php'); ?>
         <div class="content">
             <h1>Détails de la carte</h1>
+            <div id="custom-alert" class="custom-alert-hidden">
+                <div class="custom-alert-content">
+                <p id="custom-alert-text"></p>
+            <button type="button" class="custom-alert-closebtn" >Ok</button></div></div>
             <div class="card-wrapper">
                 <div class="card-media-wrapper">
                     <img class="card_image" src='<?php echo $card->image ?>/high.png' alt='<?php echo $card->name?>'>
@@ -27,22 +31,34 @@
                                 <td><p>Extension: </strong></td> 
                                 <td> <?php echo $card->set->serie->name ?></td>
                             </tr>
-                            <tr><td><p>Type: </td> <td> <?php echo str_replace('"', '', trim($card->types, '[]')) ?></td></tr>
                             <tr><td><p>Rareté: </p></td> <td> <?php echo $card->rarity ?></td></tr>
+                            <tr><td><p>Type: </td> <td> <?php echo str_replace('"', '', trim($card->types, '[]')) ?></td></tr>
                             <tr><td><p>HP: </p></td> <td> <?php echo $card->hp ?></td></tr>
                             <tr><td><p>Stage: </p></td> <td> <?php echo str_replace('De','',mb_convert_case($card->stage, MB_CASE_TITLE, "UTF-8")) ?></td></tr>
-                            <tr rowspan=2><td><p>Prix: </p></td><td><?php echo number_format($card->price, 2, ',', '.'); ?>€</td>
                             <tr>
                                 <td colspan="2">
-                                <form onsubmit="addToCart(event)">
+                                <form onsubmit="addToCart(event)" id="form-addtocart">
                                     <?php 
                                         try {
-                                            if ($_SESSION) {
-                                                // Utiliser la concaténation pour inclure $card->id
-                                                echo '<input type="hidden" name="card_id" value="' . $card->id . '">
-                                                    <input type="number" name="quantity" value="1" min="0" step="1">
-                                                    <button type="submit">Add to Cart</button>';
-                                            } else {
+                                            if ($_SESSION) { ;?>
+                                                
+                                                <div class="quantity-container">
+                                                    <div class="quantity-input">
+                                                        
+                                                        <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
+                                                        <input type="hidden" name="card_id" value="<?php echo $card->id ?>">
+                                                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $card->stock ?>" step="1" >
+                                                        <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus">+</button>
+                                                        
+                                                        
+                                                    </div>
+                                                    <button type="submit">Add to Cart</button>
+                                                    <div class="stock-error-field">
+                                                        <p class="stock-message error-message-hidden"></p>
+                                                    </div>
+                                                     
+                                                </div>
+                                            <?php } else {
                                                 echo 'Veuillez vous connecter pour acheter';
                                             }
                                         } catch (Exception $e) {
@@ -63,3 +79,5 @@
 
 <?php require_once(ROOT_PATH . '/layout.php'); ?>
 <script src="ressources/js/imageZoomModal.js"></script>
+<script src="ressources/js/addToCart.js"></script>
+<script src="ressources/js/quantityButtons.js"></script>

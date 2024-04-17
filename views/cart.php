@@ -1,4 +1,3 @@
-<!-- views/cart.php -->
 <?php ob_start(); ?>
 <main>
     <div class="content-wrapper">
@@ -39,6 +38,7 @@
             <?php endforeach; ?>
             </table>
             <a href="index.php?route=payment">Payer</a>
+            <!--ça rend le tableau enorme vaut mieux supprimer cet echo-->
             <?php echo "<pre>"; print_r($cartItems); echo"</pre>";?>
         </div>
     </div>

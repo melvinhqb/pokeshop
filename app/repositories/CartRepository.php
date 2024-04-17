@@ -32,8 +32,8 @@ class CartRepository extends Repository
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("isi", $userId, $cardId, $quantity);
         } else {
-            $newQuantity = $currentQuantity + $quantity;
-            $sql = "UPDATE user_card SET quantity=? WHERE user_id=? AND card_id=?";
+            $newQuantity = min($currentQuantity + $quantity, $availableStock);
+            $sql = "UPDATE user_card SET quantity=$newQuantity WHERE user_id=$userId AND card_id='$cardId'";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("iis", $newQuantity, $userId, $cardId);
         }
@@ -71,9 +71,7 @@ class CartRepository extends Repository
         $result = $stmt->get_result();
 
         $cartItems = [];
-        if ($result->num_rows === 0) {
-            throw new NotFoundException("No items found in the cart for user ID: $userId");
-        }
+        
 
         while ($row = $result->fetch_assoc()) {
             $cartItems[] = [
