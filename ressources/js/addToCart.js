@@ -31,15 +31,13 @@ function addToCart(event) {
 function showCustomAlert(message) {
     var alertBox = document.getElementById('custom-alert');
     document.getElementById('custom-alert-text').textContent = message;
-
-    // Determine the active view by checking which icon has the 'active' class
     var activeIcon = document.querySelector('.icon.active');
-    var targetView = activeIcon.id === 'grid-icon' ? document.getElementById('grid-view') : document.getElementById('table-view');
+    if (activeIcon) {
+        // Determine which view to append the alert to based on the active icon
+        targetContainer = activeIcon.id === 'grid-icon' ? document.getElementById('grid-view') : document.getElementById('table-view');
+        targetContainer.appendChild(alertBox);
+    } 
 
-    // Append the alert box to the active view container
-    targetView.appendChild(alertBox);
-
-    // Show the alert box
     alertBox.className = 'custom-alert-show';
     // Fermer le popup sur le bouton de fermeture
     alertBox.querySelector('.custom-alert-closebtn').onclick = function() {

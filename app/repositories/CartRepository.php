@@ -33,7 +33,7 @@ class CartRepository extends Repository
             $stmt->bind_param("isi", $userId, $cardId, $quantity);
         } else {
             $newQuantity = min($currentQuantity + $quantity, $availableStock);
-            $sql = "UPDATE user_card SET quantity=$newQuantity WHERE user_id=$userId AND card_id='$cardId'";
+            $sql = "UPDATE user_card SET quantity=? WHERE user_id=? AND card_id=?";
             $stmt = $this->conn->prepare($sql);
             $stmt->bind_param("iis", $newQuantity, $userId, $cardId);
         }

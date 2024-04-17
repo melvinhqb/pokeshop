@@ -53,9 +53,15 @@
                                                         
                                                     </div>
                                                     <button type="submit">Add to Cart</button>
-                                                    <div class="stock-error-field">
+                                                    <div class="stock-error-field" id="default-alert-container">
                                                         <p class="stock-message error-message-hidden"></p>
                                                     </div>
+                                                    <div id="custom-alert" class="custom-alert-hidden">
+                                                        <div class="custom-alert-content">
+                                                            <p id="custom-alert-text"></p>
+                                                            <button type="button" class="custom-alert-closebtn" >Ok</button>
+                                                        </div>
+                                                    </div> 
                                                      
                                                 </div>
                                             <?php } else {
