@@ -17,5 +17,7 @@
      <?= $content ?>
 
     <?php require('partials/footer.php'); ?>
+    <script src="ressources/js/quantityButtons.js"></script>
+    
 </body>
 </html>

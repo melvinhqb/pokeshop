@@ -2,7 +2,7 @@
 <main>
     <div class="content-wrapper">
         <div class="content">
-            <h1>Page du panier à implémenter</h1>
+            <h1>Panier</h1>
             <!-- Afficher un tableau de carte,
             s'inspirer du fichier set.php -->
             <table id="tableContainer" border='1'>
@@ -35,10 +35,20 @@
                         </form>
                     </td>
                 </tr>
+                <!-- ... -->
+    <td>
+        <div class="quantity-container">
+            <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus" id="minus-<?php echo $item['card']->id; ?>">-</button>
+            <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" id="quantity-<?php echo $item['card']->id; ?>" class="quantity-input">
+            <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus-<?php echo $item['card']->id; ?>">+</button>
+        </div>
+    </td>
+<!-- ... -->
+
             <?php endforeach; ?>
             </table>
             <a href="index.php?route=payment">Payer</a>
-            <!--ça rend le tableau enorme vaut mieux supprimer cet echo-->
+            
             <?php echo "<pre>"; print_r($cartItems); echo"</pre>";?>
         </div>
     </div>

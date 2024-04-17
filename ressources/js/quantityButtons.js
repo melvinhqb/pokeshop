@@ -71,6 +71,29 @@ function displayStockMessage(stock, stockMessageContainer) {
 
 }
 
+function updateQuantity(cardId, newQuantity) {
+    
+    var formData = new FormData();
+    formData.append('card_id', cardId);
+    formData.append('quantity', newQuantity);
+    formData.append('action', 'updateQuantity');
+
+    // Envoie la requête AJAX
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'index.php?route=updateCartQuantity', true);
+    xhr.onload = function () {
+        // Traite la réponse du serveur
+        if (xhr.status === 200) {
+            // Met à jour l'affichage ou traiter la réponse
+        } else {
+            // Gére l'erreur
+            console.error('Erreur lors de la mise à jour de la quantité');
+        }
+    };
+    xhr.send(formData);
+}
+
+
 
   
 
