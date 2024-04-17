@@ -26,7 +26,7 @@
                             </div>
                         
                         
-                            <div class="filter-option" id="prix" onclick="toggleFilter('price')">
+                            <div class="filter-option" id="price" onclick="toggleFilter('price')">
                                 <span class="filter-name">Price</span>
                                 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                                 
@@ -86,7 +86,7 @@
                                 <div class=price-content>
                                     <label for=price>Price Max: </label>
                                     <input type="range" id="price" name="price" min="0" max="100" oninput="priceOutput.value = price.value; filterCards('data-price', this.value);" >
-                                    <output id="priceOutput">50</output>$</div>
+                                    <output id="priceOutput">50</output>€</div>
                                 
                             
                             </div>
