@@ -1,11 +1,25 @@
-<?php ob_start(); ?>
+<?php 
+if (isset($_SESSION['cart_total'])) {
+    $total = $_SESSION['cart_total'];
+} else {
+    // Gérer le cas où le total n'est pas disponible
+    $total = 0; // ou redirige l'utilisateur vers le panier ou affiche un message d'erreur
+}
+ob_start(); ?>
 <main>
     <div class="content-wrapper">
         <div class="content">
             <form class="contact-form" id="paymentForm" action="index.php?route=payment" method="post">
             <div class="container">
             <div class="category">
-                <h3>Facturation</h3>
+            <div class="montant-container" >
+                <div class="montant-title">
+                <h3 class="space-title">Montant à payer</h3>
+                <p><?php echo number_format($total, 2, ',', '.'); ?> €</p>
+                </div>
+            </div>
+
+                <h3 class="space-title">Facturation</h3>
 
                 <div class="form-group">
                     <label for="lastName">Nom</label>
@@ -29,7 +43,7 @@
             </div>
 
             <div class="category">
-                <h3>Paiement</h3>
+                <h3 class="space-title">Paiement</h3>
                 <div class="form-group">
                     <label for="cardNumber">Numéro de carte </label>
                     <input type="text" id="cardNumber" name="cardNumber" placeholder="Veuillez entrer votre numéro de carte" required>

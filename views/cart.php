@@ -3,7 +3,9 @@
 <?php $total = 0;
 foreach ($cartItems as $item) {
     $total += $item['card']->price * $item['quantity'];
-} ob_start(); ?>
+} 
+$_SESSION['cart_total'] = $total;
+ob_start(); ?>
 
 <main>
     <div class="content-wrapper">

@@ -739,7 +739,25 @@ table .card_image {
     border: 1px solid #ddd;
     
 }
+.montant-container {
+    display: flex;
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 20px;
+}
+.montant-title {
+    background-color: #f4f4f4; 
+    padding: 10px;
+    border-radius: 4px; 
+    display: inline-block;
+    text-align: center; 
+    margin-bottom: 20px;
+}
 
+
+.space-title {
+    margin-bottom: 15px; 
+}
   
 form h2, form h1 {
     margin-bottom: 20px;
@@ -747,7 +765,7 @@ form h2, form h1 {
   }
   
   .form-group {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
   }
   
   .form-group label {
@@ -1056,14 +1074,14 @@ td form{
 
 
 .cart-total {
-    flex-basis: 20%;  /* Ou 'flex: 1' si tu veux qu'il prenne l'espace disponible */
-    padding: 20px;    /* Un padding plus petit pour ne pas trop gonfler l'élément */
+    flex-basis: 20%;  
+    padding: 20px;    
     background: #f4f4f4;
     border-radius: 8px;
     text-align: center;
     position: sticky;
-    top: 20px;        /* Distance du haut de la viewport quand il devient sticky */
-    height: auto;     /* Hauteur automatique basée sur le contenu */
+    top: 20px;
+    height: auto;    
 }
 
 .total-price {
