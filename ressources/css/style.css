@@ -1027,3 +1027,84 @@ td form{
 .card-grid-info div .error-message-shown{
     bottom: -7px;
 }
+
+
+
+/*Page panier*/
+
+
+.cart-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #fff;
+    margin-top: 20px;
+    margin-bottom: 50px; 
+}
+
+.cart-items {
+    flex-grow: 2;
+    margin-right: 20px;
+}
+
+.cart-item-image {
+    width: 100px; 
+    height: auto; 
+    display: block; 
+    margin-bottom: 10px;
+}
+
+
+.cart-total {
+    flex-basis: 20%;  /* Ou 'flex: 1' si tu veux qu'il prenne l'espace disponible */
+    padding: 20px;    /* Un padding plus petit pour ne pas trop gonfler l'élément */
+    background: #f4f4f4;
+    border-radius: 8px;
+    text-align: center;
+    position: sticky;
+    top: 20px;        /* Distance du haut de la viewport quand il devient sticky */
+    height: auto;     /* Hauteur automatique basée sur le contenu */
+}
+
+.total-price {
+    font-size: 2em; 
+    margin: 20px 0;
+}
+
+
+.proceed-to-payment {
+    background: linear-gradient(90deg, #e4134d, #851b7b);
+    color: white;
+    padding: 15px 30px; /* Ajuste le padding pour augmenter la taille du bouton */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block; /* Assure que le bouton s'étend sur toute la largeur */
+    margin: 20px auto; /* Centre le bouton horizontalement */
+}
+
+.proceed-to-payment:hover {
+    background: linear-gradient(90deg, #d1134d, #751b7b);
+}
+
+
+
+button[type="submit"] {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    
+  }
+  
+  button[type="submit"]:hover {
+    background:linear-gradient(90deg,#e4134d,#851b7b);
+  }
+
+
+

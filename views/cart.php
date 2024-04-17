@@ -1,10 +1,15 @@
-<?php ob_start(); ?>
+
+<!-- views/contact.php -->
+<?php $total = 0;
+foreach ($cartItems as $item) {
+    $total += $item['card']->price * $item['quantity'];
+} ob_start(); ?>
+
 <main>
     <div class="content-wrapper">
         <div class="content">
             <h1>Panier</h1>
-            <!-- Afficher un tableau de carte,
-            s'inspirer du fichier set.php -->
+            
             <table id="tableContainer" border='1'>
                 <tr>
                     <th>Image</th>
@@ -35,23 +40,25 @@
                         </form>
                     </td>
                 </tr>
-                <!-- ... -->
-    <td>
-        <div class="quantity-container">
-            <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus" id="minus-<?php echo $item['card']->id; ?>">-</button>
-            <input type="number" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" id="quantity-<?php echo $item['card']->id; ?>" class="quantity-input">
-            <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus-<?php echo $item['card']->id; ?>">+</button>
-        </div>
-    </td>
-<!-- ... -->
+                
+   
+
 
             <?php endforeach; ?>
             </table>
-            <a href="index.php?route=payment">Payer</a>
+            <div class="cart-container">
+    <div class="cart-total">
+        <h2>Montant Total</h2>
+        <p class="total-price"><?php echo number_format($total, 2, ',', '.'); ?> €</p>
+        <a href="index.php?route=payment" class="proceed-to-payment">Procéder au paiement</a>
+    </div>
+</div>
+            
             
             <?php echo "<pre>"; print_r($cartItems); echo"</pre>";?>
         </div>
     </div>
+            
 </main>
 <?php $content = ob_get_clean(); ?>
 
