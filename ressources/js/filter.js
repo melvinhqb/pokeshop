@@ -62,7 +62,7 @@ function updateURL(key, value) {
 function toggleFilter(filterId) {
     // Identifier le contenu de filtre et la flèche à basculer
     var content = document.getElementById(filterId + "-options");
-    var arrow = document.querySelector('#' + filterId + ' .arrow');
+    var arrow = document.querySelector('.filter-option.' + filterId + ' .arrow');
 
     // Basculer l'affichage du contenu de filtre et la rotation de la flèche
     if (content.classList.contains('hidden')) {

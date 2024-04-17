@@ -11,14 +11,14 @@
                 <div class="filter-bar">
                         <span class="filter-caption">FILTER BY:</span>
                         <div class=filter-options>
-                            <div class="filter-option" id="rarity" onclick="toggleFilter('rarity')">
+                            <div class="filter-option rarity" id="rarity" onclick="toggleFilter('rarity')">
                                 <span class="filter-name">Rareté</span>
                                 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
     
                             </div>
                         
                         
-                            <div class="filter-option" id="type" onclick="toggleFilter('type')">
+                            <div class="filter-option type" id="type" onclick="toggleFilter('type')">
                                 <span class="filter-name">Type</span>
                                 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                                 
@@ -26,8 +26,8 @@
                             </div>
                         
                         
-                            <div class="filter-option" id="price" onclick="toggleFilter('price')">
-                                <span class="filter-name">Price</span>
+                            <div class="filter-option price" id="prix" onclick="toggleFilter('price')">
+                                <span class="filter-name">Prix</span>
                                 <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.406 9.375L12 13.967l4.594-4.592 1.416 1.416L12 16.798l-6.016-6.017z"/></svg>
                                 
 
@@ -84,11 +84,9 @@
                             
                             <div class="select-items select-hide">
                                 <div class=price-content>
-                                    <label for=price>Price Max: </label>
-                                    <input type="range" id="price" name="price" min="0" max="100" oninput="priceOutput.value = price.value; filterCards('data-price', this.value);" >
+                                    <label >Price Max: </label>
+                                    <input type="range" id="price"  name="price" min="0" max="100" oninput="priceOutput.value = price.value; filterCards('data-price', this.value);" >
                                     <output id="priceOutput">50</output>€</div>
-                                
-                            
                             </div>
                         </div>
                     </div>  
