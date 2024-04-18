@@ -47,6 +47,26 @@ class CartController extends Controller
             exit;
         }
     }
+    public function modifyCart()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $userId = $_SESSION['user_id'];
+            $cardId = $_POST['card_id'];
+            $quantity = $_POST['quantity'];
+            if (!empty($cardId) && !empty($quantity)) {
+                $cart = new CartRepository();
+                $cart->modifyCart($userId, $cardId, $quantity);
+            } else {
+                // Handle errors if data is not defined
+                echo "Erreur : Données manquantes.";
+                exit;
+            }
+        } else {
+            // Handle errors if the method is not POST
+            echo "Erreur : Méthode non autorisée.";
+            exit;
+        }
+    }
 
     public function deleteAll()
     {

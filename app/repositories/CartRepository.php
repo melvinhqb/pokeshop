@@ -54,6 +54,25 @@ class CartRepository extends Repository
         $stmt->execute();
     }
 
+    public function modifyCart($userId, $cardId, $quantity)
+    {
+        $cardRepository = new CardRepository();
+        $availableStock = $cardRepository->getById($cardId)->stock;
+
+        if ($availableStock < $quantity) {
+            throw new \Exception("Insufficient card stock available.");
+        }
+
+        $currentQuantity = $this->getQuantityInCart($userId, $cardId);
+        $newQuantity = min($quantity, $availableStock);
+        
+        $sql = "UPDATE user_card SET quantity=? WHERE user_id=? AND card_id=?";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("iis", $newQuantity, $userId, $cardId);
+    
+        $stmt->execute();
+    }
+
     /**
      * Gets all items in the shopping cart for a given user.
      *

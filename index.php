@@ -70,7 +70,10 @@ function handleCart() {
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['action']) && $_POST['action'] == 'deleteFromCart') {
             $cartController->deleteAll(); // Supprime tous les articles du panier
-        } else {
+        } elseif (isset($_POST['action']) && $_POST['action'] == 'modifyCart'){
+            $cartController->modifyCart(); // modifi un article au panier
+        }
+        else {
             $cartController->addToCart(); // Ajoute un article au panier
         }
     }
