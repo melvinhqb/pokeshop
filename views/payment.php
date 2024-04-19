@@ -69,7 +69,14 @@ ob_start(); ?>
                         <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
                     </div> 
                 </div>   
-                    <button type="submit">Paiement</button>
+                    <button type="submit" >Paiement</button>
+                    <!-- ici c'est le pop up customisé -->
+                    <div id="custom-alert" class="custom-alert-hidden">
+                        <div class="custom-alert-content">
+                            <p id="custom-alert-text"></p>
+                            <button type="button" class="custom-alert-closebtn" >Ok</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
@@ -79,3 +86,5 @@ ob_start(); ?>
 <?php $content = ob_get_clean(); ?>
 
 <?php require_once(ROOT_PATH . '/layout.php'); ?>
+
+<script src="ressources/js/verificationPaiement.js"></script>
