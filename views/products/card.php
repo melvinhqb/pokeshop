@@ -40,8 +40,8 @@
                                 <form onsubmit="addToCart(event)" id="form-addtocart">
                                     <?php 
                                         try {
-                                            if ($_SESSION) { ;?>
-                                                
+                                            if (isset($_SESSION["user_id"])) { ;?>
+                                                <?php if ($card->stock > 0): ?>
                                                 <div class="quantity-container">
                                                     <div class="quantity-input">
                                                         
@@ -64,6 +64,9 @@
                                                     </div> 
                                                      
                                                 </div>
+                                                <?php else: ?>
+                                                    <p>En rupture de stock</p>
+                                                <?php endif; ?>
                                             <?php } else {
                                                 echo 'Veuillez vous connecter pour acheter';
                                             }

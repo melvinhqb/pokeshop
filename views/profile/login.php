@@ -7,12 +7,12 @@
                 <div class="container">
                     <h1 class="center_text">Formulaire de connexion</h1>
                     <div class="form-group">
-                        <label>Email :</label>
-                        <input type="email" placeholder="Enter Email" name="email" required>
+                        <label for="email">Email :</label>
+                        <input type="email" placeholder="Enter Email" name="email" id="email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
-                        <label>Password :</label>
-                        <input type="password" placeholder="Enter Password" name="password" required>
+                        <label for="password">Password :</label>
+                        <input type="password" placeholder="Enter Password" name="password" id="password" autocomplete="current-password" required>
                     </div>
                     <button type="submit">Se connecter</button>
                     <?php if (!empty($error)): ?>

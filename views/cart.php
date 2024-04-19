@@ -21,39 +21,30 @@
                     <td><img class='card_image' src='<?php echo $item['card']->image; ?>/high.png' alt='<?php echo $item['card']->name; ?>'></td>
                     <td><a class='card-link' href='index.php?route=products&card=<?php echo $item['card']->id; ?>'><?php echo $item['card']->name; ?></a></td>
                     <td><span id="price_<?php echo $item['card']->id; ?>"><?php echo number_format($item['card']->price, 2, ',', '.'); ?> €</span></td>
-                    <td><output id="quantity_<?php echo $item['card']->id; ?>" name="quantity" ><?php echo $item['quantity']; ?></output></td>
                     <td>
-                        <form onsubmit="deleteToCart(event)">
-                                <input type="hidden" name="action" value="deleteFromCart">
-                                <input type="hidden" name="card_id" value="<?php echo $item['card']->id ?>">
-                            <div class= "quantity-container" >    
-                                <button type="submit" class="delete-btn">Tout retirer</button>
-                            </div>
-                        </form>
-                        <form onsubmit="modifyCart(event)">
+                    <form onsubmit="modifyCart(event)">
                         <?php 
                             try {
-                                if ($_SESSION) { ;?>
+                                if (isset($_SESSION["user_id"])) { ?>
                                     
                                     <div class="quantity-container">
-                                        <div class="quantity-input">
-                                            
+                                        <div class="quantity-input">                                            
                                             <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
                                             <input type="hidden" name="action" value="modifyCart">
                                             <input type="hidden" name="card_id" value="<?php echo $item['card']->id ?>">
-                                            <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $item['card']->stock ?>" step="1" oninput="quantity_<?php echo $item['card']->id; ?>.value = quantity.value" >
+                                            <input type="number" id="quantity" name="quantity" value="<?php echo $item['quantity']; ?>" min="1" max="<?php echo $item['card']->stock ?>" step="1" oninput="quantity_<?php echo $item['card']->id; ?>.value = quantity.value" >
                                             <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus">+</button>
                                         </div>
-                                        <button type="submit">Modifier</button>
                                         <div class="stock-error-field" id="default-alert-container">
                                             <p class="stock-message error-message-hidden"></p>
                                         </div>
+                                        <button type="submit">Modifier</button>
                                         <div id="custom-alert" class="custom-alert-hidden">
                                             <div class="custom-alert-content">
                                                 <p id="custom-alert-text"></p>
                                                 <button type="button" class="custom-alert-closebtn" >Ok</button>
                                             </div>
-                                        </div> 
+                                        </div>
                                             
                                     </div>
                                 <?php } else {
@@ -63,6 +54,15 @@
                                 echo "Caught exception: " . $e->getMessage();
                             }
                             ?>
+                        </form>
+                    </td>
+                    <td>
+                        <form onsubmit="deleteToCart(event)">
+                                <input type="hidden" name="action" value="deleteFromCart">
+                                <input type="hidden" name="card_id" value="<?php echo $item['card']->id ?>">
+                            <div class= "quantity-container" >    
+                                <button type="submit" class="delete-btn">Tout retirer</button>
+                            </div>
                         </form>
                     </td>
                 </tr>

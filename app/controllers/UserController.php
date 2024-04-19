@@ -86,10 +86,11 @@ class UserController extends Controller
     public function logout()
     {
         session_start();
+        $currentPage = $_SERVER['HTTP_REFERER'] ?? 'index.php';
         session_unset();
         session_destroy();
 
-        header('Location: index.php');
+        header("Location: $currentPage");
         exit;
     }
 }

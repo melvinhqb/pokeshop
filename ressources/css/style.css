@@ -830,14 +830,16 @@ form h2, form h1 {
 
 button[type="submit"] {
     width: 100%;
-    padding: 10px;
-    background: linear-gradient(90deg, #e4134d, #851b7b);
+    background:linear-gradient(90deg,#e4134d,#851b7b);
     color: white;
+    padding: 10px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-}
-
+    float: right;
+    
+  }
+  
 button[type="submit"]:hover {
     opacity: 0.9;
 }
@@ -1109,23 +1111,3 @@ td form{
 .proceed-to-payment:hover {
     background: linear-gradient(90deg, #d1134d, #751b7b);
 }
-
-
-
-button[type="submit"] {
-    background:linear-gradient(90deg,#e4134d,#851b7b);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
-    
-  }
-  
-  button[type="submit"]:hover {
-    background:linear-gradient(90deg,#e4134d,#851b7b);
-  }
-
-
-

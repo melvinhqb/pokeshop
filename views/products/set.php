@@ -101,8 +101,8 @@
                                     <form onsubmit="addToCart(event)">
                                     <?php 
                                         try {
-                                            if ($_SESSION) { ;?>
-                                                
+                                            if (isset($_SESSION["user_id"])) { ;?>
+                                                <?php if ($card->stock > 0): ?>
                                                 <div class="quantity-container">
                                                     <div class="quantity-input">
                                                         
@@ -123,6 +123,9 @@
                                                             <p id="custom-alert-text"></p>
                                                             <button type="button" class="custom-alert-closebtn" >Ok</button></div></div> 
                                                 </div>
+                                                <?php else: ?>
+                                                    <p>En rupture de stock</p>
+                                                <?php endif; ?>
                                             <?php } else {
                                                 echo 'Veuillez vous connecter pour acheter';
                                             }
@@ -160,17 +163,14 @@
                                         <form onsubmit="addToCart(event)">
                                         <?php 
                                         try {
-                                            if ($_SESSION) { ;?>
-                                                
+                                            if (isset($_SESSION["user_id"])) { ?>
+                                                <?php if ($card->stock > 0): ?>
                                                 <div class="quantity-container">
-                                                    <div class="quantity-input">
-                                                        
+                                                    <div class="quantity-input">                                                        
                                                         <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
                                                         <input type="hidden" name="card_id" value="<?php echo $card->id ?>">
                                                         <input type="number" id="quantity" name="quantity" value="1" min="1" max="<?php echo $card->stock ?>" step="1" >
                                                         <button type="button" onclick="increaseQuantity(this)" class="quantity-change-btn plus" id="plus">+</button>
-                                                        
-                                                        
                                                     </div>
 
                                                     <button type="submit">Add to Cart</button>
@@ -184,6 +184,9 @@
                                                             </div>
                                                     </div> 
                                                 </div>
+                                                <?php else:?>
+                                                    <p>En rupture de stock</p>
+                                                <?php endif; ?>
                                             <?php } else {
                                                 echo 'Veuillez vous connecter pour acheter';
                                             }
