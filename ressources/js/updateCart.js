@@ -67,7 +67,7 @@ function modifyCart(event) {
             if (quantityElement) {
                 quantityElement.value = newQuantity; // Mise à jour de l'élément de quantité
             }
-             
+            location.reload(); //a changer si jamais compris reload que la partie pagner
         } else {
             // Gérer l'erreur
             showCustomAlert('Error: ' + xhr.statusText);
