@@ -70,11 +70,11 @@ function handleCart() {
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['action']) && $_POST['action'] == 'deleteFromCart') {
             $cartController->deleteAll(); // Supprime tous les articles du panier
-        } elseif (isset($_POST['action']) && $_POST['action'] == 'modifyCart'){
-            $cartController->modifyCart(); // modifi un article au panier
+        } else if (isset($_POST['action']) && $_POST['action'] == 'modifyCart'){
+            $cartController->modifyCart(); // Ajoute un article au panier
         }
-        else {
-            $cartController->addToCart(); // Ajoute un article au panier
+        else{
+            $cartController->addToCart();
         }
     }
 }
@@ -120,11 +120,12 @@ function handleProfile() {
 }
 
 function handlePayment() {
+    
     $cartController = new CartController();
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         $cartController->paymentForm();
     } else if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $cartController->processPayment();
+        $cartController->deleteAllAfterPayment();
     }
 }
 

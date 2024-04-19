@@ -49,10 +49,38 @@ class CartRepository extends Repository
     public function deleteFromCart($userId, $cardId)
     {
         $sql = "DELETE FROM user_card WHERE user_id=? AND card_id=?";
+        
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param("is", $userId, $cardId);
         $stmt->execute();
     }
+
+    public function deleteAllFromCart($userId)
+    {
+    
+        $updateSql = "UPDATE cards c JOIN (
+            SELECT card_id, quantity
+            FROM user_card
+            WHERE user_id = ?
+            GROUP BY card_id
+        ) t ON c.id = t.card_id
+        SET c.stock = c.stock - t.quantity";
+        
+        $deleteSql = "DELETE FROM user_card WHERE user_id = ?";
+
+        // Update stock
+        $stmt = $this->conn->prepare($updateSql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->close();
+
+        // Delete cart items
+        $stmt = $this->conn->prepare($deleteSql);
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->close();
+        }
+
 
     public function modifyCart($userId, $cardId, $quantity)
     {
@@ -81,7 +109,7 @@ class CartRepository extends Repository
      */
     public function getCartItems(int $userId): array
     {
-        $sql = "SELECT cards.id, user_card.quantity FROM user_card
+        $sql = "SELECT cards.id, user_card.quantity, cards.price, cards.stock FROM user_card
                 JOIN cards ON user_card.card_id = cards.id
                 WHERE user_card.user_id = ?";
         $stmt = $this->conn->prepare($sql);
@@ -95,7 +123,9 @@ class CartRepository extends Repository
         while ($row = $result->fetch_assoc()) {
             $cartItems[] = [
                 'card' => (new CardRepository())->getById($row["id"]),
-                'quantity' => $row['quantity']
+                'quantity' => $row['quantity'],
+                'price' => $row['price'],
+                'stock' => $row['stock'],
             ];
         }
 
@@ -120,4 +150,20 @@ class CartRepository extends Repository
 
         return $row ? $row['quantity'] : 0;
     }
+
+
+
+    public function calculateTotal($userId){ 
+        $total = 0;
+        $cartItems = $this->getCartItems($userId);  // Retrieve all cart items for the user
+
+        foreach ($cartItems as $item) {
+            $total += $item['price'] * $item['quantity'];  // Calculate total using price and quantity from the cart items
+        }
+        if ($cartItems == []){
+            $total=0;
+        }
+
+    return $total;  // Return the calculated total
+}
 }

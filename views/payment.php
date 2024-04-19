@@ -1,10 +1,5 @@
 <?php 
-if (isset($_SESSION['cart_total'])) {
-    $total = $_SESSION['cart_total'];
-} else {
-    // Gérer le cas où le total n'est pas disponible
-    $total = 0; // ou redirige l'utilisateur vers le panier ou affiche un message d'erreur
-}
+
 ob_start(); ?>
 <main>
     <div class="content-wrapper">
@@ -15,7 +10,18 @@ ob_start(); ?>
                 <div class="montant-container" >
                     <div class="montant-title">
                     <h3 class="space-title">Montant à payer</h3>
-                    <p><?php echo number_format($total, 2, ',', '.'); ?> €</p>
+                    <?php 
+                            try {
+                                if ($_SESSION) { ;?>
+                                <span class="total-price" id="totalPrice">
+                                <?php echo number_format($total, 2, ',', '.');?>€</span>
+                    <?php } else {
+                                    echo 'Veuillez vous connecter pour acheter';
+                                }
+                            } catch (Exception $e) {
+                                echo "Caught exception: " . $e->getMessage();
+                            }
+                            ?>
                     </div>
                 </div>
 

@@ -1050,7 +1050,10 @@ td form{
 
 /*Page panier*/
 
-
+.delete-btn{
+    grid-column: span 2;
+    grid-template-columns: 400px;
+}
 .cart-container {
     display: flex;
     justify-content: space-between;
