@@ -93,7 +93,7 @@ class Contact extends Model
         if (in_array($gender, $validGenders)) {
             $this->gender = htmlspecialchars($gender);
         } else {
-            $this->gender = 'undefined';
+            $this->errors['gender'] = "Le genre est requis.";
         }
     }
 
