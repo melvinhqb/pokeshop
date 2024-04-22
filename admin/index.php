@@ -5,33 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Séries de Cartes Pokémon</title>
     <style>
+        *{
+            margin: 0;
+            font-family: 'Manrope', sans-serif;
+        }
         .series {
-            display: inline-block;
-            width: 300px;
+            border: 0.1em #ddd solid;
+            border-radius: 0.75em;
             margin: 10px;
-            text-align: center;
+            height: 40em;
+            text-align:center;
         }
         .series img {
             width: 200px;
             height: 100px;
-            margin-bottom: 10px;
         }
         .set {
-            margin-top: 20px;
+            padding: 1em;
+            width: 300px;
+            height: 27em;
         }
+        .button{
+            background-color:red;
+            color:white;
+            cursor:pointer;
+            display:block;
+            margin:auto;
+            margin-top:3em;
+            margin-bottom:3em;
+        }
+        .content-wrapper{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-around;
+            width: 100%;
+        }
+        .logo{
+            height:100px;
+            width:300px;
+            padding: 1em;
+        }
+        .titre{
+            padding-left:1em;
+            padding-right:1em;
+            padding-bottom:1em;
+        }
+    
     </style>
 </head>
 <body>
 <!-- Bouton pour purger la base de données -->
-<button id="purge-database-btn" style="background-color:red;color:white;cursor:pointer">Purger la Base de Données</button>
+<button class ="button" id="purge-database-btn">Purger la Base de Données</button>
 <?php
 // Faire une requête à l'API TCGdex pour récupérer les séries de cartes
 $json = file_get_contents('https://api.tcgdex.net/v2/fr/series');
 $series = json_decode($json, true);
 
 // Afficher les séries
+echo '<div class="content-wrapper">';
+
 foreach ($series as $serie) {
     echo '<div class="series">';
+    echo '<div class="logo">';
     if (isset($serie['logo'])) {
         $logo_url = $serie['logo'] . '.webp';
         // Vérifier si l'URL du logo existe
@@ -39,8 +76,11 @@ foreach ($series as $serie) {
             echo '<img src="' . $logo_url . '" alt="' . $serie['name'] . '">';
         }
     }
+    echo '</div>';
+    echo '<div class="titre">';
     echo '<p>' . $serie['name'] . '</p>';
-    
+    echo '</div>';
+
     // Faire une requête à l'API TCGdex pour obtenir des informations détaillées sur la série
     $serie_id = $serie['id'];
     $serie_details_json = file_get_contents('https://api.tcgdex.net/v2/fr/series/' . $serie_id);
@@ -58,6 +98,7 @@ foreach ($series as $serie) {
 
     echo '</div>';
 }
+echo '</div>'
 ?>
 <script>
         // Fonction pour purger la base de données
