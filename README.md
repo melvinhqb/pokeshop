@@ -1,76 +1,48 @@
-## Pokeshop - Guide d'installation et d'amélioration
+# Pokeshop
 
-### I - Choix de l'architecture Modèle-Vue-Contrôleur (MVC)
+Pokeshop est un site fictif dédié à la vente de cartes Pokémon.
 
-Lors du développement de notre site web, nous avons opté pour l'architecture MVC afin de mieux organiser notre code et le rendre plus maintenable. Cette architecture divise l'application en trois composants principaux :
+## Installation
+### Prérequis
+- XAMPP (https://www.apachefriends.org/fr/download.html)
+- Composer (https://getcomposer.org/download/)
 
-- **Modèles** : Responsables de l'accès aux données et de leur manipulation.
-- **Vues** : Gèrent la présentation des données et affichent le contenu aux utilisateurs.
-- **Contrôleurs** : Agissent comme des intermédiaires entre les vues et les modèles, coordonnant les actions de l'utilisateur.
+### Étapes d'installation
+1. Cloner le projet dans le répertoire `htdocs` de XAMPP :
+   ```bash
+   git clone https://github.com/melvinhqb/pokeshop.git
+   cd pokeshop
+   ```
+2. Installer les dépendances
+   ```bash
+   composer install
+   ```
+3. Dupliquer le fichier `.env.example` et renommer la copie en `.env`, puis configurer la variable `ADMIN_EMAIL` avec votre mail personel.
+4. Ouvrir XAMMP en mode administrateur et démarrer les serveurs Apache et MySQL.
+5. Ouvrir dans votre navigateur `localhost/phpmyadmin`, importer le fichier `database.sql` situé dans le dossier `config` pour créer la base de données et insérer les données de test.
 
-Pour plus d'informations sur l'architecture MVC en PHP, vous pouvez consulter le lien suivant : [Adoptez une architecture MVC en PHP](https://openclassrooms.com/fr/courses/4670706-adoptez-une-architecture-mvc-en-php).
+## Utilisation
+Pour voir le site en action, voici un [lien vers une démonstration sur YouTube](#).
 
-### II - Installation
+## Architecture Modèle - Vue - Contrôleur (MVC)
 
-Suivez ces étapes pour installer le projet Pokeshop sur votre environnement de développement local :
+Lors du développement de Pokeshop, nous avons adopté l'architecture Modèle-Vue-Contrôleur (MVC) pour structurer notre application. Cette architecture nous aide à séparer les préoccupations, améliorant ainsi la maintenance et l'évolution du code.
 
-1. **Téléchargement de XAMPP** :
-   Téléchargez et installez XAMPP à partir du site officiel : [https://www.apachefriends.org/index.html](https://www.apachefriends.org/index.html).
+Voici une description des trois composants principaux de cette architecture :
 
-2. **Démarrage de XAMPP** :
-   Lancez XAMPP et assurez-vous que les modules Apache et MySQL sont démarrés.
+- **Modèles :** Gèrent les données et la logique métier de l'application.
+- **Vues :** Responsables de la présentation des données aux utilisateurs.
+- **Contrôleurs :** Coordonnent les interactions entre les modèles et les vues.
 
-3. **Initialisation de la base de données** :
-   - Accédez à votre navigateur et entrez l'URL `localhost/phpmyadmin`.
-   - Connectez-vous à phpMyAdmin.
-   - Allez dans l'onglet "Import" et sélectionnez le fichier `database.sql` situé dans le dossier `app/lib`.
-   - Cliquez sur le bouton "Go" pour importer la base de données.
+## Fonctionnalités
+Voici un tableau qui présente les fonctionnalités disponibles selon les différents rôles :
 
-4. **Configuration du projet** :
-   - Assurez-vous que le répertoire du projet est accessible via votre serveur web local (généralement dans le dossier `htdocs` pour XAMPP).
-   - Configurez les paramètres de connexion à la base de données dans le fichier de configuration de votre projet (généralement `config/database.php` ou un fichier similaire). Assurez-vous que les informations d'hôte, de nom d'utilisateur, de mot de passe et de nom de la base de données correspondent à votre configuration locale.
+| Fonctionnalités                             | Guest       | Client      | Admin      |
+|---------------------------------------------|-------------|-------------|------------|
+| Consulter les cartes disponibles            | ✔️          | ✔️          | ✔️         |
+| Contacter le service après-vente par email  | ✔️          | ✔️          | ✔️         |
+| Ajouter ou retirer des cartes du panier     |             | ✔️          | ✔️         |
+| Effectuer des paiements                     |             | ✔️          | ✔️         |
+| Ajouter des cartes à la base de données     |             |             | ✔️         |
 
-5. **Accès au site** :
-   - Ouvrez votre navigateur et entrez l'URL de votre site local (généralement `http://localhost/pokeshop`).
-   - Vous devriez maintenant pouvoir accéder au site et naviguer dans ses fonctionnalités.
-
-6. **Connexion à Internet** :
-   - Notez que le site nécessite une connexion Internet pour certaines fonctionnalités telles de l'affichage des images et le formulaire de contact.
-
-## III - Installation de Composer et gestion des dépendances
-
-### Installation de Composer
-
-Pour installer Composer, suivez les instructions ci-dessous selon votre système d'exploitation :
-
-#### Sur Windows
-1. Téléchargez le fichier d'installation de Composer depuis [getcomposer.org](https://getcomposer.org/download/).
-2. Exécutez le fichier `.exe` téléchargé et suivez les instructions d'installation.
-3. Ouvrez un terminal et tapez `composer` pour vérifier que Composer est correctement installé.
-
-### IV - Configuration des variables d'environnement
-
-Pour configurer les variables d'environnement :
-
-1. Dupliquez le fichier `.env.exemple` et renommez-le en `.env` dans votre répertoire racine.
-2. Ouvrez le fichier `.env` avec un éditeur de texte.
-3. Modifiez les valeurs des variables pour correspondre à votre configuration spécifique.
-4. Sauvegardez le fichier.
-
-### V - Zones d'amélioration
-
-Voici quelques suggestions pour améliorer davantage le projet Pokeshop :
-
-1. Améliorer l'URL en utilisant un fichier .htaccess pour rendre les routes plus conviviales.
-2. Améliorer l'interface d'administration avec une nouvelle conception visuelle.
-3. Factoriser le code de l'interface administrateur en utilisant le modèle Model View Controller (MVC).
-4. Mettre en place un système de panier pour permettre aux utilisateurs d'ajouter temporairement des articles.
-5. Personnaliser les titres dans la barre d'onglets.
-6. Modifier la vue des cartes pour afficher les informations de manière stylisée et ajouter un bouton "ajouter au panier".
-7. Modifier la vue des sets pour inclure la possibilité d'ajouter un certain nombre d'une carte au panier.
-8. Ajouter une icône dans l'onglet à gauche du titre.
-9. Dans la partie administrateur, consulter la base de données pour modifier les imformations (notamment les images des séries).
-10. Pour l'affichage du tableau des cartes d'une extension, il faut une pagination pour ne pas avoir un tableau à rallonge.
-11. Pour l'affichage du tableau des cartes, ajouter éventuellement une deuxième vue (en grille) avec les images mises en avant.
-12. Ajouter une menu dropdown sur la catégorie produits avec la liste des séries.
-13. Ajouter la page panier et la page paiement.
+**Note:** La page d'administration est présente, mais le rôle administrateur n'est pas encore implémenté.
