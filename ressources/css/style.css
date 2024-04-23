@@ -230,6 +230,7 @@ ul {
 }
 
 .text_bestseller{
+    position: relative;
     display: inline-block;
     font-size: 1em;
     font-weight: bold;
@@ -239,6 +240,7 @@ ul {
     border-radius: 0.5em;
     background:linear-gradient(90deg,#e4134d,#851b7b);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    left: 1.7em;
 }
 
 .carte_accueil{
