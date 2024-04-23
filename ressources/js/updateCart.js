@@ -65,9 +65,16 @@ function modifyCart(event) {
             
             var quantityElement = document.getElementById('quantity_' + cardId);
             if (quantityElement) {
-                quantityElement.value = newQuantity; // Mise à jour de l'élément de quantité
+                quantityElement.value = newQuantity;
             }
-            location.reload(); //a changer si jamais compris reload que la partie pagner
+            showCustomAlert('la carte a bien été modifiée');
+                 // Mise à jour de l'élément de quantité
+            setTimeout(function(){ //
+                    location.reload();
+                }, 1000);
+             
+            
+            //a changer si jamais compris reload que la partie pagner
         } else {
             // Gérer l'erreur
             showCustomAlert('Error: ' + xhr.statusText);

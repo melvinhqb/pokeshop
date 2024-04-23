@@ -27,7 +27,7 @@
                             try {
                                 if (isset($_SESSION["user_id"])) { ?>
                                     
-                                    <div class="quantity-container">
+                                    <div class="quantity-container cart">
                                         <div class="quantity-input">                                            
                                             <button type="button" onclick="decreaseQuantity(this)" class="quantity-change-btn minus disabled" id="minus">-</button>
                                             <input type="hidden" name="action" value="modifyCart">

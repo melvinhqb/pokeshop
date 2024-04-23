@@ -939,7 +939,7 @@ td form{
     padding:10px;
     margin-bottom: 20px;
 }
-.card-grid-info .quantity-container{
+.card-grid-info .quantity-container, .cart{
     
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     grid-auto-flow: row;
@@ -957,6 +957,13 @@ td form{
     grid-template-columns: repeat(2, 200px);
     position:relative;
   }
+  .cart{
+    display:grid;
+    grid-template-columns: repeat(1, 200px);
+    grid-auto-flow: row;
+    position:relative;
+    gap: 10px;
+    }
 
 .card-grid-info div .quantity-input, .quantity-input {
     justify-self: center;
@@ -1040,14 +1047,16 @@ td form{
     visibility: visible;
     opacity: 1;
     position: absolute; 
-    bottom: -20px;
+    bottom: -15px;
     width: 120%;
     transition: visibility 0s, opacity 0.5s linear;
 }
 .card-grid-info div .error-message-shown{
     bottom: -7px;
 }
-
+.cart div .error-message-shown{
+    bottom: -5px;
+}
 
 
 /*Page panier*/
