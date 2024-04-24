@@ -22,7 +22,7 @@ Pokeshop est un site fictif dédié à la vente de cartes Pokémon.
 5. Ouvrir dans votre navigateur `localhost/phpmyadmin`, importer le fichier `database.sql` situé dans le dossier `config` pour créer la base de données et insérer les données de test.
 
 ## Utilisation
-Pour voir le site en action, voici un [lien vers une démonstration sur YouTube](#).
+Pour voir le site en action, voici un [lien vers une démonstration sur YouTube](https://www.youtube.com/watch?v=YSZ1WMWkZts).
 
 ## Architecture Modèle - Vue - Contrôleur (MVC)
 
